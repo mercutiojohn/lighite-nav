@@ -23,13 +23,21 @@ export default {
 
 <style scoped>
 .home{
-  padding:50px;
+  --padding:50px;
+  box-sizing: border-box;
+  padding:var(--padding);
   width: calc(100vw - var(--side-width));
   display:grid;
   grid-template-columns:repeat(4, 1fr);
-  grid-template-rows:repeat(3, calc((100vh - var(--head-height) - 50px - 30px * 3 - 40px) / 3));
+  grid-template-rows:repeat(3, calc((100vh - var(--head-height) - var(--padding) - 30px * 3 - 40px) / 3));
   grid-auto-rows: minmax(200px, auto);
   gap:1.5vw;
+}
+@media screen and (max-width: 600px) {
+  .home{
+    --padding:20px;
+    width: 100vw;
+  }
 }
 .card{
   box-sizing: border-box;

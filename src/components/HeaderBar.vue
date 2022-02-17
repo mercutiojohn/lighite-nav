@@ -31,13 +31,18 @@ beforeDestroy(){}
 <style scoped>
 .header{
     height:80px;
-    width:100vw;
+    width:100%;
     background: var(--bg-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top:0;
+}
+@media screen and (max-width: 600px) {
+    .header{
+        position: static;
+    }
 }
 .title-box{
     height: 100%;

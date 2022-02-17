@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
+  <Scroll-Div view-class="app" width="100vw" height="100vh">
     <Header />
     <div id="main-box">
       <Sidebar />
-
       <router-view />
     </div>
-  </div>
+  </Scroll-Div>
+  <!-- <div id="app">
+    <Header />
+    <div id="main-box">
+      <Sidebar />
+      <router-view />
+    </div>
+  </div> -->
 </template>
 <script>
 import Header from "@/components/HeaderBar.vue";
@@ -16,7 +22,7 @@ export default {
   name: "App",
   components: {
     Header,
-    Sidebar
+    Sidebar,
   },
   data() {
     return {};
@@ -32,7 +38,13 @@ export default {
 <style scoped>
 @import "styles/common.css";
 
-#main-box{
-  display:flex;
+#main-box {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  #main-box {
+    flex-direction: column-reverse;
+  }
 }
 </style>

@@ -9,6 +9,8 @@
     /* 高度/宽度参数*/
     --head-height: 80px;
     --side-width: 100px;
+    /* 手机端 */
+    --bottom-height: 50px;
 }
 
 @media screen and (prefers-color-scheme: light) {
@@ -38,9 +40,6 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--content-color);
-}
-
-#app {
     font-family: 'San Francisco', 'SF Pro Display', 'PingFang SC', Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

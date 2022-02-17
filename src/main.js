@@ -4,6 +4,10 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import ScrollDiv from 'vue-scroll-div';
+
+Vue.use(ScrollDiv);
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -32,8 +32,22 @@ export default {
   width: var(--side-width);
   height: calc(100vh - var(--head-height));
   background: var(--bg-color);
-  position: sticky;
-  top:var(--head-height);
+}
+@media screen and (min-width: 600px) {
+  .sidebar {
+    position: sticky;
+    top: var(--head-height);
+  }
+}
+@media screen and (max-width: 600px) {
+  .sidebar {
+    flex-direction: row;
+    height: var(--bottom-height);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    top: none;
+  }
 }
 #nav {
   height: 100%;
@@ -42,7 +56,13 @@ export default {
   align-items: center;
   justify-content: space-evenly;
 }
-
+@media screen and (max-width: 600px) {
+  #nav {
+  height: auto;
+  width: 100%;
+  flex-direction: row;
+}
+}
 #nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -51,4 +71,6 @@ export default {
 #nav a.router-link-exact-active {
   color: var(--accent-color);
 }
+
+
 </style>
