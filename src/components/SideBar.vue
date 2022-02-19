@@ -1,13 +1,15 @@
 <template>
   <div class="sidebar">
     <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/"><span class="iconfont icon-zhinanzhen"></span></router-link>
+      <router-link to="/about"><span class="iconfont icon-qi"></span></router-link>
     </div>
   </div>
 </template>
 
 <script>
+
+
 export default {
   name: "Sidebar",
   components: {},
@@ -24,6 +26,8 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/iconfont/iconfont.css";
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -58,19 +62,33 @@ export default {
 }
 @media screen and (max-width: 600px) {
   #nav {
-  height: auto;
-  width: 100%;
-  flex-direction: row;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+  }
 }
+#nav a{
+  border-radius: 14px;
+  padding: 10px;
+  text-decoration: none;
+  color:var(--title-color);
+  transition: transform .2s ease,color .2s ease,background-color .2s ease;
 }
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#nav a:hover{
+  background: var(--hover-color);
+  transform: scale(1.1);
+}
+#nav a:active{
+  background: var(--active-color);
+  transform: scale(0.95);
+
+}
+#nav a .iconfont {
+  font-size: 30px;
 }
 
 #nav a.router-link-exact-active {
   color: var(--accent-color);
 }
-
 
 </style>

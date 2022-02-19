@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3190323 */
+  src: url('iconfont.woff2?t=1645152424472') format('woff2'),
+       url('iconfont.woff?t=1645152424472') format('woff'),
+       url('iconfont.ttf?t=1645152424472') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bookmark:before {
+  content: "\e640";
+}
+
+.icon-book:before {
+  content: "\e69d";
+}
+
+.icon-musicbox:before {
+  content: "\e975";
+}
+
+.icon-ico-app:before {
+  content: "\e657";
+}
+
+.icon-ai235:before {
+  content: "\e6df";
+}
+
+.icon-appstore:before {
+  content: "\e601";
+}
+
+.icon-zhinanzhen:before {
+  content: "\e682";
+}
+
+.icon-apps-fill:before {
+  content: "\eb7d";
+}
+
+.icon-VideoClip-1:before {
+  content: "\e6f2";
+}
+
+.icon-qi:before {
+  content: "\e692";
+}
+
+.icon-rili:before {
+  content: "\e695";
+}
+
+.icon-tubiao:before {
+  content: "\e696";
+}
+
+.icon-richeng:before {
+  content: "\e694";
+}
+

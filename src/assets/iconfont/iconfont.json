@@ -1,0 +1,100 @@
+{
+  "id": "3190323",
+  "name": "lightie-nav",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9745366",
+      "name": "bookmark",
+      "font_class": "bookmark",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "141499",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "703171",
+      "name": "music-box",
+      "font_class": "musicbox",
+      "unicode": "e975",
+      "unicode_decimal": 59765
+    },
+    {
+      "icon_id": "927734",
+      "name": "ico-app",
+      "font_class": "ico-app",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "999216",
+      "name": "书籍",
+      "font_class": "ai235",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
+      "icon_id": "1381295",
+      "name": "appstore",
+      "font_class": "appstore",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "2742686",
+      "name": "指南针",
+      "font_class": "zhinanzhen",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "15592405",
+      "name": "apps-fill",
+      "font_class": "apps-fill",
+      "unicode": "eb7d",
+      "unicode_decimal": 60285
+    },
+    {
+      "icon_id": "17412821",
+      "name": "Video Clip-1",
+      "font_class": "VideoClip-1",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "27673584",
+      "name": "旗",
+      "font_class": "qi",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "27673612",
+      "name": "日历",
+      "font_class": "rili",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "27673613",
+      "name": "图表",
+      "font_class": "tubiao",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "27673617",
+      "name": "日程",
+      "font_class": "richeng",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    }
+  ]
+}

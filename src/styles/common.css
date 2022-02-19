@@ -4,24 +4,16 @@
     --bg-color: #eee;
     --card-color: #fff;
     --title-color: #000;
-    --subtitle-color: #ccc;
+    --subtitle-color: #555555;
     --content-color: #000;
+    --hover-color: #00000013;
+    --active-color: #00000023;
     /* 高度/宽度参数*/
     --head-height: 80px;
     --side-width: 100px;
+    --card-radius: 16px;
     /* 手机端 */
     --bottom-height: 50px;
-}
-
-@media screen and (prefers-color-scheme: light) {
-     :root {
-        --accent-color: #3c9dff;
-        --bg-color: #eee;
-        --card-color: #fff;
-        --title-color: #000;
-        --subtitle-color: #ccc;
-        --content-color: #fff;
-    }
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -32,7 +24,8 @@
         --title-color: #fff;
         --subtitle-color: #ddd;
         --content-color: #fff;
-        --card-radius: 16px;
+        --hover-color: #ffffff13;
+        --active-color: #ffffff23;
     }
 }
 
@@ -40,9 +33,18 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--content-color);
-    font-family: 'San Francisco', 'SF Pro Display', 'PingFang SC', Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* text-align: center; */
     /* color: #2c3e50; */
+}
+
+a {
+    color: var(--accent-color);
+}
+
+a:visited,
+a:active {
+    color: initial;
 }
