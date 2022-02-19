@@ -1,0 +1,9 @@
+.header{
+    width:100%;
+    padding:20px;
+}
+.header .title{
+    color:var(--title-color);
+    font-weight:800;
+    font-size:18px;
+}

@@ -1,4 +1,6 @@
-# lighite-nav
+# Lightie · 轻主页
+
+你的主页，工具箱，和影音网站收藏馆。
 
 ## Project setup
 ```

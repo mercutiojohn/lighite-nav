@@ -48,3 +48,31 @@ a:visited,
 a:active {
     color: initial;
 }
+
+input:focus {
+    outline: none;
+}
+/* effects */
+.ef-pudding{
+  transition: transform .2s ease,background-color .2s ease;
+}
+.ef-pudding:hover{
+  transform: scale(1.1);
+  background: var(--hover-color);
+}
+.ef-pudding:active{
+  transform: scale(0.95);
+  background: var(--active-color);
+}
+
+.ef-float{
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+.ef-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px 3px #00000024;
+}
+.ef-float:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}

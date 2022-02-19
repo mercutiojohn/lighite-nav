@@ -39,6 +39,9 @@ beforeDestroy(){}
     font-size: 18px;
     transition: border-color .2s ease;
 }
+.search-input:hover{
+    border-color:var(--accent-color);
+}
 .search-input:focus{
     border-color:var(--accent-color);
 }

@@ -1,10 +1,13 @@
 <template>
   <div class="sidebar">
     <div id="nav">
-      <router-link to="/"><span class="iconfont icon-zhinanzhen"></span></router-link>
-      <router-link to="/music"><span class="iconfont icon-musicbox"></span></router-link>
-      <router-link to="/video"><span class="iconfont icon-VideoClip-1"></span></router-link>
-      <router-link to="/about"><span class="iconfont icon-qi"></span></router-link>
+      <router-link class="ef-pudding" to="/"><span class="iconfont icon-apps-fill"></span></router-link>
+      <router-link class="ef-pudding" to="/navigation"><span class="iconfont icon-zhinanzhen"></span></router-link>
+      <router-link class="ef-pudding" to="/music"><span class="iconfont icon-musicbox"></span></router-link>
+      <router-link class="ef-pudding" to="/video"><span class="iconfont icon-VideoClip-1"></span></router-link>
+      <router-link class="ef-pudding" to="/books"><span class="iconfont icon-book"></span></router-link>
+      <router-link class="ef-pudding" to="/tools"><span class="iconfont icon-app"></span></router-link>
+      <router-link class="ef-pudding" to="/about"><span class="iconfont icon-qi"></span></router-link>
     </div>
   </div>
 </template>
@@ -77,15 +80,6 @@ export default {
   text-decoration: none;
   color:var(--title-color);
   transition: transform .2s ease,color .2s ease,background-color .2s ease;
-}
-#nav a:hover{
-  background: var(--hover-color);
-  transform: scale(1.1);
-}
-#nav a:active{
-  background: var(--active-color);
-  transform: scale(0.95);
-
 }
 #nav a .iconfont {
   font-size: 30px;

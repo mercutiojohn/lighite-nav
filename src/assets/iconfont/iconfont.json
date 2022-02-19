@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "25838657",
+      "name": "toolbox-fill",
+      "font_class": "toolbox-fill",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "24916865",
+      "name": "app",
+      "font_class": "app",
+      "unicode": "e728",
+      "unicode_decimal": 59176
+    },
+    {
       "icon_id": "9745366",
       "name": "bookmark",
       "font_class": "bookmark",
@@ -32,13 +46,6 @@
       "font_class": "ico-app",
       "unicode": "e657",
       "unicode_decimal": 58967
-    },
-    {
-      "icon_id": "999216",
-      "name": "书籍",
-      "font_class": "ai235",
-      "unicode": "e6df",
-      "unicode_decimal": 59103
     },
     {
       "icon_id": "1381295",

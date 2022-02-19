@@ -1,12 +1,10 @@
 <template>
-<div class="music-catalog">
-    我的音乐
-</div>
+<div class="weather"></div>
 </template>
 
 <script>
 export default {
-name: "",
+name: "Weather",
 components: {},
 data() {
 return {

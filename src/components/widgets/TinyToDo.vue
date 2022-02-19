@@ -1,12 +1,10 @@
 <template>
-<div class="book-shelf">
-    我的书架
-</div>
+<div class="tiny-todo"></div>
 </template>
 
 <script>
 export default {
-name: "BookShelf",
+name: "",
 components: {},
 data() {
 return {
