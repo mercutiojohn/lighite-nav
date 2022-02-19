@@ -5,8 +5,8 @@
     <div class="card card-long"><TinyToDo /></div>
     <div class="card card-small"></div>
     <div class="card card-sub1"><TinyVideo /></div>
-    <div class="card card-sub2"><TinyMusic /></div>
-    <div class="card card-sub1"><TinyBook /></div>
+    <div class="card card-sub2"><TinyBook /></div>
+    <div class="card card-sub1"><TinyMusic /></div>
   </div>
 </template>
 
@@ -41,10 +41,10 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(
-    3,
+    2,
     calc((100vh - var(--head-height) - var(--padding)) / 3)
   );
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(300px, auto);
   gap: 1.5vw;
 }
 @media screen and (max-width: 600px) {
