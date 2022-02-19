@@ -1,6 +1,6 @@
 <template>
 <div class="tiny-clock">
-    19:20:01
+    <div class="clock-content">19:20:01</div>
 </div>
 </template>
 
@@ -23,4 +23,12 @@ beforeDestroy(){}
 </script>
 
 <style>
+.tiny-clock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    height: 100%;
+    box-sizing: border-box;
+}
 </style>

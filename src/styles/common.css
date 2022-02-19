@@ -13,14 +13,14 @@
     --side-width: 100px;
     --card-radius: 16px;
     /* 手机端 */
-    --bottom-height: 50px;
+    --bottom-height: 60px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
      :root {
         --accent-color: #3c9dff;
         --bg-color: #000;
-        --card-color: #bbb;
+        --card-color: #414141;
         --title-color: #fff;
         --subtitle-color: #ddd;
         --content-color: #fff;

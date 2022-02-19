@@ -2,6 +2,8 @@
   <div class="sidebar">
     <div id="nav">
       <router-link to="/"><span class="iconfont icon-zhinanzhen"></span></router-link>
+      <router-link to="/music"><span class="iconfont icon-musicbox"></span></router-link>
+      <router-link to="/video"><span class="iconfont icon-VideoClip-1"></span></router-link>
       <router-link to="/about"><span class="iconfont icon-qi"></span></router-link>
     </div>
   </div>
@@ -36,6 +38,7 @@ export default {
   width: var(--side-width);
   height: calc(100vh - var(--head-height));
   background: var(--bg-color);
+  z-index: 10;
 }
 @media screen and (min-width: 600px) {
   .sidebar {
@@ -48,7 +51,7 @@ export default {
     flex-direction: row;
     height: var(--bottom-height);
     width: 100%;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     top: none;
   }
@@ -58,7 +61,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap:20px;
 }
 @media screen and (max-width: 600px) {
   #nav {
