@@ -46,14 +46,16 @@ beforeDestroy(){}
 }
 .title-box{
     height: 100%;
-    width: 150px;
+    /* width: 150px; */
+    padding: 0 30px;
     /* background: rgb(128, 128, 128); */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .title{
-    font-size: 30px;
+    font-family: AtmaSerif;
+    font-size: 40px;
     font-weight: 900;
 }
 </style>

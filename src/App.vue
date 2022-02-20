@@ -37,6 +37,7 @@ export default {
 </script>
 <style scoped>
 @import "styles/common.css";
+@import "styles/fonts.css";
 
 #main-box {
   display: flex;

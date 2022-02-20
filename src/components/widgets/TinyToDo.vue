@@ -1,5 +1,8 @@
 <template>
   <div class="tiny-todo">
+    <div class="header">
+      <span class="title">待办清单</span>
+    </div>
     <div class="todo-input-box">
       <input
         type="text"
@@ -11,7 +14,7 @@
       />
     </div>
     <ul class="list">
-      <li class="item" v-for="(item, index) in list" :key="index">
+      <li class="item ef-fadein" v-for="(item, index) in list" :key="index">
         <div class="left">
           <input type="checkbox" name="" id="" v-model="item.checked" />
           <!-- <span v-text="index"></span> -->
@@ -78,7 +81,8 @@ export default {
   beforeDestroy() {},
 };
 </script>
-
+<style lang="css" src="../../styles/card.css" scoped>
+</style>
 <style scoped>
 .todo-text-checked {
   opacity: 0.6;
@@ -98,18 +102,18 @@ export default {
   border: 2px solid var(--accent-color);
 }
 .todo-input-box {
-  margin: 20px;
+  margin:0 20px 5px 20px;
 }
 .list {
-  margin: 20px 0 20px 20px;
+  margin: 5px 0 20px 20px;
 }
 .list .item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 5px;
-  padding: 5px 20px 5px 0;
-  border-bottom: 2px solid var(--line-color);
+  padding: 8px 20px 8px 0;
+  border-bottom: 1px solid var(--line-color);
 }
 /* .list .item:nth-child(1) {
   margin-top: 10px;

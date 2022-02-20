@@ -23,6 +23,10 @@ export default new Vuex.Store({
         ],
         settings: {
 
+        },
+        tokens: {
+            biliblli: '',
+            netease: ''
         }
     },
     mutations: {

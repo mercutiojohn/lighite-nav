@@ -52,6 +52,8 @@ export default {
     --padding: 20px;
     width: 100vw;
     grid-template-rows: calc(100vh - var(--bottom-height) - var(--head-height) - var(--padding) * 2 - 300px);
+    grid-auto-rows: minmax(100px, auto);
+
   }
 }
 .card {
@@ -94,6 +96,7 @@ export default {
   .card-sub2,
   .card-main,
   .card-small,
+  .card-long,
   .card-more{
       grid-column: 1 / 5;
   }

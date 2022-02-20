@@ -1,5 +1,7 @@
 <template>
-  <div class="weather">
+  <div class="weather" 
+          :style="{ 'background': backgroundColorTrans(briefNew) }"
+  >
     <transition name="fade" type="out-in">
       <div class="change-city" v-if="citySelect">
         <span class="title">切换城市</span>
@@ -191,6 +193,30 @@ export default {
     cancelSelect() {
       this.citySelect = false;
     },
+    backgroundColorTrans(colorName){
+    switch (colorName) {
+        case "晴":
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
+        case "晴转多云":
+          return "#d61857";
+        case "多云":
+          return "#d61857";
+        case "阴":
+            return "#d61857";
+        case "小雨":
+            return "#d61857";
+        case "中雨":
+          return "#d61857";
+        case "大雨":
+          return "#d61857";
+        case "霾":
+          return "#d61857";
+        case "雾":
+          return "#d61857";
+        default:
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(235, 235, 235));";
+        }
+    },
     warningColorTrans(colorName) {
       switch (colorName) {
         case "蓝色":
@@ -245,10 +271,10 @@ hello {
 .weather {
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252));
+  background: linear-gradient(45deg, transparent,transparent 40%, rgb(235, 235, 235));
   user-select: none;
   box-sizing: border-box;
-  transition: all .2s ease;
+  transition: background .2s ease;
   overflow: hidden;
 }
 .weather-content {
