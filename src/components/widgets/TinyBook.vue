@@ -116,6 +116,7 @@ beforeDestroy(){}
     grid-template-columns: repeat(auto-fill,100px);
     grid-auto-rows: 120px;
     gap: 10px;
+    justify-content: center;
 }
 .book-shelf .book-item{
     display: flex;

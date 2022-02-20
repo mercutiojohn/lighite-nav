@@ -58,7 +58,16 @@ export default {
   box-sizing: border-box;
   background: var(--card-color);
   border-radius: var(--card-radius);
-  overflow: hidden;
+  overflow-x: hidden;
+  /* overflow-y: scroll; */
+}
+.card::-webkit-scrollbar{
+  width: 5px;
+  /* background: #000; */
+}
+.card::-webkit-scrollbar-thumb{
+  border-radius: 3px;
+  background: var(--bg-color);
 }
 .card-no-bg{
   background: transparent;

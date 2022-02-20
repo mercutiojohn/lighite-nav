@@ -1,8 +1,13 @@
 <template>
 <div class="tiny-nav">
+    <div class="header">
+        <span class="title">我的导航</span>
+    </div>
+    <div class="nav-list">
     <div class="nav-item ef-float" v-for="(item,index) in 5" :key="index">
         <img :src="require('@/assets/images/webpage.svg')" alt="" srcset=""/>
         <span>名称</span>
+    </div>
     </div>
 </div>
 </template>
@@ -24,13 +29,16 @@ mounted(){},
 beforeDestroy(){}
 };
 </script>
-
-<style>
-.tiny-nav{
-    height: 100%;
+<style lang="css" src="../../styles/card.css" scoped>
+</style>
+<style scoped>
+.header{
+    padding: 0 0 10px 0;
+}
+.nav-list{
     display: grid;
     gap:10px;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
     grid-auto-rows: minmax(33.33%,90px);
 }
 .nav-item{

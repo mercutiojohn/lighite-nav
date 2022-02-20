@@ -8,6 +8,7 @@
     --content-color: #000;
     --hover-color: #00000013;
     --active-color: #00000023;
+    --line-color: #e0e0e0;
     /* 高度/宽度参数*/
     --head-height: 80px;
     --side-width: 100px;
@@ -26,6 +27,7 @@
         --content-color: #fff;
         --hover-color: #ffffff13;
         --active-color: #ffffff23;
+        --line-color: #bbb;
     }
 }
 
@@ -52,27 +54,40 @@ a:active {
 input:focus {
     outline: none;
 }
-/* effects */
-.ef-pudding{
-  transition: transform .2s ease,background-color .2s ease;
-}
-.ef-pudding:hover{
-  transform: scale(1.1);
-  background: var(--hover-color);
-}
-.ef-pudding:active{
-  transform: scale(0.95);
-  background: var(--active-color);
+
+ul {
+    list-style-type: none;
+    margin-block-start: 0;
+    padding-inline-start: 0;
 }
 
-.ef-float{
-    transition:transform .2s ease,box-shadow .2s ease;
+
+/* effects */
+
+.ef-pudding {
+    transition: transform .2s ease, background-color .2s ease;
 }
+
+.ef-pudding:hover {
+    transform: scale(1.1);
+    background: var(--hover-color);
+}
+
+.ef-pudding:active {
+    transform: scale(0.95);
+    background: var(--active-color);
+}
+
+.ef-float {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
 .ef-float:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px 3px #00000024;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px 3px #00000024;
 }
+
 .ef-float:active {
-  transform: translateY(0px);
-  box-shadow: none;
+    transform: translateY(0px);
+    box-shadow: none;
 }
