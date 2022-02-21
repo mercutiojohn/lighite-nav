@@ -27,6 +27,33 @@ export default new Vuex.Store({
         tokens: {
             biliblli: '',
             netease: ''
+        },
+        navs: {
+            favorites: [{
+                    "title": "空投AirPortal",
+                    "color": "#ffffff",
+                    "icon": "airportal.svg",
+                    "url": "https://airportal.cn/"
+                },
+                {
+                    "title": "LeetCode笔记",
+                    "color": "#ffffff",
+                    "icon": "leetcode.svg",
+                    "url": "https://leetcode-cn.com/notes/"
+                },
+                {
+                    "title": "WolframAlpha",
+                    "color": "#ffffff",
+                    "icon": "airportal.svg",
+                    "url": "https://www.wolframalpha.com/"
+                },
+                {
+                    "title": "Markdown转公众号",
+                    "color": "#000000",
+                    "icon": "markdown.svg",
+                    "url": "https://md.qikqiak.com/"
+                }
+            ]
         }
     },
     mutations: {
@@ -41,6 +68,10 @@ export default new Vuex.Store({
         setSettings(state, settings) {
             localStorage.setItem('settings', encodeURIComponent(JSON.stringify(settings)));
             state.settings = settings;
+        },
+        setNavs(state, settings) {
+            localStorage.setItem('navs', encodeURIComponent(JSON.stringify(navs)));
+            state.navs = navs;
         }
     },
     actions: {},
@@ -51,6 +82,12 @@ export default new Vuex.Store({
                 state.todoList = JSON.parse(decodeURIComponent(localStorage.getItem('todoList')));
             }
             return state.todoList;
+        },
+        getNavs: (state) => {
+            if (localStorage.getItem("navs")) {
+                state.navs = JSON.parse(decodeURIComponent(localStorage.getItem('navs')));
+            }
+            return state.navs;
         },
         getSettings: (state) => {
             if (localStorage.getItem("settings")) {

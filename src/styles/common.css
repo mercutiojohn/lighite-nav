@@ -171,3 +171,13 @@ input {
     cursor: pointer;
     border-radius: var(--item-radius);
 }
+
+
+/* Common page */
+
+.common-page {
+    background: var(--card-color);
+    /* width: 100%; */
+    /* height: 300px; */
+    border-top-left-radius: var(--card-radius);
+}
