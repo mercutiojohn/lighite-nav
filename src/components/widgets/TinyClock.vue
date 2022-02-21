@@ -69,10 +69,10 @@ export default {
   created() {},
   mounted() {
     this.settings = this.remoteSettings;
+    this.date = this.getTime();
     this.timer = setInterval(() => {
       this.date = this.getTime();
     }, 100);
-
   },
   beforeDestroy() {},
 };

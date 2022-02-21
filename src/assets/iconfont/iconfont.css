@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3190323 */
-  src: url('iconfont.woff2?t=1645286034513') format('woff2'),
-       url('iconfont.woff?t=1645286034513') format('woff'),
-       url('iconfont.ttf?t=1645286034513') format('truetype');
+  src: url('iconfont.woff2?t=1645462101244') format('woff2'),
+       url('iconfont.woff?t=1645462101244') format('woff'),
+       url('iconfont.ttf?t=1645462101244') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,310 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-accountbalancewallet:before {
+  content: "\e66e";
+}
+
+.icon-accountbox:before {
+  content: "\e66f";
+}
+
+.icon-accountchild:before {
+  content: "\e670";
+}
+
+.icon-accountcircle:before {
+  content: "\e671";
+}
+
+.icon-add:before {
+  content: "\e672";
+}
+
+.icon-addbox:before {
+  content: "\e673";
+}
+
+.icon-addcircle:before {
+  content: "\e674";
+}
+
+.icon-addcircleoutline:before {
+  content: "\e675";
+}
+
+.icon-album:before {
+  content: "\e678";
+}
+
+.icon-arrowdropup:before {
+  content: "\e691";
+}
+
+.icon-arrowforward:before {
+  content: "\e693";
+}
+
+.icon-arrowleft:before {
+  content: "\e697";
+}
+
+.icon-arrowright:before {
+  content: "\e698";
+}
+
+.icon-arrowup:before {
+  content: "\e699";
+}
+
+.icon-block:before {
+  content: "\e69c";
+}
+
+.icon-backspace:before {
+  content: "\e6a4";
+}
+
+.icon-bag:before {
+  content: "\e6a6";
+}
+
+.icon-ban:before {
+  content: "\e6a7";
+}
+
+.icon-close:before {
+  content: "\e6d5";
+}
+
+.icon-circlecross:before {
+  content: "\e6db";
+}
+
+.icon-circleminus:before {
+  content: "\e6dc";
+}
+
+.icon-circleplus:before {
+  content: "\e6dd";
+}
+
+.icon-clear:before {
+  content: "\e6df";
+}
+
+.icon-cog:before {
+  content: "\e6e3";
+}
+
+.icon-cross:before {
+  content: "\e6f5";
+}
+
+.icon-dashboard:before {
+  content: "\e6f7";
+}
+
+.icon-contentleft:before {
+  content: "\e700";
+}
+
+.icon-contentright:before {
+  content: "\e702";
+}
+
+.icon-contract:before {
+  content: "\e703";
+}
+
+.icon-done:before {
+  content: "\e709";
+}
+
+.icon-doneall:before {
+  content: "\e70a";
+}
+
+.icon-drop:before {
+  content: "\e70e";
+}
+
+.icon-dndon:before {
+  content: "\e717";
+}
+
+.icon-edit:before {
+  content: "\e722";
+}
+
+.icon-fastforward:before {
+  content: "\e736";
+}
+
+.icon-fastrewind:before {
+  content: "\e738";
+}
+
+.icon-favorite:before {
+  content: "\e739";
+}
+
+.icon-favoriteoutline:before {
+  content: "\e73a";
+}
+
+.icon-folder:before {
+  content: "\e73e";
+}
+
+.icon-folder2:before {
+  content: "\e73f";
+}
+
+.icon-folderopen:before {
+  content: "\e740";
+}
+
+.icon-flag:before {
+  content: "\e749";
+}
+
+.icon-flag2:before {
+  content: "\e74a";
+}
+
+.icon-grid:before {
+  content: "\e74f";
+}
+
+.icon-paper:before {
+  content: "\e804";
+}
+
+.icon-paperstack:before {
+  content: "\e808";
+}
+
+.icon-play:before {
+  content: "\e82e";
+}
+
+.icon-playarrow:before {
+  content: "\e82f";
+}
+
+.icon-playcirclefill:before {
+  content: "\e830";
+}
+
+.icon-playcircleoutline:before {
+  content: "\e831";
+}
+
+.icon-plus:before {
+  content: "\e848";
+}
+
+.icon-portrait:before {
+  content: "\e84a";
+}
+
+.icon-refresh:before {
+  content: "\e851";
+}
+
+.icon-remove:before {
+  content: "\e854";
+}
+
+.icon-repeat2:before {
+  content: "\e86c";
+}
+
+.icon-search:before {
+  content: "\e883";
+}
+
+.icon-search2:before {
+  content: "\e884";
+}
+
+.icon-skipback:before {
+  content: "\e8a6";
+}
+
+.icon-skipforward:before {
+  content: "\e8a7";
+}
+
+.icon-skipnext:before {
+  content: "\e8a8";
+}
+
+.icon-skipprevious:before {
+  content: "\e8a9";
+}
+
+.icon-squareminus:before {
+  content: "\e8b4";
+}
+
+.icon-squareplus:before {
+  content: "\e8b5";
+}
+
+.icon-stack:before {
+  content: "\e8b6";
+}
+
+.icon-toggle:before {
+  content: "\e8d0";
+}
+
+.icon-trash:before {
+  content: "\e8d6";
+}
+
+.icon-thumbdown:before {
+  content: "\e8dc";
+}
+
+.icon-thumbsupdown:before {
+  content: "\e8dd";
+}
+
+.icon-thumbup:before {
+  content: "\e8de";
+}
+
+.icon-umbrella:before {
+  content: "\e8e1";
+}
+
+.icon-upload:before {
+  content: "\e8e5";
+}
+
+.icon-turnedin:before {
+  content: "\e8f0";
+}
+
+.icon-turnedinnot:before {
+  content: "\e8f1";
+}
+
+.icon-viewday:before {
+  content: "\e8f3";
+}
+
+.icon-viewheadline:before {
+  content: "\e8f4";
+}
+
+.icon-viewweek:before {
+  content: "\e8f9";
 }
 
 .icon-toolbox-fill:before {

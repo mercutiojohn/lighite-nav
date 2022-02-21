@@ -12,6 +12,8 @@
     --hover-color: #00000013;
     --active-color: #00000023;
     --line-color: #e0e0e0;
+    /* 强调色 */
+    --warn-color: #ff2600;
     /* 高度/宽度参数*/
     --head-height: 80px;
     --side-width: 100px;
@@ -33,8 +35,8 @@
         --title-color: #fff;
         --subtitle-color: #ddd;
         --content-color: #fff;
-        --hover-color: #ffffff13;
-        --active-color: #ffffff23;
+        --hover-color: #ffffff33;
+        --active-color: #ffffff71;
         --line-color: #141414;
     }
 }
@@ -99,6 +101,28 @@ input[type=text]::placeholder {
 }
 
 input[type=text] {}
+
+
+/* buttons */
+
+button.icon-button {
+    border: none;
+    background: none;
+    color: var(--content-color);
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 7px;
+    border-radius: 20%;
+}
+
+button.icon-button:hover {
+    background: var(--hover-color);
+}
+
+button.icon-button:active {
+    background: var(--accent-color);
+    color: #fff;
+}
 
 
 /* effects */
