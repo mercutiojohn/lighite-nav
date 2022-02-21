@@ -46,11 +46,19 @@ export default {
   grid-auto-rows: minmax(300px, auto);
   gap: 1.5vw;
 }
+@media screen and (max-width: 1080px) {
+  .home {
+    --padding: 20px;
+    grid-template-rows: unset;
+    grid-auto-rows: minmax(100px, auto);
+
+  }
+}
 @media screen and (max-width: 600px) {
   .home {
     --padding: 20px;
     width: 100vw;
-    grid-template-rows: calc(100vh - var(--bottom-height) - var(--head-height) - var(--padding) * 2 - 300px);
+    grid-template-rows: unset;
     grid-auto-rows: minmax(100px, auto);
 
   }
@@ -90,6 +98,23 @@ export default {
 .card-long{
   grid-row: 1 / 3;
 }
+@media screen and (max-width: 1080px) {
+  .card-sub1,
+  .card-main,
+  .card-long{
+      grid-row: unset;
+      grid-column: 1 / 3;
+  }
+  .card-small,
+  .card-sub2{
+    grid-row: unset;
+    grid-column: 3 / 5;
+  }
+  .card-more{
+    grid-row: unset;
+    grid-column: 1 / 5;
+  }
+}
 @media screen and (max-width: 600px) {
   .card-sub1,
   .card-sub2,
@@ -97,6 +122,7 @@ export default {
   .card-small,
   .card-long,
   .card-more{
+      grid-row: unset;
       grid-column: 1 / 5;
   }
 }

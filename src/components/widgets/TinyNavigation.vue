@@ -2,6 +2,12 @@
   <div class="tiny-nav">
     <div class="header">
       <span class="title">我的导航</span>
+      <router-link to="/navigation">
+        <button class="icon-button">
+            <span class="label">更多</span>
+            <span class="iconfont icon-chevron-right"></span>
+        </button>
+        </router-link>
     </div>
     <div class="nav-list">
       <a :href="item.url" target="_blank" class="nav-item ef-float" v-for="(item, index) in navs.favorites" :key="index">

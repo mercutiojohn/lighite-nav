@@ -1,18 +1,25 @@
-.header{
-    width:100%;
-    padding:20px;
+.header {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
-.header .title{
-    color:var(--title-color);
-    font-weight:800;
-    font-size:18px;
+
+.header .title {
+    color: var(--title-color);
+    font-weight: 800;
+    font-size: 18px;
 }
-.sub-header{
-    width:100%;
-    padding:0 20px 5px 20px;
+
+.sub-header {
+    width: 100%;
+    padding: 0 20px 5px 20px;
 }
-.sub-header .title{
-    color:var(--title-color);
-    font-weight:800;
-    font-size:18px;
+
+.sub-header .title {
+    color: var(--title-color);
+    font-weight: 800;
+    font-size: 18px;
 }

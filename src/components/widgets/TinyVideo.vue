@@ -1,6 +1,15 @@
 <template>
   <div class="tiny-video">
     <div class="header">
+      <span class="title">我的视频</span>
+      <router-link to="/video">
+        <button class="icon-button">
+            <span class="label">更多</span>
+            <span class="iconfont icon-chevron-right"></span>
+        </button>
+        </router-link>
+    </div>
+    <div class="sub-header">
       <span class="title">正在直播</span>
     </div>
     <ul class="live-list tiny-cube">

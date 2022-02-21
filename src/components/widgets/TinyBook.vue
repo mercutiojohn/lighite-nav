@@ -2,6 +2,12 @@
 <div class="tiny-book">
     <div class="header">
         <span class="title">我的书架</span>
+        <router-link to="/books">
+        <button class="icon-button">
+            <span class="label">更多</span>
+            <span class="iconfont icon-chevron-right"></span>
+        </button>
+        </router-link>
     </div>
     <ul class="book-shelf tiny-cube">
         <li class="book-item ef-pudding tiny-cube-item" v-for="(item,index) in books" :key="index">

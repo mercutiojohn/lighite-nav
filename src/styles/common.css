@@ -20,6 +20,7 @@
     /* 圆角弧度 */
     --card-radius: 16px;
     --item-radius: 10px;
+    --button-small-radius: 7px;
     /* 手机端 */
     --bottom-height: 60px;
 }
@@ -102,8 +103,12 @@ input[type=text]::placeholder {
 
 input[type=text] {}
 
+button {
+    font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
+}
 
-/* buttons */
+
+/* customized buttons */
 
 button.icon-button {
     border: none;
@@ -112,7 +117,7 @@ button.icon-button {
     cursor: pointer;
     transition: all .2s ease;
     padding: 7px;
-    border-radius: 20%;
+    border-radius: var(--button-small-radius);
 }
 
 button.icon-button:hover {
