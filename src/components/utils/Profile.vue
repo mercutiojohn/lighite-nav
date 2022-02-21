@@ -1,12 +1,12 @@
 <template>
-<div class="navigation">
-
+<div class="profile">
+    <div class="avatar"></div>
 </div>
 </template>
 
 <script>
 export default {
-name: "Navigation",
+name: "Profile",
 components: {},
 data() {
 return {
@@ -22,11 +22,11 @@ beforeDestroy(){}
 };
 </script>
 
-<style scoped>
-.navigation{
+<style>
+.avatar{
+    width: 45px;
+    height: 45px;
     background: var(--card-color);
-    /* width: 100%; */
-    height: 200px;
-    border-top-left-radius: var(--card-radius);
+    border-radius: var(--item-radius);
 }
 </style>

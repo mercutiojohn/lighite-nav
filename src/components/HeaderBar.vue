@@ -3,16 +3,23 @@
     <div class="title-box">
     <span class="title" v-text="title"></span>
     </div>
+    <div class="profile-box">
     <TinyClock />
+    <Profile />
+    
+    </div>
+    
 </div>
 </template>
 
 <script>
 import TinyClock from '@/components/widgets/TinyClock.vue'
+import Profile from '@/components/utils/Profile.vue'
 export default {
 name: "Header",
 components: {
-    TinyClock
+    TinyClock,
+    Profile
 },
 data() {
 return {
@@ -57,5 +64,12 @@ beforeDestroy(){}
     font-family: AtmaSerif;
     font-size: 40px;
     font-weight: 900;
+}
+.profile-box{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:15px;
+    padding: 0 20px;
 }
 </style>

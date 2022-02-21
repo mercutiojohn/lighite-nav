@@ -196,23 +196,25 @@ export default {
     backgroundColorTrans(colorName){
     switch (colorName) {
         case "晴":
-          return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
+          return "linear-gradient(45deg, transparent, transparent 40%, rgb(252, 239, 173))";
         case "晴转多云":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(252, 239, 173))";
         case "多云":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
         case "阴":
-            return "#d61857";
+            return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
         case "小雨":
-            return "#d61857";
+            return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
         case "中雨":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
         case "大雨":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(173, 220, 252))";
         case "霾":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(192, 183, 209))";
         case "雾":
-          return "#d61857";
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(172, 197, 219))";
+        case "沙尘暴":
+          return "linear-gradient(45deg, transparent,transparent 40%, rgb(225, 188, 133))";
         default:
           return "linear-gradient(45deg, transparent,transparent 40%, rgb(235, 235, 235));";
         }

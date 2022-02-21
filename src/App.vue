@@ -3,7 +3,7 @@
     <Header />
     <div id="main-box">
       <Sidebar />
-      <router-view />
+      <router-view class="content"/>
     </div>
   </Scroll-Div>
   <!-- <div id="app">
@@ -41,6 +41,11 @@ export default {
 
 #main-box {
   display: flex;
+}
+.content{
+  width: calc(100vw - var(--side-width));
+  min-height: calc(100vh - var(--head-height));
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 600px) {
