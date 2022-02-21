@@ -6,18 +6,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         todoList: [{
-                text: '示例内容',
+                text: '在上面输入待办事项',
                 createdAt: '',
+                doneAt: '',
                 checked: false
             },
             {
-                text: 'hahaha',
+                text: '轻敲回车以添加',
                 createdAt: '',
+                doneAt: '',
                 checked: true
             },
             {
-                text: 'todo-sample',
+                text: '点击对勾可以划掉此条',
                 createdAt: '',
+                doneAt: '',
+                checked: false
+            },
+            {
+                text: '点击垃圾桶可以删除此条',
+                createdAt: '',
+                doneAt: '',
                 checked: false
             }
         ],
