@@ -1,29 +1,53 @@
 <template>
   <div class="sidebar">
     <div id="nav">
-      <router-link class="ef-pudding" to="/"><span class="iconfont icon-apps-fill"></span></router-link>
-      <router-link class="ef-pudding" to="/navigation"><span class="iconfont icon-zhinanzhen"></span></router-link>
-      <router-link class="ef-pudding" to="/music"><span class="iconfont icon-musicbox"></span></router-link>
-      <router-link class="ef-pudding" to="/video"><span class="iconfont icon-VideoClip-1"></span></router-link>
-      <router-link class="ef-pudding" to="/books"><span class="iconfont icon-book"></span></router-link>
-      <router-link class="ef-pudding" to="/tools"><span class="iconfont icon-app"></span></router-link>
-      <router-link class="ef-pudding" to="/about"><span class="iconfont icon-qi"></span></router-link>
+      <router-link class="ef-pudding" v-for="(item,index) in tabs" :key="index" :to="item.to" @click.native="scroll()">
+        <span :class="'iconfont '+item.icon"></span>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "Sidebar",
   components: {},
   data() {
-    return {};
+    return {
+      tabs:[
+        {
+          to:"/",
+          icon:"icon-apps-fill"
+        },{
+          to:"/navigation",
+          icon:"icon-zhinanzhen"
+        },{
+          to:"/music",
+          icon:"icon-musicbox"
+        },{
+          to:"/video",
+          icon:"icon-VideoClip-1"
+        },{
+          to:"/books",
+          icon:"icon-book"
+        },{
+          to:"/tools",
+          icon:"icon-app"
+        },{
+          to:"/about",
+          icon:"icon-qi"
+        },
+      ]
+    };
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    scroll() {
+      // console.log(document.querySelector("body > div").scrollTop);
+      // document.querySelector("body > div").scrollTop = document.documentElement.scrollTop = 0;
+    },
+  },
   created() {},
   mounted() {},
   beforeDestroy() {},
@@ -41,11 +65,12 @@ export default {
   width: var(--side-width);
   height: calc(100vh - var(--head-height));
   background: var(--bg-color);
-  z-index: 10;
+  z-index: 11;
+  flex-shrink: 0;
 }
 @media screen and (min-width: 600px) {
   .sidebar {
-    position: sticky;
+    position: fixed;
     top: var(--head-height);
   }
 }
@@ -54,7 +79,7 @@ export default {
     flex-direction: row;
     height: var(--bottom-height);
     width: 100%;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     top: none;
   }
@@ -65,7 +90,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap:20px;
+  gap: 20px;
 }
 @media screen and (max-width: 600px) {
   #nav {
@@ -74,12 +99,12 @@ export default {
     flex-direction: row;
   }
 }
-#nav a{
+#nav a {
   border-radius: 14px;
   padding: 10px;
   text-decoration: none;
-  color:var(--title-color);
-  transition: transform .2s ease,color .2s ease,background-color .2s ease;
+  color: var(--title-color);
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 #nav a .iconfont {
   font-size: 30px;
@@ -88,5 +113,4 @@ export default {
 #nav a.router-link-exact-active {
   color: var(--accent-color);
 }
-
 </style>

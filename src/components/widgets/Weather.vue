@@ -274,7 +274,6 @@ hello {
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, transparent,transparent 40%, rgb(235, 235, 235));
-  user-select: none;
   box-sizing: border-box;
   transition: background .2s ease;
   overflow: hidden;

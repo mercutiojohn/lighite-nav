@@ -2,7 +2,10 @@
     /* 颜色*/
     --accent-color: #3c9dff;
     --bg-color: #eee;
+    /* container */
     --card-color: #fff;
+    --page-color: #fff;
+    /* text */
     --title-color: #000;
     --subtitle-color: #555555;
     --content-color: #000;
@@ -23,13 +26,16 @@
      :root {
         --accent-color: #3c9dff;
         --bg-color: #000;
+        /* container */
         --card-color: #414141;
+        --page-color: #414141;
+        /* text */
         --title-color: #fff;
         --subtitle-color: #ddd;
         --content-color: #fff;
         --hover-color: #ffffff13;
         --active-color: #ffffff23;
-        --line-color: #bbb;
+        --line-color: #141414;
     }
 }
 
@@ -47,11 +53,12 @@ body {
 
 a {
     color: var(--accent-color);
+    text-decoration: none;
 }
 
 a:visited,
 a:active {
-    color: initial;
+    color: var(--accent-color);
 }
 
 input:focus {
@@ -64,9 +71,34 @@ ul {
     padding-inline-start: 0;
 }
 
-input {
+input[type=text] {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--card-radius);
+    padding: 9px;
+    box-sizing: border-box;
+    background: var(--bg-color);
+    color: var(--content-color);
+    font-size: 15px;
+    border-radius: var(--item-radius);
+    transition: border-color .2s ease;
 }
+
+input[type=text]:hover {
+    border-color: var(--accent-color);
+}
+
+input[type=text]:focus {
+    border-color: var(--accent-color);
+}
+
+input[type=text]::placeholder {
+    /* color: var(--content-color); */
+}
+
+input[type=text] {}
 
 
 /* effects */
@@ -180,4 +212,60 @@ input {
     /* width: 100%; */
     /* height: 300px; */
     border-top-left-radius: var(--card-radius);
+}
+
+@media screen and (max-width:600px) {
+    .common-page {
+        border-top-left-radius: 0;
+    }
+}
+
+
+/* Animations */
+
+.page-fade-enter-active {
+    position: absolute;
+    top: var(--head-height);
+    /* left: var(--side-width); */
+    transition: opacity .1s ease, transform .2s ease;
+    z-index: 10;
+}
+
+.page-fade-leave-active {
+    position: absolute;
+    top: var(--head-height);
+    /* left: var(--side-width); */
+    transition: opacity .5s ease, transform .4s ease;
+    z-index: -1;
+}
+
+@media screen and (max-width:600px) {
+    .page-fade-enter-active {
+        /* top: var(--head-height); */
+        /* left: 0; */
+    }
+    .page-fade-leave-active {
+        /* top: var(--head-height); */
+        /* left: 0; */
+    }
+}
+
+.page-fade-enter {
+    transform: translateY(100vh);
+    opacity: 0;
+}
+
+.page-fade-leave-to {
+    transform: translateY(10vh) scale(0.98);
+    opacity: 0;
+}
+
+
+/* fixes */
+
+.fix-text-overflow {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -37,7 +37,6 @@ export default {
   --padding: 50px;
   box-sizing: border-box;
   padding: var(--padding);
-  width: calc(100vw - var(--side-width));
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(

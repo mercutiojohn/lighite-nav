@@ -22,7 +22,8 @@ export default new Vuex.Store({
             }
         ],
         settings: {
-
+            twelveFormat: true,
+            showSeconds: false
         },
         tokens: {
             biliblli: '',
@@ -42,16 +43,28 @@ export default new Vuex.Store({
                     "url": "https://leetcode-cn.com/notes/"
                 },
                 {
-                    "title": "WolframAlpha",
+                    "title": "牛客网",
                     "color": "#ffffff",
                     "icon": "airportal.svg",
-                    "url": "https://www.wolframalpha.com/"
+                    "url": "https://www.nowcoder.com/"
                 },
                 {
-                    "title": "Markdown转公众号",
+                    "title": "实习僧",
                     "color": "#000000",
                     "icon": "markdown.svg",
-                    "url": "https://md.qikqiak.com/"
+                    "url": "https://resume.shixiseng.com/my/delivered"
+                },
+                // {
+                //     "title": "牛客春招",
+                //     "color": "#000000",
+                //     "icon": "markdown.svg",
+                //     "url": "https://mnowpick.nowcoder.com/m/school/schedule"
+                // },
+                {
+                    "title": "牛客春招-Web",
+                    "color": "#000000",
+                    "icon": "markdown.svg",
+                    "url": "https://nowpick.nowcoder.com/w/school/schedule"
                 }
             ]
         }

@@ -3,7 +3,9 @@
     <Header />
     <div id="main-box">
       <Sidebar />
-      <router-view class="content"/>
+      <transition name="page-fade">
+        <router-view class="content"/>
+      </transition>
     </div>
   </Scroll-Div>
   <!-- <div id="app">
@@ -28,8 +30,14 @@ export default {
     return {};
   },
   computed: {},
-  watch: {},
-  methods: {},
+  watch: {
+    $route(to,from){
+      console.log(to.path);
+      document.querySelector("body > div").scrollTop = document.documentElement.scrollTop = 0;
+    }
+  },
+  methods: {
+  },
   created() {},
   mounted() {},
   beforeDestroy() {},
@@ -41,16 +49,24 @@ export default {
 
 #main-box {
   display: flex;
+  flex-wrap: nowrap;
 }
 .content{
-  width: calc(100vw - var(--side-width));
+  width: calc(100% - var(--side-width));
+  flex-shrink: 0;
   min-height: calc(100vh - var(--head-height));
   box-sizing: border-box;
+  margin-left: var(--side-width);
 }
 
 @media screen and (max-width: 600px) {
   #main-box {
     flex-direction: column-reverse;
+  }
+  .content{
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: var(--bottom-height);
   }
 }
 </style>

@@ -4,10 +4,10 @@
       <span class="title">我的导航</span>
     </div>
     <div class="nav-list">
-      <div class="nav-item ef-float" v-for="(item, index) in 5" :key="index">
-        <img :src="require('@/assets/images/webpage.svg')" alt="" srcset="" />
-        <span>名称</span>
-      </div>
+      <a :href="item.url" target="_blank" class="nav-item ef-float" v-for="(item, index) in navs.favorites" :key="index">
+        <img class="icon" :src="require('@/assets/images/webpage.svg')" alt="" srcset="" />
+        <span class="title fix-text-overflow" v-text="item.title"></span>
+      </a>
     </div>
   </div>
 </template>
@@ -17,13 +17,34 @@ export default {
   name: "",
   components: {},
   data() {
-    return {};
+    return {
+      navs:{
+        favorites:[
+        {
+          title: "加载中",
+          color: "",
+          icon: "",
+          url: "",
+        },
+      ]
+      },
+    };
   },
-  computed: {},
-  watch: {},
+  computed: {
+    remoteNavs: function () {
+      return this.$store.getters.getNavs;
+    },
+  },
+  watch: {
+    navs() {
+      this.$store.commit("setNavs", this.navs);
+    },
+  },
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.navs = this.remoteNavs;
+  },
   beforeDestroy() {},
 };
 </script>
@@ -42,9 +63,9 @@ export default {
 .nav-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
   border-radius: var(--card-radius);
   background: var(--bg-color);
-  align-items: center;
   justify-content: space-evenly;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -52,6 +73,7 @@ export default {
   border-style: solid;
   border-color: transparent;
   gap: 5px;
+  color: var(--content-color);
 }
 .nav-item:hover {
   background: var(--card-color);
@@ -60,7 +82,10 @@ export default {
   border-color: var(--accent-color);
   background: var(--bg-color);
 }
-.nav-item img {
+.nav-item .icon {
   height: 50%;
+}
+.nav-item .title{
+  font-size: 12px;
 }
 </style>

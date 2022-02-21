@@ -16,7 +16,13 @@
     <ul class="list">
       <li class="item ef-fadein" v-for="(item, index) in list" :key="index">
         <div class="left">
-          <input type="checkbox" name="" id="" v-model="item.checked" />
+          <input
+            type="checkbox"
+            name=""
+            id=""
+            v-model="item.checked"
+            @click="updateToDo()"
+          />
           <!-- <span v-text="index"></span> -->
           <span
             v-text="item.text"
@@ -73,6 +79,11 @@ export default {
     deleteTodoItem(index) {
       this.list.splice(index, 1);
     },
+    updateToDo() {
+      setTimeout(() => {
+        this.$store.commit("setTodoList", this.list);
+      }, 10);
+    },
   },
   created() {},
   mounted() {
@@ -84,25 +95,18 @@ export default {
 <style lang="css" src="../../styles/card.css" scoped>
 </style>
 <style scoped>
+.todo-text{
+  user-select:text;
+}
 .todo-text-checked {
   opacity: 0.6;
   text-decoration: line-through;
 }
 #todoInput {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background: var(--bg-color);
-  transition: all 0.2s ease;
-  /* margin-bottom: 10px; */
-}
-#todoInput:focus {
-  border: 2px solid var(--accent-color);
 }
 .todo-input-box {
-  margin:0 20px 5px 20px;
+  margin: 0 20px 5px 20px;
 }
 .list {
   margin: 5px 0 20px 20px;
@@ -130,9 +134,9 @@ export default {
   overflow: hidden;
 }
 .todo-text {
-  overflow:hidden; 
-  text-overflow:ellipsis; 
-  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .list .item .right {
   flex-shrink: 0;
