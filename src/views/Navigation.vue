@@ -24,9 +24,6 @@ beforeDestroy(){}
 
 <style scoped>
 .navigation{
-    background: var(--card-color);
-    /* width: 100%; */
-    height: 200px;
-    border-top-left-radius: var(--card-radius);
+    background: var(--bg-color);
 }
 </style>

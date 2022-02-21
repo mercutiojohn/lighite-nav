@@ -5,6 +5,11 @@
         <span :class="'iconfont '+item.icon"></span>
       </router-link>
     </div>
+    <div id="more">
+      <router-link class="ef-pudding" v-for="(item,index) in moreTabs" :key="index" :to="item.to" @click.native="scroll()">
+        <span :class="'iconfont '+item.icon"></span>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -21,21 +26,27 @@ export default {
         },{
           to:"/navigation",
           icon:"icon-zhinanzhen"
-        },{
-          to:"/music",
-          icon:"icon-musicbox"
-        },{
-          to:"/video",
-          icon:"icon-VideoClip-1"
-        },{
-          to:"/books",
-          icon:"icon-book"
+        // },{
+        //   to:"/music",
+        //   icon:"icon-musicbox"
+        // },{
+        //   to:"/video",
+        //   icon:"icon-VideoClip-1"
+        // },{
+        //   to:"/books",
+        //   icon:"icon-book"
         },{
           to:"/tools",
           icon:"icon-app"
         },{
           to:"/about",
           icon:"icon-qi"
+        },
+      ],
+      moreTabs:[
+        {
+          to:"/settings",
+          icon:"icon-cog"
         },
       ]
     };
@@ -111,6 +122,28 @@ export default {
 }
 
 #nav a.router-link-exact-active {
+  color: var(--accent-color);
+}
+#more {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:10px;
+  flex-shrink: 0;
+}
+#more a {
+  border-radius: 14px;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--title-color);
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+#more a .iconfont {
+  font-size: 25px;
+}
+#more a.router-link-exact-active {
   color: var(--accent-color);
 }
 </style>
