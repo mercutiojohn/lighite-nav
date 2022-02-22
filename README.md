@@ -2,6 +2,10 @@
 
 你的主页，工具箱，和影音网址收藏馆。
 
+## 预览
+
+https://mercutiojohn.github.io/lighite-nav/#/
+
 ## 实现功能:
 
 - [x] 日期/时间
