@@ -7,5 +7,7 @@ module.exports = {
             background_color: '#FFFFFF'
         }
     },
-    lintOnSave: false
+    lintOnSave: false,
+    outputDir: 'dist', 
+    publicPath: process.env.NODE_ENV === 'production' ? '/lightie-nav/' : '/'
 }
