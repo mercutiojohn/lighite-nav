@@ -43,6 +43,7 @@ export default {
   justify-content: space-between;
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 @media screen and (max-width: 600px) {
   .header {

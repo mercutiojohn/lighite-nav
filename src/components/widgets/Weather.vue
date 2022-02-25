@@ -11,8 +11,8 @@
           <button @click="cancelSelect">取消</button>
         </div>
       </div>
-    </transition>
-    <!-- <transition name="fade" type="out-in">
+    <!-- </transition> -->
+          <!-- <transition name="fade" type="out-in">
       <div class="warning-details" v-if="warningLookup">
         <div class="header" :style="{ 'background-color': aqiLevelColorTrans(airInfo.level) }">
           <span class="title">{{ item.typeName }}{{item.level}}</span>
@@ -22,7 +22,7 @@
       </div>
     </transition> -->
     <!-- <transition name="fade" type="out-in"> -->
-      <div class="weather-content" >
+      <div class="weather-content" v-else>
         <span class="city" @click="changeSelect">{{ city }}</span>
         <div class="weather-loading" v-if="loading">
           <span>天气加载中</span>
@@ -34,8 +34,10 @@
         <div
           class="air-info"
           v-if="!loading"
-          :style="{ 'background-color': aqiLevelColorTrans(airInfo.level) }"
         >
+          <div class="color-line" 
+            :style="{ 'background-color': aqiLevelColorTrans(airInfo.level) }"
+            ></div>
           <span class="aqi">{{ airInfo.aqi }}</span>
           <span class="level">{{ airInfo.category }}</span>
         </div>
@@ -43,8 +45,10 @@
           <div class="info-item" v-for="(item, index) in warning" :key="index">
             <div
               class="label"
-              :style="{ 'background-color': warningColorTrans(item.level) }"
             >
+              <div class="color-dot" 
+              :style="{ 'background-color': warningColorTrans(item.level) }"
+              ></div>
               <span class="type">{{ item.typeName }}</span>
               <span class="level">{{ item.level }}</span>
               <span>预警</span>
@@ -52,7 +56,7 @@
           </div>
         </div>
       </div>
-    <!-- </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -370,12 +374,12 @@ hello {
 .air-info {
   display: flex;
   width: max-content;
-  background: #6e6e6e;
-  border-radius: 5px;
-  padding: 2px 5px;
+  /* background: var(--bg-color); */
+  /* border-radius: 5px; */
+  /* padding: 2px 5px; */
   align-items: center;
   margin: 0 0 5px 0;
-  color: #fff;
+  /* color: #fff; */
 
   /* justify-content: baseline; */
 }
@@ -383,7 +387,15 @@ hello {
   /* font-family: ProximaNova, Mitype2018-90; */
   font-size: 20px;
   padding-right: 5px;
+  /* background: var(--bg-color); */
+  /* border-radius: 5px; */
+  /* padding: 2px 5px; */
 
+}
+.info-item{
+  display: flex;
+  gap:10px;
+  flex-wrap: wrap;
 }
 .info-item > .label > .level {
 }
@@ -391,10 +403,22 @@ hello {
   display: flex;
   font-size: 14px;
   width: max-content;
-  background: #6e6e6e;
-  border-radius: 5px;
+  background: var(--bg-color);
   padding: 2px 5px;
+  border-radius: 5px;
   align-items: center;
   margin: 5px 0;
+}
+.color-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.color-line{
+  width: 6px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 5px;
 }
 </style>

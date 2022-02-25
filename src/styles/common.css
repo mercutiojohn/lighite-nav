@@ -5,6 +5,7 @@
     /* container */
     --card-color: #fff;
     --page-color: #fff;
+    --sub-card-color: #f3f3f3;
     /* text */
     --title-color: #000;
     --subtitle-color: #555555;
@@ -17,6 +18,8 @@
     /* 高度/宽度参数*/
     --head-height: 80px;
     --side-width: 100px;
+    /* 基本组件大小 */
+    --icon-size: 30px;
     /* 圆角弧度 */
     --card-radius: 16px;
     --item-radius: 10px;
@@ -32,6 +35,7 @@
         /* container */
         --card-color: #414141;
         --page-color: #414141;
+        --sub-card-color: #222222;
         /* text */
         --title-color: #fff;
         --subtitle-color: #ddd;
@@ -82,7 +86,7 @@ input[type=text] {
     border-radius: var(--card-radius);
     padding: 9px;
     box-sizing: border-box;
-    background: var(--bg-color);
+    background: var(--sub-card-color);
     color: var(--content-color);
     font-size: 15px;
     border-radius: var(--item-radius);
@@ -238,9 +242,9 @@ button.icon-button:active {
 
 .common-page {
     background: var(--card-color);
-    /* width: 100%; */
-    /* height: 300px; */
+    padding: 20px;
     border-top-left-radius: var(--card-radius);
+    box-sizing: border-box;
 }
 
 @media screen and (max-width:600px) {
@@ -289,6 +293,26 @@ button.icon-button:active {
     opacity: 0;
 }
 
+.fade-enter-active {
+    /* left: var(--side-width); */
+    transition: opacity .4s ease;
+    z-index: 10;
+}
+
+.fade-leave-active {
+    /* left: var(--side-width); */
+    transition: opacity .4s ease;
+    z-index: -1;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-leave-to {
+    opacity: 0;
+}
+
 
 /* fixes */
 
@@ -297,4 +321,13 @@ button.icon-button:active {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.fix-text-overflow-multiline {
+    max-width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
 }

@@ -9,7 +9,9 @@ https://mercutiojohn.github.io/lighite-nav/#/
 ## 实现功能:
 
 - [x] 日期/时间
-- [x] 待办清单-Vuex+localStorage持久化
+- [ ] 待办清单
+  - [x] Vuex+localStorage持久化
+  - [ ] 拖动排序
 - [ ] 导航链接收藏
 - [ ] 小工具
   - [ ] base64

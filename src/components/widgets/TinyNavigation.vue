@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "",
+  name: "TinyNavigation",
   components: {},
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
   flex-direction: column;
   align-items: center;
   border-radius: var(--card-radius);
-  background: var(--bg-color);
+  background: var(--sub-card-color);
   justify-content: space-evenly;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -86,7 +86,7 @@ export default {
 }
 .nav-item:active {
   border-color: var(--accent-color);
-  background: var(--bg-color);
+  background: var(--sub-card-color);
 }
 .nav-item .icon {
   height: 50%;

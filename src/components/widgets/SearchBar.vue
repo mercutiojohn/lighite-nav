@@ -25,7 +25,6 @@ beforeDestroy(){}
 <style scoped>
 .search-input{
     border-width: 3px;
-    border-style: solid;
     border-radius: var(--card-radius);
     padding: 15px;
     width: 100%;
@@ -33,8 +32,6 @@ beforeDestroy(){}
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-color);
-    border-color: transparent;
     color: var(--title-color);
     font-size: 18px;
     transition: border-color .2s ease;

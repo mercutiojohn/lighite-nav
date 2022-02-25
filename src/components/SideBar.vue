@@ -118,7 +118,7 @@ export default {
   transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 #nav a .iconfont {
-  font-size: 30px;
+  font-size: var(--icon-size);
 }
 
 #nav a.router-link-exact-active {
