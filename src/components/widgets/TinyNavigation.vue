@@ -10,9 +10,28 @@
         </router-link>
     </div>
     <div class="nav-list">
-      <a :href="item.url" target="_blank" class="nav-item ef-float" v-for="(item, index) in navs.favorites" :key="index">
-        <img class="icon" :src="require('@/assets/images/webpage.svg')" alt="" srcset="" />
-        <span class="title fix-text-overflow" v-text="item.title"></span>
+      <a
+        :href="item.url"
+        target="_blank"
+        class="nav-item ef-float"
+        v-for="(item, index) in navs.favorites"
+        :key="index"
+      >
+        <div
+          class="icon-area"
+          :style="'background-color: ' + item.attributes.color"
+        >
+          <img
+            class="icon"
+            :src="getIcon(item.attributes.icon)"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <span
+          class="title fix-text-overflow"
+          v-text="item.attributes.title"
+        ></span>
       </a>
     </div>
   </div>
@@ -46,7 +65,18 @@ export default {
       this.$store.commit("setNavs", this.navs);
     },
   },
-  methods: {},
+  methods: {
+    getIcon(icon) {
+      try {
+        let url = icon.data.attributes.url;
+        return "http://navapi.mercutio.club" + url;
+      } catch (error) {
+        console.log(error);
+        console.log(icon);
+        return require("@/assets/images/webpage.svg");
+      }
+    },
+  },
   created() {},
   mounted() {
     this.navs = this.remoteNavs;
@@ -88,8 +118,19 @@ export default {
   border-color: var(--accent-color);
   background: var(--sub-card-color);
 }
+.nav-item .icon-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--item-radius);
+}
 .nav-item .icon {
-  height: 50%;
+  width: 100%;
+  max-height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
 }
 .nav-item .title{
   font-size: 12px;

@@ -1,44 +1,124 @@
 <template>
-  <div class="navigation common-page">
+  <div :class="{'navigation':true, 'common-page':true, 'mask-on':addWindowShow}">
+    <div class="add-nav-window-mask" v-if="addWindowShow" @click.self="showAdd()">
+      <div class="add-nav-window">
+        <span class="header-title">添加网址</span>
+        <span class="tip">名称</span>
+        <input type="text" name="title" id="title" placeholder="名称">
+        <span class="tip">URL</span>
+        <input type="text" name="url" id="url" placeholder="URL">
+        <span class="tip">图标</span>
+        <input type="text" name="icon" id="icon" placeholder="图标">
+        <button class="submit-button">提交</button>
+      </div>
+    </div>
     <div class="list-header">
       <span class="title">我的收藏</span>
     </div>
-
     <div class="nav-list">
       <a
-        :href="item.url"
+        :href="item.attributes.url"
         target="_blank"
         class="nav-item ef-float"
         v-for="(item, index) in navs.favorites"
         :key="index"
       >
-        <img
-          class="icon"
-          :src="require('@/assets/images/webpage.svg')"
-          alt=""
-          srcset=""
-        />
-        <span class="title fix-text-overflow" v-text="item.title"></span>
+        <div class="top">
+          <div
+            class="icon-area"
+            :style="'background-color: ' + item.attributes.color"
+          >
+            <img
+              class="icon"
+              :src="getIcon(item.attributes.icon)"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div
+            class="remove-favor ef-pudding icon-button"
+            @click.prevent="removeFavor(index)"
+          >
+            <span class="iconfont icon-trash"></span>
+          </div>
+        </div>
+
+        <span
+          class="title fix-text-overflow"
+          v-text="item.attributes.title"
+        ></span>
+        <div class="subsites-list" v-if="item.attributes.subsites.data != null">
+          <a
+            :href="item_2.attributes.url"
+            target="_blank"
+            class="subsite-item"
+            v-for="(item_2, index_2) in item.attributes.subsites.data"
+            :key="index_2"
+          >
+            <span
+              class="title fix-text-overflow"
+              v-text="item_2.attributes.title"
+            ></span>
+          </a>
+        </div>
       </a>
+      <div class="nav-item ef-float add-nav" @click="showAdd()">
+        <span class="iconfont icon-add"></span>
+        <span class="tip">自定义</span>
+      </div>
     </div>
     <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
       <div class="list-header">
-        <span class="title" v-text="item.title"></span>
+        <span class="title" v-text="item.attributes.name"></span>
       </div>
-      <div class="nav-list">
+      <div class="nav-list" v-if="item.attributes.sites.data != null">
         <a
-          :href="item_1.url"
+          :href="item_1.attributes.url"
+          target="_blank"
           class="nav-item ef-float"
-          v-for="(item_1, index_1) in item.list"
+          v-for="(item_1, index_1) in item.attributes.sites.data"
           :key="index_1"
         >
-          <img
-            class="icon"
-            :src="require('@/assets/images/webpage.svg')"
-            alt=""
-            srcset=""
-          />
-          <span class="title fix-text-overflow-multiline" v-text="item_1.title"></span>
+          <div class="top">
+            <div
+              class="icon-area"
+              :style="'background-color: ' + item_1.attributes.color"
+            >
+              <img
+                class="icon"
+                :src="getIcon(item_1.attributes.icon)"
+                alt=""
+                srcset=""
+              />
+            </div>
+            <div
+              class="add-favor ef-pudding icon-button"
+              @click.prevent="addFavor(item_1)"
+            >
+              <span class="iconfont icon-add"></span>
+            </div>
+          </div>
+          <span
+            class="title fix-text-overflow"
+            v-text="item_1.attributes.title"
+          ></span>
+          <div
+            class="subsites-list"
+            v-if="item_1.attributes.subsites.data != null"
+          >
+            <a
+              :href="item_2.attributes.url"
+              target="_blank"
+              class="subsite-item"
+              v-for="(item_2, index_2) in item_1.attributes.subsites.data"
+              :key="index_2"
+            >
+              <span
+                class="title fix-text-overflow"
+                v-text="item_2.attributes.title"
+              ></span>
+            </a>
+          </div>
         </a>
       </div>
     </div>
@@ -62,6 +142,7 @@ export default {
         ],
         others: [],
       },
+      addWindowShow: false,
     };
   },
   computed: {
@@ -74,10 +155,50 @@ export default {
       this.$store.commit("setNavs", this.navs);
     },
   },
-  methods: {},
+  methods: {
+    showAdd() {
+      this.addWindowShow
+        ? (this.addWindowShow = false)
+        : (this.addWindowShow = true);
+    },
+    getRemoteNavs() {
+      this.api
+        .get(
+          "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
+        )
+        .then((response) => {
+          console.log(response.data.data);
+          this.navs.others = response.data.data;
+        });
+    },
+    getIcon(icon) {
+      try {
+        let url = icon.data.attributes.url;
+        return "http://navapi.mercutio.club" + url;
+      } catch (error) {
+        console.log(error);
+        console.log(icon);
+        return require("@/assets/images/webpage.svg");
+      }
+    },
+    addFavor(item) {
+      this.navs.favorites.unshift(item);
+      this.updateNavs();
+    },
+    removeFavor(index) {
+      this.navs.favorites.splice(index, 1);
+      this.updateNavs();
+    },
+    updateNavs() {
+      setTimeout(() => {
+        this.$store.commit("setNavs", this.navs);
+      }, 5);
+    },
+  },
   created() {},
   mounted() {
     this.navs = this.remoteNavs;
+    this.getRemoteNavs();
   },
   beforeDestroy() {},
 };
@@ -86,21 +207,22 @@ export default {
 </style>
 <style scoped>
 .navigation {
+  overflow: hidden;
 }
 
 .nav-list {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-auto-rows: minmax(33.33%, 70px);
+  /* grid-auto-rows: minmax(33.33%, 100px); */
 }
 .nav-item {
   display: flex;
-  /* flex-direction: column; */
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   border-radius: var(--card-radius);
   background: var(--sub-card-color);
-  justify-content:flex-start;
+  justify-content: flex-start;
   transition: all 0.2s ease;
   cursor: pointer;
   border-width: 2px;
@@ -115,12 +237,117 @@ export default {
 }
 .nav-item:active {
   border-color: var(--accent-color);
-  background: var(--sub-card-color);
+  background: var(--card-color);
+  box-shadow: 0 10px 20px 3px #00000024;
+  transform: translateY(-3px);
+}
+
+.nav-item .icon-area {
+  border-radius: var(--item-radius);
+  /* width: 30px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
 }
 .nav-item .icon {
-  height: 80%;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  max-height: 100%;
 }
 .nav-item .title {
   font-size: 16px;
+}
+
+.subsites-list {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.subsite-item {
+  border-radius: var(--item-radius);
+  background: var(--card-color);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--sub-card-color);
+  color: var(--content-color);
+  padding: 10px;
+  box-sizing: border-box;
+}
+.subsite-item:hover {
+  background: var(--sub-card-color);
+}
+.subsite-item:active {
+  background-color: var(--accent-color);
+}
+.subsite-item .title {
+  font-size: 16px;
+}
+.top {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.add-favor,
+.remove-favor {
+  padding: 5px 8px;
+  background: var(--card-color);
+  border-radius: var(--item-radius);
+  border: 2px solid var(--sub-card-color);
+}
+.add-favor:hover,
+.remove-favor:hover {
+  background: var(--sub-card-color);
+  border-color: transparent;
+}
+.add-favor:active {
+  background: var(--accent-color);
+  color: #fff;
+}
+.remove-favor:active {
+  background: var(--warn-color);
+  color: #fff;
+}
+.add-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.add-nav .iconfont{
+  font-size: 30px;
+}
+.mask-on{
+  height: calc(100vh - var(--head-height));
+  overflow: hidden;
+}
+.add-nav-window-mask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #00000053;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+.add-nav-window{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 300px;
+  height: 400px;
+  border-radius: var(--card-radius);
+  background: var(--card-color);
 }
 </style>

@@ -4,9 +4,9 @@
     <div class="card card-small"><Weather /></div>
     <div class="card card-long"><TinyToDo /></div>
     <div class="card card-small"></div>
-    <div class="card card-sub1"><TinyVideo /></div>
-    <div class="card card-sub2"><TinyBook /></div>
-    <div class="card card-sub1"><TinyMusic /></div>
+    <!-- <div class="card card-sub1"><TinyVideo /></div> -->
+    <!-- <div class="card card-sub2"><TinyBook /></div> -->
+    <!-- <div class="card card-sub1"><TinyMusic /></div> -->
   </div>
 </template>
 

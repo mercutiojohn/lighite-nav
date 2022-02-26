@@ -89,6 +89,7 @@ export default {
   justify-content: center;
   /* flex-direction: column; */
   gap:10px;
+  color:var(--content-color)
 }
 .nav-item .icon{
     font-size: var(--icon-size);

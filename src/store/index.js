@@ -40,585 +40,138 @@ export default new Vuex.Store({
         },
         navs: {
             favorites: [{
-                    "title": "空投AirPortal",
+                "id": 13,
+                "attributes": {
+                    "title": "掘金",
+                    "url": "https://juejin.cn/",
+                    "desc": null,
+                    "createdAt": "2022-02-25T15:19:02.027Z",
+                    "updatedAt": "2022-02-25T15:23:28.855Z",
+                    "publishedAt": "2022-02-25T15:19:24.898Z",
+                    "color": "#006cff",
+                    "subsites": { "data": [{ "id": 3, "attributes": { "title": "小册", "url": "https://juejin.cn/my-course", "createdAt": "2022-02-25T15:17:15.095Z", "updatedAt": "2022-02-25T15:17:16.291Z", "publishedAt": "2022-02-25T15:17:16.289Z" } }] },
+                    "icon": { "data": { "id": 66, "attributes": { "name": "juejin.svg", "alternativeText": "juejin.svg", "caption": "juejin.svg", "width": null, "height": null, "formats": null, "hash": "juejin_a04d807744", "ext": ".svg", "mime": "image/svg+xml", "size": 0.83, "url": "/uploads/juejin_a04d807744.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T15:18:57.076Z", "updatedAt": "2022-02-25T15:18:57.076Z" } } }
+                }
+            }, {
+                "id": 43,
+                "attributes": {
+                    "title": "百度网盘",
+                    "url": "https://pan.baidu.com/disk/main#/index",
+                    "desc": null,
+                    "createdAt": "2022-02-25T16:13:28.102Z",
+                    "updatedAt": "2022-02-25T16:13:29.247Z",
+                    "publishedAt": "2022-02-25T16:13:29.245Z",
                     "color": "#ffffff",
-                    "icon": "airportal.svg",
-                    "url": "https://airportal.cn/"
-                },
-                {
-                    "title": "LeetCode笔记",
-                    "color": "#ffffff",
-                    "icon": "leetcode.svg",
-                    "url": "https://leetcode-cn.com/notes/"
-                },
-                {
-                    "title": "牛客网",
-                    "color": "#ffffff",
-                    "icon": "airportal.svg",
-                    "url": "https://www.nowcoder.com/"
-                },
-                {
+                    "subsites": { "data": [] },
+                    "icon": { "data": { "id": 10, "attributes": { "name": "baidunetdisk.svg", "alternativeText": "baidunetdisk.svg", "caption": "baidunetdisk.svg", "width": null, "height": null, "formats": null, "hash": "baidunetdisk_38102e848f", "ext": ".svg", "mime": "image/svg+xml", "size": 1.55, "url": "/uploads/baidunetdisk_38102e848f.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T14:36:29.086Z", "updatedAt": "2022-02-25T14:36:29.086Z" } } }
+                }
+            }, {
+                "id": 17,
+                "attributes": {
+                    "title": "微信",
+                    "url": "https://wx.qq.com/",
+                    "desc": null,
+                    "createdAt": "2022-02-25T15:35:05.303Z",
+                    "updatedAt": "2022-02-25T15:35:06.352Z",
+                    "publishedAt": "2022-02-25T15:35:06.347Z",
+                    "color": "#28c445",
+                    "subsites": { "data": [] },
+                    "icon": { "data": { "id": 70, "attributes": { "name": "微信.svg", "alternativeText": "微信.svg", "caption": "微信.svg", "width": null, "height": null, "formats": null, "hash": "_828734da8b", "ext": ".svg", "mime": "image/svg+xml", "size": 0.84, "url": "/uploads/_828734da8b.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T15:34:46.775Z", "updatedAt": "2022-02-25T15:34:46.775Z" } } }
+                }
+            }, {
+                "id": 44,
+                "attributes": {
+                    "title": "哔哩哔哩",
+                    "url": "https://www.bilibili.com/",
+                    "desc": null,
+                    "createdAt": "2022-02-25T16:14:24.091Z",
+                    "updatedAt": "2022-02-25T16:14:25.366Z",
+                    "publishedAt": "2022-02-25T16:14:25.362Z",
+                    "color": "#00a1d6",
+                    "subsites": { "data": [] },
+                    "icon": { "data": { "id": 7, "attributes": { "name": "bilibili.svg", "alternativeText": "bilibili.svg", "caption": "bilibili.svg", "width": null, "height": null, "formats": null, "hash": "bilibili_14b7645a15", "ext": ".svg", "mime": "image/svg+xml", "size": 4.65, "url": "/uploads/bilibili_14b7645a15.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T14:36:28.914Z", "updatedAt": "2022-02-25T14:36:28.914Z" } } }
+                }
+            }, {
+                "id": 14,
+                "attributes": {
+                    "title": "网易云音乐",
+                    "url": "https://music.163.com",
+                    "desc": null,
+                    "createdAt": "2022-02-25T15:21:34.923Z",
+                    "updatedAt": "2022-02-25T15:21:36.407Z",
+                    "publishedAt": "2022-02-25T15:21:36.405Z",
+                    "color": "#dd001b",
+                    "subsites": { "data": [] },
+                    "icon": {
+                        "data": {
+                            "id": 67,
+                            "attributes": { "name": "网易云音乐.svg", "alternativeText": "网易云音乐.svg", "caption": "网易云音乐.svg", "width": null, "height": null, "formats": null, "hash": "_9e771556cf", "ext": ".svg", "mime": "image/svg+xml", "size": 2.57, "url": "/uploads/_9e771556cf.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T15:20:56.091Z", "updatedAt": "2022-02-25T15:20:56.091Z" }
+                        }
+                    }
+                }
+            }, {
+                "id": 61,
+                "attributes": {
                     "title": "实习僧",
-                    "color": "#000000",
-                    "icon": "markdown.svg",
-                    "url": "https://resume.shixiseng.com/my/delivered"
-                },
-                // {
-                //     "title": "牛客春招",
-                //     "color": "#000000",
-                //     "icon": "markdown.svg",
-                //     "url": "https://mnowpick.nowcoder.com/m/school/schedule"
-                // },
-                {
-                    "title": "牛客春招-Web",
-                    "color": "#000000",
-                    "icon": "markdown.svg",
-                    "url": "https://nowpick.nowcoder.com/w/school/schedule"
+                    "url": "https://www.shixiseng.com/",
+                    "desc": null,
+                    "createdAt": "2022-02-26T02:37:32.164Z",
+                    "updatedAt": "2022-02-26T03:33:11.963Z",
+                    "publishedAt": "2022-02-26T02:37:33.725Z",
+                    "color": "#ffffff",
+                    "subsites": { "data": [{ "id": 12, "attributes": { "title": "我的投递", "url": "https://resume.shixiseng.com/my/delivered", "createdAt": "2022-02-26T02:37:07.113Z", "updatedAt": "2022-02-26T03:08:04.661Z", "publishedAt": "2022-02-26T02:37:08.304Z" } }] },
+                    "icon": { "data": { "id": 82, "attributes": { "name": "logo-shixiseng.ea8da47.png", "alternativeText": "logo-shixiseng.ea8da47.png", "caption": "logo-shixiseng.ea8da47.png", "width": 100, "height": 32, "formats": null, "hash": "logo_shixiseng_ea8da47_31249262c1", "ext": ".png", "mime": "image/png", "size": 1.18, "url": "/uploads/logo_shixiseng_ea8da47_31249262c1.png", "previewUrl": null, "provider": "local", "provider_metadata": null, "createdAt": "2022-02-26T03:33:06.168Z", "updatedAt": "2022-02-26T03:33:06.168Z" } } }
                 }
-            ],
-            others: [{
-                    "title": "在线文档",
-                    "list": [{
-                            "title": "石墨文档",
-                            "color": "#ffffff",
-                            "icon": "shimo.svg",
-                            "url": "https://shimo.im/desktop"
-                        },
-                        {
-                            "title": "语雀",
-                            "color": "#ffffff",
-                            "icon": "yuque.svg",
-                            "url": "https://www.yuque.com/dashboard"
-                        },
-                        {
-                            "title": "幕布",
-                            "color": "#ffffff",
-                            "icon": "mubu.svg",
-                            "url": "https://mubu.com/app"
-                        },
-                        {
-                            "title": "Notion",
-                            "color": "#ffffff",
-                            "icon": "notion.svg",
-                            "url": "https://www.notion.so/"
-                        },
-                        {
-                            "title": "金山文档",
-                            "color": "#ffffff",
-                            "icon": "kdocs.svg",
-                            "url": "https://www.kdocs.cn/?show=all"
-                        },
-                        {
-                            "title": "腾讯文档",
-                            "color": "#ffffff",
-                            "icon": "txdoc.svg",
-                            "url": "https://docs.qq.com/desktop/"
-                        },
-                        {
-                            "title": "我来wolai",
-                            "color": "#ffffff",
-                            "icon": "wolai.svg",
-                            "url": "https://wolai.com/"
-                        },
-                        {
-                            "title": "有道云笔记",
-                            "color": "#ffffff",
-                            "icon": "ydnote.svg",
-                            "url": "https://note.youdao.com/web/"
-                        }
-                    ]
-                }, {
-                    "title": "实用工具",
-                    "list": [{
-                            "title": "空投AirPortal",
-                            "color": "#ffffff",
-                            "icon": "airportal.svg",
-                            "url": "https://airportal.cn/"
-                        },
-                        {
-                            "title": "LeetCode笔记",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://leetcode-cn.com/notes/"
-                        },
-                        {
-                            "title": "WolframAlpha",
-                            "color": "#ffffff",
-                            "icon": "airportal.svg",
-                            "url": "https://www.wolframalpha.com/"
-                        },
-                        {
-                            "title": "Markdown转公众号",
-                            "color": "#000000",
-                            "icon": "markdown.svg",
-                            "url": "https://md.qikqiak.com/"
-                        }
-                    ]
-                },
-                {
-                    "title": "读书",
-                    "list": [{
-                        "title": "微信读书",
-                        "color": "#ffffff",
-                        "icon": "weread.svg",
-                        "url": "https://weread.qq.com/web/shelf"
-                    }, {
-                        "title": "掘金小册",
-                        "color": "#ffffff",
-                        "icon": "weread.svg",
-                        "url": "https://juejin.cn/my-course"
-                    }]
-                },
-                {
-                    "title": "视频",
-                    "list": [{
-                            "title": "哔哩哔哩·追番",
-                            "color": "#ffffff",
-                            "icon": "weread.svg",
-                            "url": "https://weread.qq.com/web/shelf"
-                        },
-                        {
-                            "title": "哔哩哔哩·收藏",
-                            "color": "#ffffff",
-                            "icon": "weread.svg",
-                            "url": "https: //weread.qq.com/web/shelf"
-                        },
-                        {
-                            "title": "哔哩哔哩·排行榜",
-                            "color": "#ffffff",
-                            "icon": "weread.svg",
-                            "url": "https://weread.qq.com/web/shelf"
-                        }
-                    ]
-                },
-                {
-                    "title": "音乐",
-                    "list": [{
-                        "title": "网易云音乐",
-                        "color": "#dd001b",
-                        "icon": "weread.svg",
-                        "url": "https://weread.qq.com/web/shelf"
-                    }]
-                },
-                {
-                    "title": "社交",
-                    "list": [{
-                            "title": "Discord",
-                            "color": "#5865f2",
-                            "icon": "discord.svg",
-                            "url": "https://discord.com/app"
-                        },
-                        {
-                            "title": "钉钉",
-                            "color": "#3293f7",
-                            "icon": "dingding.svg",
-                            "url": "https://im.dingtalk.com"
-                        },
-                        {
-                            "title": "微博",
-                            "color": "#ffffff",
-                            "icon": "weibo.svg",
-                            "url": "https://www.weibo.com/"
-                        },
-                        {
-                            "title": "微信",
-                            "color": "#ffffff",
-                            "icon": "weread.svg",
-                            "url": "https://wx.qq.com/"
-                        }
-                    ]
-                },
-                {
-                    "title": "论文期刊",
-                    "list": [{
-                            "title": "Sci-Hub",
-                            "color": "#ffffff",
-                            "icon": "scihub.png",
-                            "url": "https://www.sci-hub.ren/"
-                        },
-                        {
-                            "title": "Web of Science",
-                            "color": "#ffffff",
-                            "icon": "wos.svg",
-                            "url": "http://apps.webofknowledge.com/WOS_GeneralSearch_input.do"
-                        },
-                        {
-                            "title": "Web of Science Beta",
-                            "color": "#000000",
-                            "icon": "wosnew.svg",
-                            "url": "https://www.webofscience.com/wos/woscc/basic-search"
-                        },
-                        {
-                            "title": "中国知网",
-                            "color": "#1b66e6",
-                            "icon": "cnki.svg",
-                            "url": "https://www.cnki.net/"
-                        },
-                        {
-                            "title": "万方知识平台",
-                            "color": "#ffffff",
-                            "icon": "wanfang.svg",
-                            "url": "https://www.wanfangdata.com.cn/index.html"
-                        },
-                        {
-                            "title": "知网研学",
-                            "color": "#ffffff",
-                            "icon": "cnki-learn.png",
-                            "url": "https://x.cnki.net/psmc#/MyStudy"
-                        }
-                    ]
-                },
-                {
-                    "title": "新媒体设计",
-                    "list": [{
-                            "title": "稿定设计",
-                            "color": "#ffffff",
-                            "icon": "gaoding.svg",
-                            "url": "https://www.gaoding.com/dam/my-space/"
-                        },
-                        {
-                            "title": "秀米",
-                            "color": "#fd8b72",
-                            "icon": "xiumi.png",
-                            "url": "https://xiumi.us/studio/v5#/paper/for/new/cube/0"
-                        },
-                        {
-                            "title": "创客贴",
-                            "color": "#005ffe",
-                            "icon": "ckt.svg",
-                            "url": "https://www.chuangkit.com/designtools/startdesign"
-                        },
-                        {
-                            "title": "MAKA",
-                            "color": "#ffffff",
-                            "icon": "maka.png",
-                            "url": "https://www.maka.im/workspace/works"
-                        },
-                        {
-                            "title": "图怪兽",
-                            "color": "#f43a6d",
-                            "icon": "818ps.png",
-                            "url": "https://818ps.com/imageeditor.html"
-                        },
-                        {
-                            "title": "135编辑器",
-                            "color": "#ffffff",
-                            "icon": "135.png",
-                            "url": "https://www.135editor.com/"
-                        }
-                    ]
-                }, {
-                    "title": "在线表单",
-                    "list": [{
-                            "title": "麦客表单",
-                            "color": "#1e3035",
-                            "icon": "mikecrm.png",
-                            "url": "https://www.mikecrm.com/form.php"
-                        },
-                        {
-                            "title": "金数据",
-                            "color": "#1e3035",
-                            "icon": "mikecrm.png",
-                            "url": "https://www.mikecrm.com/form.php"
-                        },
-                        {
-                            "title": "腾讯文档表单",
-                            "color": "#1e3035",
-                            "icon": "mikecrm.png",
-                            "url": "https://www.mikecrm.com/form.php"
-                        }
-                    ]
-                },
-                {
-                    "title": "开发平台",
-                    "list": [{
-                            "title": "腾讯云",
-                            "color": "#ffffff",
-                            "icon": "txy.svg",
-                            "url": "https://console.cloud.tencent.com/"
-                        },
-                        {
-                            "title": "华为云",
-                            "color": "#f83a43",
-                            "icon": "huawei.svg",
-                            "url": "https://console.huaweicloud.com/ecm/"
-                        },
-                        {
-                            "title": "阿里云",
-                            "color": "#ffffff",
-                            "icon": "aliyun.svg",
-                            "url": "https://homenew.console.aliyun.com/home/dashboard/Operation"
-                        },
-                        {
-                            "title": "亚马逊云服务",
-                            "color": "#232f3e",
-                            "icon": "aws.svg",
-                            "url": "https://console.aws.amazon.com/"
-                        }
-                    ]
-                },
-                {
-                    "title": "代码托管/协同编程",
-                    "list": [{
-                            "title": "GitHub",
-                            "color": "#24292e",
-                            "icon": "github.svg",
-                            "url": "https://github.com/"
-                        },
-                        {
-                            "title": "gitee",
-                            "color": "#ffffff",
-                            "icon": "gitee.svg",
-                            "url": "https://gitee.com"
-                        },
-                        {
-                            "title": "CODING",
-                            "color": "#ffffff",
-                            "icon": "coding.png",
-                            "url": "https://e.coding.net/login"
-                        },
-                        {
-                            "title": "GitLab",
-                            "color": "#ffffff",
-                            "icon": "gitlab.svg",
-                            "url": "https://gitlab.com/"
-                        }
-                    ]
-                }, {
-                    "title": "设计",
-                    "list": [{
-                            "title": "Dribbble",
-                            "color": "#24292e",
-                            "icon": "github.svg",
-                            "url": "https://github.com/"
-                        },
-                        {
-                            "title": "站酷",
-                            "color": "#ffffff",
-                            "icon": "gitee.svg",
-                            "url": "https://gitee.com"
-                        },
-                        {
-                            "title": "UI中国",
-                            "color": "#ffffff",
-                            "icon": "coding.png",
-                            "url": "https://e.coding.net/login"
-                        },
-                        {
-                            "title": "原创馆",
-                            "color": "#ffffff",
-                            "icon": "gitlab.svg",
-                            "url": "https://gitlab.com/"
-                        }
-                    ]
-                },
-                {
-                    "title": "考研",
-                    "list": [{
-                            "title": "百度网盘",
-                            "color": "#ffffff",
-                            "icon": "baidunetdisk.svg",
-                            "url": "https://pan.baidu.com/disk/main#/index"
-                        },
-                        {
-                            "title": "哔哩哔哩",
-                            "color": "#00a1d6",
-                            "icon": "bilibili.svg",
-                            "url": "https://www.bilibili.com/"
-                        },
-                        {
-                            "title": "慕课考研",
-                            "color": "#ffffff",
-                            "icon": "mooc.svg",
-                            "url": "https://www.icourse163.org/home.htm"
-                        },
-                        {
-                            "title": "网易云课堂",
-                            "color": "#fc1e1e",
-                            "icon": "nestudy.svg",
-                            "url": "https://study.163.com/my#/jpk"
-                        },
-                        {
-                            "title": "腾讯课堂",
-                            "color": "#ffffff",
-                            "icon": "txstudy.png",
-                            "url": "https://ke.qq.com/user/index/index.html#/plan/"
-                        },
-                        {
-                            "title": "新东方在线",
-                            "color": "#ffffff",
-                            "icon": "xdf.png",
-                            "url": "https://study.koolearn.com/my"
-                        },
-                        {
-                            "title": "爱启航",
-                            "color": "#ff6c02",
-                            "icon": "iqihang.svg",
-                            "url": "https://www.iqihang.com/vipIindex/vipMain?tabName=first"
-                        },
-                        {
-                            "title": "新文道",
-                            "color": "#e60012",
-                            "icon": "xwd.svg",
-                            "url": "https://www.xinwendao.cn/member/study"
-                        },
-                        {
-                            "title": "粉笔",
-                            "color": "#3c7cfc",
-                            "icon": "fenbi.svg",
-                            "url": "https://www.fenbi.com/spa/pwa/mycourse/index"
-                        },
-                        {
-                            "title": "橙啦",
-                            "color": "#ffffff",
-                            "icon": "orangevip.png",
-                            "url": "https://www.orangevip.com/userCenter/myCourse"
-                        },
-                        {
-                            "title": "一笑而过",
-                            "color": "#ffffff",
-                            "icon": "alpass.png",
-                            "url": "https://pc.xiaoguo101.com/my/course"
-                        },
-                        {
-                            "title": "CCTalk",
-                            "color": "#ffffff",
-                            "icon": "alpass.png",
-                            "url": "https://pc.xiaoguo101.com/my/course"
-                        }
-                    ]
-                }, {
-                    "title": "网课平台",
-                    "list": [{
-                            "title": "中国大学MOOC",
-                            "color": "#ffffff",
-                            "icon": "mooc.svg",
-                            "url": "https://www.icourse163.org/home.htm"
-                        }, {
-                            "title": "学堂在线",
-                            "icon": "xuetang.png",
-                            "color": "#ffffff",
-                            "url": "https://next.xuetangx.com/my-courses/current"
-                        },
-                        {
-                            "title": "智慧树",
-                            "icon": "zhihuishu.png",
-                            "color": "#ffffff",
-                            "url": "https://onlineh5.zhihuishu.com/onlineWeb.html#/studentIndex"
-                        },
-                        {
-                            "title": "CCTalk",
-                            "color": "#ffffff",
-                            "icon": "alpass.png",
-                            "url": "https://pc.xiaoguo101.com/my/course"
-                        },
-                        {
-                            "title": "Coursera",
-                            "color": "#2a73cc",
-                            "icon": "coursera.svg",
-                            "url": "https://www.coursera.org/in-progress"
-                        }
-                    ]
-                },
-                {
-                    "title": "Coding",
-                    "list": [{
-                            "title": "菜鸟教程",
-                            "color": "#ffffff",
-                            "icon": "runoob.svg",
-                            "url": "http://runooob.com/"
-                        }, {
-                            "title": "菜鸟教程",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "http://stu.ityxb.com/Classroom/course/learning"
-                        }, {
-                            "title": "传智播客",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "http://stu.ityxb.com/Classroom/course/learning"
-                        }, {
-                            "title": "FreeCodeCamp",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://chinese.freecodecamp.org/learn"
-                        },
-                        {
-                            "title": "LeetBook书架",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://leetcode-cn.com/leetbook/library/"
-                        }, {
-                            "title": "LeetCode学习计划",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://leetcode-cn.com/study-plan/"
-                        }, {
-                            "title": "LeetCode题库",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://leetcode-cn.com/problemset/"
-                        }, {
-                            "title": "USFCA算法演示",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"
-                        }, {
-                            "title": "Visualgo算法可视化",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://visualgo.net/zh"
-                        }, {
-                            "title": "算法可视化",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://algorithm-visualizer.org/"
-                        }, {
-                            "title": "regexper正则可视化",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://regexper.com/"
-                        }, {
-                            "title": "regulex正则可视化",
-                            "color": "#ffffff",
-                            "icon": "ityxb.svg",
-                            "url": "https://jex.im/regulex/"
-                        }
-                    ]
-                }, {
-                    "title": "网盘",
-                    "list": [{
-                            "title": "夸克网盘",
-                            "color": "#ffffff",
-                            "icon": "quarkpan.svg",
-                            "url": "https://pan.quark.cn/"
-                        }, {
-                            "title": "百度网盘",
-                            "color": "#ffffff",
-                            "icon": "baidupan.svg",
-                            "url": "https://pan.baidu.com/"
-                        }, {
-                            "title": "阿里云盘",
-                            "color": "#ffffff",
-                            "icon": "alipan.svg",
-                            "url": "https://aliyundrive.com/"
-                        },
-                        {
-                            "title": "坚果云",
-                            "color": "#ffffff",
-                            "icon": "jianguoyun.svg",
-                            "url": "https://www.jianguoyun.com/"
-                        },
-                        {
-                            "title": "天翼云",
-                            "color": "#ffffff",
-                            "icon": "alipan.svg",
-                            "url": "https://139.com/"
-                        }
-                    ]
+            }, {
+                "id": 60,
+                "attributes": {
+                    "title": "牛客网",
+                    "url": "https://www.nowcoder.com",
+                    "desc": null,
+                    "createdAt": "2022-02-26T02:34:52.328Z",
+                    "updatedAt": "2022-02-26T03:33:44.425Z",
+                    "publishedAt": "2022-02-26T02:34:53.538Z",
+                    "color": "#ffffff",
+                    "subsites": { "data": [{ "id": 10, "attributes": { "title": "春招", "url": "https://nowpick.nowcoder.com/w/school/schedule", "createdAt": "2022-02-26T02:36:25.082Z", "updatedAt": "2022-02-26T02:36:26.437Z", "publishedAt": "2022-02-26T02:36:26.435Z" } }, { "id": 11, "attributes": { "title": "面试真题", "url": "https://www.nowcoder.com/interview/ai/index", "createdAt": "2022-02-26T02:36:49.779Z", "updatedAt": "2022-02-26T03:07:33.970Z", "publishedAt": "2022-02-26T02:36:51.012Z" } }] },
+                    "icon": { "data": { "id": 83, "attributes": { "name": "1636944252254TIDXY.png", "alternativeText": "1636944252254TIDXY.png", "caption": "1636944252254TIDXY.png", "width": 208, "height": 48, "formats": null, "hash": "1636944252254_TIDXY_6ddb55e40c", "ext": ".png", "mime": "image/png", "size": 1.61, "url": "/uploads/1636944252254_TIDXY_6ddb55e40c.png", "previewUrl": null, "provider": "local", "provider_metadata": null, "createdAt": "2022-02-26T03:33:24.413Z", "updatedAt": "2022-02-26T03:33:24.413Z" } } }
                 }
-
-            ]
+            }, { "id": 55, "attributes": { "title": "LeetCode", "url": "https://leetcode-cn.com/", "desc": null, "createdAt": "2022-02-25T16:28:17.492Z", "updatedAt": "2022-02-25T16:28:18.882Z", "publishedAt": "2022-02-25T16:28:18.880Z", "color": "#ffffff", "subsites": { "data": [{ "id": 1, "attributes": { "title": "笔记", "url": "https://leetcode-cn.com/notes/", "createdAt": "2022-02-25T15:01:19.975Z", "updatedAt": "2022-02-25T15:57:29.410Z", "publishedAt": "2022-02-25T15:01:21.260Z" } }, { "id": 7, "attributes": { "title": "学习计划", "url": "https://leetcode-cn.com/study-plan/", "createdAt": "2022-02-25T16:28:48.423Z", "updatedAt": "2022-02-25T16:28:50.047Z", "publishedAt": "2022-02-25T16:28:50.030Z" } }, { "id": 8, "attributes": { "title": "书架", "url": "https://leetcode-cn.com/leetbook/library/", "createdAt": "2022-02-25T16:29:11.762Z", "updatedAt": "2022-02-25T16:29:13.350Z", "publishedAt": "2022-02-25T16:29:13.349Z" } }, { "id": 9, "attributes": { "title": "题库", "url": "https://leetcode-cn.com/problemset/", "createdAt": "2022-02-25T16:29:34.835Z", "updatedAt": "2022-02-25T16:29:36.521Z", "publishedAt": "2022-02-25T16:29:36.508Z" } }] }, "icon": { "data": { "id": 78, "attributes": { "name": "leetcode.svg", "alternativeText": "leetcode.svg", "caption": "leetcode.svg", "width": null, "height": null, "formats": null, "hash": "leetcode_9853cf3bb4", "ext": ".svg", "mime": "image/svg+xml", "size": 2.25, "url": "/uploads/leetcode_9853cf3bb4.svg", "previewUrl": null, "provider": null, "provider_metadata": null, "createdAt": "2022-02-25T16:27:58.611Z", "updatedAt": "2022-02-25T16:27:58.611Z" } } } } }, {
+                "id": 2,
+                "attributes": {
+                    "title": "语雀",
+                    "url": "https://www.yuque.com/dashboard",
+                    "desc": null,
+                    "createdAt": "2022-02-25T14:52:25.991Z",
+                    "updatedAt": "2022-02-25T14:54:00.504Z",
+                    "publishedAt": "2022-02-25T14:52:30.814Z",
+                    "color": "#ffffff",
+                    "subsites": { "data": [] },
+                    "icon": {
+                        "data": {
+                            "id": 59,
+                            "attributes": {
+                                "name": "yuque.svg",
+                                "alternativeText": "yuque.svg",
+                                "caption": "yuque.svg",
+                                "width": null,
+                                "height": null,
+                                "formats": null,
+                                "hash": "yuque_6c80ee5bb6",
+                                "ext": ".svg",
+                                "mime": "image/svg+xml",
+                                "size": 1.86,
+                                "url": "/uploads/yuque_6c80ee5bb6.svg",
+                                "previewUrl": null,
+                                "provider": null,
+                                "provider_metadata": null,
+                                "createdAt": "2022-02-25T14:36:31.246Z",
+                                "updatedAt": "2022-02-25T14:36:31.246Z"
+                            }
+                        }
+                    }
+                }
+            }],
+            others: []
         }
     },
     mutations: {
@@ -634,7 +187,7 @@ export default new Vuex.Store({
             localStorage.setItem('settings', encodeURIComponent(JSON.stringify(settings)));
             state.settings = settings;
         },
-        setNavs(state, settings) {
+        setNavs(state, navs) {
             localStorage.setItem('navs', encodeURIComponent(JSON.stringify(navs)));
             state.navs = navs;
         }

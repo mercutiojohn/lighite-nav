@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+
 export default {
   data(){
     return{
@@ -15,7 +15,7 @@ export default {
   },
   methods:{
     getData(){
-      axios.get('http://www.mercutio.club/api/posts?pageSize=100')
+      this.$axios.get('http://www.mercutio.club/api/posts?pageSize=100')
       .then((response)=>{
         console.log(response)
         this.text = response.data.data;

@@ -38,9 +38,9 @@ export default {
         },{
           to:"/tools",
           icon:"icon-app"
-        },{
-          to:"/about",
-          icon:"icon-qi"
+        // },{
+        //   to:"/about",
+        //   icon:"icon-qi"
         },
       ],
       moreTabs:[

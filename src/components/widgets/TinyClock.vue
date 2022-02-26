@@ -43,12 +43,23 @@ export default {
 
       if (this.settings.twelveFormat) {
         // h = '下午' + (h % 12);
-        if (h / 12 >= 1) {
-          this.apm = "下午";
+        if (h / 12 > 1) {
+          if (h > 19) {
+            this.apm = "傍晚";
+          } else {
+            this.apm = "下午";
+          }
+          h = h % 12;
+        } else if (h / 12 == 1) {
+          this.apm = "中午";
+          h = 12;
         } else {
-          this.apm = "上午";
+          if (h < 6) {
+            this.apm = "凌晨";
+          } else {
+            this.apm = "上午";
+          }
         }
-        h = h % 12;
         // TODO
       }
 
