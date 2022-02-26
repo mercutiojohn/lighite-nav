@@ -1,53 +1,93 @@
 <template>
-  <div :class="{'navigation':true, 'common-page':true, 'mask-on':addWindowShow}">
-    <div class="add-nav-window-mask" v-if="addWindowShow" @click.self="showAdd()">
-      <div class="add-nav-window">
-        <span class="header-title">添加网址</span>
-        <span class="tip">名称</span>
-        <input type="text" name="title" id="title" placeholder="名称">
-        <span class="tip">URL</span>
-        <input type="text" name="url" id="url" placeholder="URL">
-        <span class="tip">图标</span>
-        <input type="text" name="icon" id="icon" placeholder="图标">
-        <button class="submit-button">提交</button>
+  <div
+    :class="{ navigation: true, 'common-page': true, 'mask-on': addWindowShow }"
+  >
+    <transition name="fade">
+      <div
+        class="general-window-mask"
+        v-if="addWindowShow"
+        @click.self="showAdd()"
+      >
+        <div class="general-window">
+          <span class="header-title">添加网址</span>
+          <span class="tip">名称</span>
+          <input type="text" name="title" id="title" placeholder="名称" />
+          <span class="tip">URL</span>
+          <input type="text" name="url" id="url" placeholder="URL" />
+          <span class="tip">图标</span>
+          <input type="text" name="icon" id="icon" placeholder="图标" />
+          <button class="submit-button">提交</button>
+        </div>
       </div>
-    </div>
+    </transition>
     <div class="list-header">
       <span class="title">我的收藏</span>
+      <button class="icon-button" @click="showModify()">
+        <span
+          :class="{
+            iconfont: true,
+            'icon-edit-2': !modifyShow,
+            'icon-check': modifyShow,
+          }"
+        ></span>
+        <span class="tip">{{!modifyShow?'编辑':'完成'}}</span>
+      </button>
     </div>
     <div class="nav-list">
       <a
         :href="item.attributes.url"
         target="_blank"
-        class="nav-item ef-float"
+        :class="{
+          'nav-item': true,
+          'ef-float': true,
+          'nav-item-wide': item.attributes.subsites.data[0] !== undefined,
+        }"
         v-for="(item, index) in navs.favorites"
         :key="index"
       >
-        <div class="top">
-          <div
-            class="icon-area"
-            :style="'background-color: ' + item.attributes.color"
-          >
-            <img
-              class="icon"
-              :src="getIcon(item.attributes.icon)"
-              alt=""
-              srcset=""
-            />
+        <div
+          :class="{
+            left: true,
+            'left-wide': item.attributes.subsites.data[0] !== undefined,
+          }"
+        >
+          <div class="top">
+            <div
+              class="icon-area"
+              :style="'background-color: ' + item.attributes.color"
+            >
+              <img
+                class="icon"
+                :src="getIcon(item.attributes.icon)"
+                alt=""
+                srcset=""
+              />
+            </div>
+            <transition name="fade">
+              <div
+                :class="{
+                  'btn-modify': true,
+                  'remove-favor': true,
+                  'ef-pudding': true,
+                  'icon-button': true,
+                }"
+                @click.prevent="removeFavor(index)"
+                v-if="modifyShow"
+              >
+                <span class="iconfont icon-trash"></span>
+              </div>
+            </transition>
           </div>
-          <div
-            class="remove-favor ef-pudding icon-button"
-            @click.prevent="removeFavor(index)"
-          >
-            <span class="iconfont icon-trash"></span>
-          </div>
-        </div>
 
-        <span
-          class="title fix-text-overflow"
-          v-text="item.attributes.title"
-        ></span>
-        <div class="subsites-list" v-if="item.attributes.subsites.data != null">
+          <span
+            class="title fix-text-overflow"
+            v-text="item.attributes.title"
+          ></span>
+        </div>
+        <div
+          class="subsites-list"
+          v-if="item.attributes.subsites.data[0] !== undefined"
+        >
           <a
             :href="item_2.attributes.url"
             target="_blank"
@@ -62,10 +102,16 @@
           </a>
         </div>
       </a>
-      <div class="nav-item ef-float add-nav" @click="showAdd()">
-        <span class="iconfont icon-add"></span>
-        <span class="tip">自定义</span>
-      </div>
+      <transition name="fade">
+        <div
+          class="nav-item ef-float add-nav"
+          @click="showAdd()"
+          v-if="modifyShow"
+        >
+          <span class="iconfont icon-add"></span>
+          <span class="tip">自定义</span>
+        </div>
+      </transition>
     </div>
     <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
       <div class="list-header">
@@ -75,36 +121,55 @@
         <a
           :href="item_1.attributes.url"
           target="_blank"
-          class="nav-item ef-float"
+          :class="{
+            'nav-item': true,
+            'ef-float': true,
+            'nav-item-wide': item_1.attributes.subsites.data[0] !== undefined,
+          }"
           v-for="(item_1, index_1) in item.attributes.sites.data"
           :key="index_1"
         >
-          <div class="top">
-            <div
-              class="icon-area"
-              :style="'background-color: ' + item_1.attributes.color"
-            >
-              <img
-                class="icon"
-                :src="getIcon(item_1.attributes.icon)"
-                alt=""
-                srcset=""
-              />
+          <div
+            :class="{
+              left: true,
+              'left-wide': item_1.attributes.subsites.data[0] !== undefined,
+            }"
+          >
+            <div class="top">
+              <div
+                class="icon-area"
+                :style="'background-color: ' + item_1.attributes.color"
+              >
+                <img
+                  class="icon"
+                  :src="getIcon(item_1.attributes.icon)"
+                  alt=""
+                  srcset=""
+                />
+              </div>
+              <transition name="fade">
+                <div
+                  :class="{
+                    'btn-modify': true,
+                    'add-favor': true,
+                    'ef-pudding': true,
+                    'icon-button': true,
+                  }"
+                  v-if="modifyShow"
+                  @click.prevent="addFavor(item_1)"
+                >
+                  <span class="iconfont icon-add"></span>
+                </div>
+              </transition>
             </div>
-            <div
-              class="add-favor ef-pudding icon-button"
-              @click.prevent="addFavor(item_1)"
-            >
-              <span class="iconfont icon-add"></span>
-            </div>
+            <span
+              class="title fix-text-overflow"
+              v-text="item_1.attributes.title"
+            ></span>
           </div>
-          <span
-            class="title fix-text-overflow"
-            v-text="item_1.attributes.title"
-          ></span>
           <div
             class="subsites-list"
-            v-if="item_1.attributes.subsites.data != null"
+            v-if="item_1.attributes.subsites.data[0] !== undefined"
           >
             <a
               :href="item_2.attributes.url"
@@ -143,6 +208,7 @@ export default {
         others: [],
       },
       addWindowShow: false,
+      modifyShow: false,
     };
   },
   computed: {
@@ -156,20 +222,27 @@ export default {
     },
   },
   methods: {
+    showModify() {
+      this.modifyShow ? (this.modifyShow = false) : (this.modifyShow = true);
+    },
     showAdd() {
       this.addWindowShow
         ? (this.addWindowShow = false)
         : (this.addWindowShow = true);
     },
     getRemoteNavs() {
-      this.api
-        .get(
-          "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
-        )
-        .then((response) => {
-          console.log(response.data.data);
-          this.navs.others = response.data.data;
-        });
+      try {
+        this.api
+          .get(
+            "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
+          )
+          .then((response) => {
+            console.log(response.data.data);
+            this.navs.others = response.data.data;
+          });
+      } catch (error) {
+        console.log(error);
+      }
     },
     getIcon(icon) {
       try {
@@ -205,6 +278,8 @@ export default {
 </script>
 <style lang="css" src="../styles/list.css" scoped>
 </style>
+<style lang="css" src="../styles/window.css" scoped>
+</style>
 <style scoped>
 .navigation {
   overflow: hidden;
@@ -218,17 +293,15 @@ export default {
 }
 .nav-item {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  justify-content: stretch;
   border-radius: var(--card-radius);
   background: var(--sub-card-color);
-  justify-content: flex-start;
   transition: all 0.2s ease;
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
-  gap: 10px;
   color: var(--content-color);
   padding: 10px;
 }
@@ -241,7 +314,9 @@ export default {
   box-shadow: 0 10px 20px 3px #00000024;
   transform: translateY(-3px);
 }
-
+.nav-item-wide {
+  grid-column-start: span 2;
+}
 .nav-item .icon-area {
   border-radius: var(--item-radius);
   /* width: 30px; */
@@ -262,6 +337,7 @@ export default {
 }
 
 .subsites-list {
+  margin-left: 10px;
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
@@ -294,15 +370,17 @@ export default {
   justify-content: space-between;
   gap: 10px;
 }
-.add-favor,
-.remove-favor {
-  padding: 5px 8px;
+.btn-modify {
+  padding: 5px 7px;
   background: var(--card-color);
   border-radius: var(--item-radius);
   border: 2px solid var(--sub-card-color);
 }
-.add-favor:hover,
-.remove-favor:hover {
+.btn-modify .iconfont{
+  font-size: 20px;
+}
+
+.btn-modify:hover {
   background: var(--sub-card-color);
   border-color: transparent;
 }
@@ -320,34 +398,54 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.add-nav .iconfont{
+.add-nav .iconfont {
   font-size: 30px;
 }
-.mask-on{
+.mask-on {
   height: calc(100vh - var(--head-height));
   overflow: hidden;
 }
-.add-nav-window-mask{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #00000053;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20000;
-}
-.add-nav-window{
+.left {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: flex-start;
-  padding: 20px;
-  width: 300px;
-  height: 400px;
-  border-radius: var(--card-radius);
-  background: var(--card-color);
+  width: 100%;
+  gap: 10px;
+}
+.left-wide {
+  width: 50%;
+}
+/* list */
+.list-header {
+  padding: 10px 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* position: sticky; */
+  /* top:var(--head-height); */
+}
+.list-header .title {
+  font-weight: 900;
+  font-size: 20px;
+}
+.list-header .icon-button{
+  border: 2px solid var(--line-color);
+  display: flex;
+  justify-content: center;
+  gap:5px;
+}
+.list-header .icon-button:hover{
+  border-color: transparent;
+}
+.list-header .icon-button .iconfont{
+  font-size: 20px;
+}
+.list-header .icon-button .tip{
+  font-size: 14px;
+}
+
+.hide {
+  display: none;
 }
 </style>
