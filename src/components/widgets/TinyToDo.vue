@@ -6,7 +6,7 @@
     <div class="todo-input-box">
       <input
         type="text"
-        name=""
+        class="better-input"
         :placeholder="tip"
         id="todoInput"
         @keyup.enter="addTodoItem()"

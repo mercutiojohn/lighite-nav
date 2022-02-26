@@ -78,7 +78,7 @@ ul {
     padding-inline-start: 0;
 }
 
-input[type=text] {
+input[type=text].better-input {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
     border-width: 2px;
     border-style: solid;
@@ -93,19 +93,19 @@ input[type=text] {
     transition: border-color .2s ease;
 }
 
-input[type=text]:hover {
+input[type=text].better-input:hover {
     border-color: var(--accent-color);
 }
 
-input[type=text]:focus {
+input[type=text].better-input:focus {
     border-color: var(--accent-color);
 }
 
-input[type=text]::placeholder {
+input[type=text].better-input::placeholder {
     /* color: var(--content-color); */
 }
 
-input[type=text] {}
+input[type=text].better-input {}
 
 button {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
