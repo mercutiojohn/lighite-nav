@@ -15,7 +15,7 @@ Vue.use(ScrollDiv);
 import base from '@/utils/api/base.js'
 
 let api = base;
-Vue.prototype.api = api
+Vue.prototype.$api = api
 
 Vue.config.productionTip = false
 

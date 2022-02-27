@@ -1,0 +1,18 @@
+:root {
+    /* 颜色*/
+    --accent-color: #3c9dff;
+    --bg-color: #000;
+    /* container */
+    --card-color: #414141;
+    --page-color: #414141;
+    --sub-card-color: #222222;
+    /* text */
+    --title-color: #fff;
+    --subtitle-color: #ddd;
+    --content-color: #fff;
+    --hover-color: #ffffff33;
+    --active-color: #ffffff71;
+    --line-color: #141414;
+    /* 强调色 */
+    --warn-color: #ff2600;
+}

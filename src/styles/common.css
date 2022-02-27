@@ -1,22 +1,6 @@
-:root {
-    /* 颜色*/
-    --accent-color: #3c9dff;
-    --bg-color: #eee;
-    /* container */
-    --card-color: #fff;
-    --page-color: #fff;
-    --sub-card-color: #f3f3f3;
-    /* text */
-    --title-color: #000;
-    --subtitle-color: #555555;
-    --content-color: #000;
-    --hover-color: #00000013;
-    --active-color: #00000023;
-    --line-color: #e0e0e0;
-    /* 强调色 */
-    --warn-color: #ff2600;
+:root{
     /* 高度/宽度参数*/
-    --head-height: 80px;
+    --head-height: 60px;
     --side-width: 100px;
     /* 基本组件大小 */
     --icon-size: 30px;
@@ -27,25 +11,6 @@
     /* 手机端 */
     --bottom-height: 60px;
 }
-
-@media screen and (prefers-color-scheme: dark) {
-     :root {
-        --accent-color: #3c9dff;
-        --bg-color: #000;
-        /* container */
-        --card-color: #414141;
-        --page-color: #414141;
-        --sub-card-color: #222222;
-        /* text */
-        --title-color: #fff;
-        --subtitle-color: #ddd;
-        --content-color: #fff;
-        --hover-color: #ffffff33;
-        --active-color: #ffffff71;
-        --line-color: #141414;
-    }
-}
-
 body {
     margin: 0;
     background-color: var(--bg-color);

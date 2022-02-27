@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div :class="{'header':true,'header-with-bg':ifScrolled}">
     <div class="title-box">
       <span class="title" v-text="title"></span>
     </div>
@@ -22,22 +22,37 @@ export default {
   data() {
     return {
       title: "Lightie",
+      ifScrolled:false
     };
   },
-  computed: {},
+  computed: {
+  },
   watch: {},
-  methods: {},
+  methods: {
+    handleScroll(){
+      // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
+      if(document.querySelector("body > div").scrollTop)
+        this.ifScrolled = true;
+      else
+        this.ifScrolled = false;
+      console.log(this.ifScrolled);
+    }
+  },
   created() {},
-  mounted() {},
-  beforeDestroy() {},
+  mounted() {
+    document.querySelector("body > div").addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    document.querySelector("body > div").removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 
 <style scoped>
 .header {
-  height: 80px;
+  height: var(--head-height);
   width: 100%;
-  background: var(--bg-color);
+  /* background: var(--bg-color); */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,5 +88,8 @@ export default {
   justify-content: flex-end;
   gap: 15px;
   padding: 0 20px;
+}
+.header-with-bg{
+  background: var(--bg-color);
 }
 </style>

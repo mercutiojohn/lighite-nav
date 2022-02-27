@@ -1,5 +1,6 @@
 <template>
-  <Scroll-Div view-class="app" width="100vw" height="100vh">
+  <Scroll-Div ref="main" view-class="app" width="100vw" height="100vh">
+    <!-- <Background /> -->
     <Header />
     <div id="main-box">
       <Sidebar />
@@ -19,12 +20,14 @@
 <script>
 import Header from "@/components/HeaderBar.vue";
 import Sidebar from "@/components/SideBar.vue";
+import Background from '@/components/utils/Background.vue';
 
 export default {
   name: "App",
   components: {
     Header,
     Sidebar,
+    Background,
   },
   data() {
     return {};
@@ -33,7 +36,7 @@ export default {
   watch: {
     $route(to,from){
       console.log(to.path);
-      document.querySelector("body > div").scrollTop = document.documentElement.scrollTop = 0;
+      document.querySelector("body > div").scrollTop = 0;
     }
   },
   methods: {
@@ -45,6 +48,7 @@ export default {
 </script>
 <style scoped>
 @import "styles/common.css";
+@import "styles/modes/default.css";
 @import "styles/fonts.css";
 
 #main-box {
@@ -54,11 +58,18 @@ export default {
 .content{
   width: calc(100% - var(--side-width));
   flex-shrink: 0;
-  min-height: calc(100vh - var(--head-height));
+  height: calc(100vh - var(--head-height));
+  overflow-y: scroll;
   box-sizing: border-box;
   margin-left: var(--side-width);
 }
-
+.content::-webkit-scrollbar{
+  width: 5px;
+  background: var(--card-color);
+}
+.content::-webkit-scrollbar-thumb{
+  background: var(--sub-card-color);
+}
 @media screen and (max-width: 600px) {
   #main-box {
     flex-direction: column-reverse;
@@ -67,6 +78,9 @@ export default {
     width: 100%;
     margin-left: 0;
     margin-bottom: var(--bottom-height);
+    overflow-y: unset;
+    height: auto;
+    min-height: calc(100vh - var(--head-height) - var(--bottom-height));
   }
 }
 </style>

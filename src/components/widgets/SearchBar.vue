@@ -109,6 +109,7 @@ export default {
 }
 .search-input {
   /* height: 100%; */
+  color: var(--content-color);
   width: 100%;
   background: none;
   outline: none;

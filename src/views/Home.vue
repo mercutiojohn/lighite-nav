@@ -42,6 +42,8 @@ export default {
   
   grid-auto-rows: minmax(300px, auto);
   gap: 1.5vw;
+  height: unset;
+  overflow: unset;
 }
 @media screen and (min-width: 1080px) {
   .home {

@@ -75,7 +75,6 @@ export default {
   align-items: center;
   width: var(--side-width);
   height: calc(100vh - var(--head-height));
-  background: var(--bg-color);
   z-index: 11;
   flex-shrink: 0;
 }
@@ -87,6 +86,7 @@ export default {
 }
 @media screen and (max-width: 600px) {
   .sidebar {
+    background: var(--bg-color);
     flex-direction: row;
     height: var(--bottom-height);
     width: 100%;

@@ -232,7 +232,7 @@ export default {
     },
     getRemoteNavs() {
       try {
-        this.api
+        this.$api
           .get(
             "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
           )
@@ -282,7 +282,7 @@ export default {
 </style>
 <style scoped>
 .navigation {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .nav-list {

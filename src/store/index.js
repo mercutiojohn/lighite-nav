@@ -32,7 +32,8 @@ export default new Vuex.Store({
         ],
         settings: {
             twelveFormat: true,
-            showSeconds: false
+            showSeconds: false,
+            mode: 'bg',
         },
         tokens: {
             biliblli: '',
@@ -172,7 +173,7 @@ export default new Vuex.Store({
                 }
             }],
             others: []
-        }
+        },
     },
     mutations: {
         update(state, [key, value]) {
@@ -212,6 +213,9 @@ export default new Vuex.Store({
                 state.todoList = JSON.parse(decodeURIComponent(localStorage.getItem('settings')));
             }
             return state.settings;
+        },
+        getMode: (state) => {
+            return state.settings.mode;
         }
     }
 })
