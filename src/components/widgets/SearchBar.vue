@@ -7,10 +7,10 @@
         'search-box-hover': hovered,
       }"
     >
-      <div class="search-icon-box ef-pudding">
+      <div class="search-icon-box ef-pudding" :style="{'background-color':chosenEngine.color}" @click="moreChoose? moreChoose = false : moreChoose = true">
         <img
           class="search-icon"
-          :src="require('@/assets/images/webpage.svg')"
+          :src="getIcon(chosenEngine.icon)"
           alt=""
           srcset=""
         />
@@ -31,16 +31,23 @@
           autocomplete="off"
           @focus="focused = true"
           @blur="focused = false"
-          :name="chosenEngine.queryWord"
+          :name="chosenEngine.queryword"
           :placeholder="chosenEngine.placeholder"
         />
       </form>
     </div>
     <transition name="fade">
-    
-    <div class="more-engines" v-if="focused">
-
-    </div>
+      <div class="more-engines" v-if="moreChoose">
+        <div class="engines-list" v-for="(item, index) in moreEngines" :key="index">
+          <span class="engines-list-title">{{ item.attributes.name }}</span>
+          <div class="engine-items">
+            <div class="engine-item ef-pudding" v-for="(item_1,index_1) in item.attributes.search_engines.data" :key="index_1" @click="changeEngine(index,index_1)">
+              <div class="icon-bg" :style="{'background-color':item_1.attributes.color}"><img :src="getIcon(item_1.attributes.icon)" alt="" srcset="" class="icon"></div>
+              <span class="title fix-text-overflow">{{item_1.attributes.title}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </transition>
   </div>
 </template>
@@ -52,17 +59,24 @@ export default {
   data() {
     return {
       chosenEngine: {
-        title: "必应",
-        url: "https://cn.bing.com/search",
-        queryWord: "q",
-        placeholder: "Microsoft Bing 必应搜索",
+        
       },
       focused: false,
       hovered: false,
+      moreEngines: [],
+      moreChoose:false
     };
   },
-  computed: {},
-  watch: {},
+  computed: {
+    remoteChosenEngine:function(){
+      return this.$store.getters.getEngine;
+    }
+  },
+  watch: {
+    chosenEngine(){
+      this.$store.commit("setEngine", this.chosenEngine);
+    }
+  },
   methods: {
     focusToInput() {
       this.$refs.search.focus();
@@ -74,9 +88,41 @@ export default {
         return "";
       }
     },
+    getIcon(icon) {
+      try {
+        let url = icon.data.attributes.url;
+        return "http://navapi.mercutio.club" + url;
+      } catch (error) {
+        console.log(error);
+        console.log(icon);
+        return require("@/assets/images/webpage.svg");
+      }
+    },
+    getRemoteEngines() {
+      try {
+        this.$api
+          .get(
+            "/search-engine-collections?populate[0]=search_engines&populate[1]=search_engines.icon"
+          )
+          .then((response) => {
+            console.log(response.data.data);
+            this.moreEngines = response.data.data;
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    changeEngine(index,index_1){
+      this.chosenEngine = this.moreEngines[index].attributes.search_engines.data[index_1].attributes;
+      this.focusToInput();
+      this.moreChoose = false;
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.chosenEngine = this.remoteChosenEngine;
+    this.getRemoteEngines();
+  },
   beforeDestroy() {},
 };
 </script>
@@ -89,23 +135,21 @@ export default {
   border-radius: var(--card-radius);
   background: var(--sub-card-color);
   padding-left: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: var(--title-color);
-  transition: border-color 0.2s ease,border-radius 0.2s ease 0.2s;
+  transition: border-color 0.2s ease;
   gap: 10px;
 }
 .search-box-hover {
   border-color: var(--accent-color);
 }
 .search-focus {
-  border-radius: var(--card-radius) var(--card-radius) 0 0;
   border-color: var(--accent-color);
-  transition: border-radius 0s ease;
 }
 .search-input {
   /* height: 100%; */
@@ -130,21 +174,76 @@ export default {
 }
 .search-icon {
   box-sizing: border-box;
-  padding: 5px;
+  padding: 4px;
   width: 100%;
-  max-height: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .search-form {
-  width: 100%;
+  width: calc(100% - 40px - 10px);
   padding: 15px 0;
   display: block;
   height: 100%;
   cursor: text;
   /* background: #000; */
 }
-.more-engines{
-    background: var(--sub-card-color);
-    height: 200px;
-    border-radius:0 0 var(--card-radius) var(--card-radius);
+.more-engines {
+  /* position: absolute; */
+  /* top:0; */
+  /* width: 80px; */
+  padding: 20px;
+  background: var(--sub-card-color);
+  height: 190px;
+  border-radius: var(--card-radius);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 20px;
+}
+.more-engines::-webkit-scrollbar{
+  width: 5px;
+  background: transparent;
+}
+.more-engines::-webkit-scrollbar-thumb{
+  background: var(--subtitle-color);
+  border-radius: 4px;
+}
+.engines-list{
+  display: flex;
+  flex-direction: column;
+}
+.engine-items{
+  display: flex;
+  flex-wrap: wrap;
+  gap:5px;
+  /* padding: 5px; */
+  box-sizing: border-box;
+}
+.engine-item{
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  background: var(--card-color);
+  border-radius: var(--item-radius);
+  cursor: pointer;
+  gap:10px;
+  overflow: hidden;
+}
+.engine-item .icon-bg{
+  width: 40px;
+  height: 40px;
+  border-radius: var(--item-radius);
+  box-shadow: 0 1px 7px 1px #00000012;
+}
+.engine-item .icon{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.engine-item .title{
+  width: 100px;
+  /* text-align: center; */
+  font-size: 0.9em;
 }
 </style>

@@ -318,7 +318,7 @@ export default {
   grid-column-start: span 2;
 }
 .nav-item .icon-area {
-  border-radius: var(--item-radius);
+  border-radius: var(--icon-radius);
   /* width: 30px; */
   display: flex;
   align-items: center;
@@ -328,9 +328,10 @@ export default {
 }
 .nav-item .icon {
   box-sizing: border-box;
-  padding: 5px;
+  padding: 7px;
   width: 100%;
-  max-height: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .nav-item .title {
   font-size: 16px;

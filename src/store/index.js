@@ -5,6 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        chosenEngine: {
+            title: "必应",
+            url: "https://cn.bing.com/search",
+            queryword: "q",
+            placeholder: "Microsoft Bing 必应搜索",
+            color: "#ffffff",
+            icon: {
+                data: {
+                    id: 1,
+                    attributes: {
+                        url: "/uploads/bing_7da187597a.svg",
+                    },
+                },
+            },
+        },
         todoList: [{
                 text: '在上面输入待办事项',
                 createdAt: '',
@@ -184,6 +199,10 @@ export default new Vuex.Store({
             localStorage.setItem('todoList', encodeURIComponent(JSON.stringify(todoList)));
             state.todoList = todoList;
         },
+        setEngine(state, chosenEngine) {
+            localStorage.setItem('chosenEngine', encodeURIComponent(JSON.stringify(chosenEngine)));
+            state.chosenEngine = chosenEngine;
+        },
         setSettings(state, settings) {
             localStorage.setItem('settings', encodeURIComponent(JSON.stringify(settings)));
             state.settings = settings;
@@ -216,6 +235,12 @@ export default new Vuex.Store({
         },
         getMode: (state) => {
             return state.settings.mode;
-        }
+        },
+        getEngine: (state) => {
+            if (localStorage.getItem("chosenEngine")) {
+                state.chosenEngine = JSON.parse(decodeURIComponent(localStorage.getItem('chosenEngine')));
+            }
+            return state.chosenEngine;
+        },
     }
 })
