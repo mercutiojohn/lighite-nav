@@ -11,6 +11,9 @@
     --icon-radius: 13px;
     /* 手机端 */
     --bottom-height: 60px;
+    /* Card */
+    --card-inset-big: 20px;
+    --card-inset-small: 10px;
 }
 body {
     margin: 0;
