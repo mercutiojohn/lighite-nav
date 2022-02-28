@@ -35,7 +35,7 @@ export default {
   computed: {},
   watch: {
     $route(to,from){
-      console.log(to.path);
+      // console.log(to.path);
       document.querySelector("body > div").scrollTop = 0;
     }
   },

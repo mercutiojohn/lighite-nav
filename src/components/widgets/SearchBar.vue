@@ -93,8 +93,8 @@ export default {
         let url = icon.data.attributes.url;
         return "http://navapi.mercutio.club" + url;
       } catch (error) {
-        console.log(error);
-        console.log(icon);
+        // console.log(error);
+        // console.log(icon);
         return require("@/assets/images/webpage.svg");
       }
     },
@@ -105,7 +105,7 @@ export default {
             "/search-engine-collections?populate[0]=search_engines&populate[1]=search_engines.icon"
           )
           .then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             this.moreEngines = response.data.data;
           });
       } catch (error) {
@@ -245,5 +245,9 @@ export default {
   width: 100px;
   /* text-align: center; */
   font-size: 0.9em;
+}
+.engines-list-title{
+  margin: 12px 0 5px 0;
+  font-weight: 800;
 }
 </style>

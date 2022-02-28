@@ -102,8 +102,8 @@ export default {
         let url = icon.data.attributes.url;
         return "http://navapi.mercutio.club" + url;
       } catch (error) {
-        console.log(error);
-        console.log(icon);
+        // console.log(error);
+        // console.log(icon);
         return require("@/assets/images/webpage.svg");
       }
     },
@@ -199,6 +199,8 @@ export default {
 }
 .subsite-item:active {
   background-color: var(--accent-color);
+  color:#fff;
+  border-color: transparent;
 }
 .subsite-item .title {
   font-size: 16px;

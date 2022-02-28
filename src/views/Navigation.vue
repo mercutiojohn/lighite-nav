@@ -11,12 +11,14 @@
         <div class="general-window">
           <span class="header-title">添加网址</span>
           <span class="tip">名称</span>
-          <input type="text" name="title" id="title" placeholder="名称" />
+          <input type="text" v-model="editing.title" name="title" id="title" placeholder="名称" />
           <span class="tip">URL</span>
-          <input type="text" name="url" id="url" placeholder="URL" />
+          <input type="text" v-model="editing.url" name="url" id="url" placeholder="URL" />
           <span class="tip">图标</span>
-          <input type="text" name="icon" id="icon" placeholder="图标" />
-          <button class="submit-button">提交</button>
+          <input type="text" v-model="editing.icon" name="icon" id="icon" placeholder="图标URL" />
+          <span class="tip">主色调</span>
+          <input type="text" v-model="editing.color" name="color" id="icon" placeholder="格式:#AABBCC" />
+          <button class="submit-button" @click="addNewFavor()">提交</button>
         </div>
       </div>
     </transition>
@@ -40,7 +42,7 @@
         :class="{
           'nav-item': true,
           'ef-float': true,
-          'nav-item-wide': item.attributes.subsites.data[0] !== undefined,
+          'nav-item-wide': testSubsites(item.attributes),
         }"
         v-for="(item, index) in navs.favorites"
         :key="index"
@@ -48,7 +50,7 @@
         <div
           :class="{
             left: true,
-            'left-wide': item.attributes.subsites.data[0] !== undefined,
+            'left-wide': testSubsites(item.attributes),
           }"
         >
           <div class="top">
@@ -86,7 +88,7 @@
         </div>
         <div
           class="subsites-list"
-          v-if="item.attributes.subsites.data[0] !== undefined"
+          v-if="testSubsites(item.attributes)"
         >
           <a
             :href="item_2.attributes.url"
@@ -124,7 +126,7 @@
           :class="{
             'nav-item': true,
             'ef-float': true,
-            'nav-item-wide': item_1.attributes.subsites.data[0] !== undefined,
+            'nav-item-wide': testSubsites(item_1.attributes),
           }"
           v-for="(item_1, index_1) in item.attributes.sites.data"
           :key="index_1"
@@ -132,7 +134,7 @@
           <div
             :class="{
               left: true,
-              'left-wide': item_1.attributes.subsites.data[0] !== undefined,
+              'left-wide': testSubsites(item_1.attributes),
             }"
           >
             <div class="top">
@@ -169,7 +171,7 @@
           </div>
           <div
             class="subsites-list"
-            v-if="item_1.attributes.subsites.data[0] !== undefined"
+            v-if="testSubsites(item_1.attributes)"
           >
             <a
               :href="item_2.attributes.url"
@@ -209,6 +211,15 @@ export default {
       },
       addWindowShow: false,
       modifyShow: false,
+      editing:{
+            title: "",
+            color: "",
+            icon: "",
+            url: "",
+            subsites:{
+              data:[]
+            }
+      },
     };
   },
   computed: {
@@ -222,6 +233,30 @@ export default {
     },
   },
   methods: {
+    testSubsites(attrs){
+      try {
+        if(attrs.subsites.data[0] !== undefined)
+          return true;
+        else
+          return false;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
+    addNewFavor(){
+      const model = {
+        id:Date.now(),
+        attributes:this.deepClone(this.editing)
+      };
+      console.log(model);
+      this.navs.favorites.unshift(model);
+      this.editing.title = "";
+      this.editing.url = "";
+      this.editing.icon = "";
+      this.editing.color = "";
+      this.addWindowShow = false;
+    },
     showModify() {
       this.modifyShow ? (this.modifyShow = false) : (this.modifyShow = true);
     },
@@ -237,7 +272,7 @@ export default {
             "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
           )
           .then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             this.navs.others = response.data.data;
           });
       } catch (error) {
@@ -249,8 +284,8 @@ export default {
         let url = icon.data.attributes.url;
         return "http://navapi.mercutio.club" + url;
       } catch (error) {
-        console.log(error);
-        console.log(icon);
+        // console.log(error);
+        // console.log(icon);
         return require("@/assets/images/webpage.svg");
       }
     },
@@ -267,6 +302,11 @@ export default {
         this.$store.commit("setNavs", this.navs);
       }, 5);
     },
+    deepClone(obj) {
+      let _obj = JSON.stringify(obj);
+      let objClone = JSON.parse(_obj);
+      return objClone;
+    } 
   },
   created() {},
   mounted() {
@@ -360,6 +400,8 @@ export default {
 }
 .subsite-item:active {
   background-color: var(--accent-color);
+  color:#fff;
+  border-color: transparent;
 }
 .subsite-item .title {
   font-size: 16px;

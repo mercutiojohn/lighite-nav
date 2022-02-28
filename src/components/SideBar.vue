@@ -1,5 +1,8 @@
 <template>
   <div class="sidebar">
+    <div class="title-box">
+      <span class="title" v-text="title"></span>
+    </div>
     <div id="nav">
       <router-link class="ef-pudding" v-for="(item,index) in tabs" :key="index" :to="item.to" @click.native="scroll()">
         <span :class="'iconfont '+item.icon"></span>
@@ -19,6 +22,7 @@ export default {
   components: {},
   data() {
     return {
+      title: "Lightie",
       tabs:[
         {
           to:"/",
@@ -74,14 +78,15 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: var(--side-width);
-  height: calc(100vh - var(--head-height));
+  height:100vh;
   z-index: 11;
   flex-shrink: 0;
 }
 @media screen and (min-width: 600px) {
   .sidebar {
     position: fixed;
-    top: var(--head-height);
+    top: 0;
+
   }
 }
 @media screen and (max-width: 600px) {
@@ -145,5 +150,26 @@ export default {
 }
 #more a.router-link-exact-active {
   color: var(--accent-color);
+}
+.title-box {
+  height: var(--head-height);
+  /* width: 150px; */
+  padding: 10px;
+  box-sizing: border-box;
+  /* background: rgb(128, 128, 128); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .title-box {
+    display: none;
+  }
+}
+.title {
+  font-family: AtmaSerif;
+  font-size: 30px;
+  font-weight: 900;
 }
 </style>

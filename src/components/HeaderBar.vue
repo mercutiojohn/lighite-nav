@@ -21,13 +21,26 @@ export default {
   },
   data() {
     return {
-      title: "Lightie",
+      title: "",
       ifScrolled:false
     };
   },
   computed: {
   },
-  watch: {},
+  watch: {
+    $route(to,from){
+      console.log(to.desc);
+      this.title = to.name;
+      // if(to.path == "/tools"){
+      //   this.title = "工具"
+      // } else if(to.path == "/navigation"){
+      //   this.title = "导航"
+      // } else if(to.path == "/"){
+      //   this.title = "首页"
+      // }
+      // document.querySelector("body > div").scrollTop = 0;
+    }
+  },
   methods: {
     handleScroll(){
       // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
@@ -41,6 +54,7 @@ export default {
   created() {},
   mounted() {
     document.querySelector("body > div").addEventListener("scroll", this.handleScroll);
+    this.title = this.$route.name;
   },
   beforeDestroy() {
     document.querySelector("body > div").removeEventListener("scroll", this.handleScroll);
@@ -51,7 +65,8 @@ export default {
 <style scoped>
 .header {
   height: var(--head-height);
-  width: 100%;
+  width: calc(100% - var(--side-width));
+  margin-left:var(--side-width);
   /* background: var(--bg-color); */
   display: flex;
   align-items: center;
@@ -61,7 +76,10 @@ export default {
   z-index: 1000;
 }
 @media screen and (max-width: 600px) {
+  
   .header {
+    width: 100%;
+    margin-left:0;
     position: static;
   }
   .hide-clock{
@@ -78,8 +96,8 @@ export default {
   justify-content: center;
 }
 .title {
-  font-family: AtmaSerif;
-  font-size: 40px;
+  /* font-family: AtmaSerif; */
+  font-size: 20px;
   font-weight: 900;
 }
 .profile-box {
