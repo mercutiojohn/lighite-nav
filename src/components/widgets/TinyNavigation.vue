@@ -4,10 +4,10 @@
       <span class="title">我的导航</span>
       <router-link to="/navigation">
         <button class="icon-button">
-            <span class="label">更多</span>
-            <span class="iconfont icon-chevron-right"></span>
+          <span class="label">更多</span>
+          <span class="iconfont icon-chevron-right"></span>
         </button>
-        </router-link>
+      </router-link>
     </div>
     <div class="nav-list">
       <a
@@ -32,12 +32,7 @@
               class="icon-area"
               :style="'background-color: ' + item.attributes.color"
             >
-              <img
-                class="icon"
-                :src="getIcon(item.attributes.icon)"
-                alt=""
-                srcset=""
-              />
+              <img :class="{'icon':true,'icon-no-padding':item.attributes.no_padding}" :src="getIcon(item)" alt="" srcset="" />
             </div>
           </div>
 
@@ -74,15 +69,15 @@ export default {
   components: {},
   data() {
     return {
-      navs:{
-        favorites:[
-        {
-          title: "加载中",
-          color: "",
-          icon: "",
-          url: "",
-        },
-      ]
+      navs: {
+        favorites: [
+          {
+            title: "加载中",
+            color: "",
+            icon: "",
+            url: "",
+          },
+        ],
       },
     };
   },
@@ -99,12 +94,14 @@ export default {
   methods: {
     getIcon(icon) {
       try {
-        let url = icon.data.attributes.url;
+        let url = icon.attributes.icon.data.attributes.url;
         return "http://navapi.mercutio.club" + url;
       } catch (error) {
-        // console.log(error);
-        // console.log(icon);
-        return require("@/assets/images/webpage.svg");
+        const template = `<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg"><g><text font-family="MiSans,sans" font-weight="800" font-size="120" y="120" x="9" fill="${
+          icon.attributes.color == "#ffffff" ? "#000" : "#fff"
+        }">${icon.attributes.title.slice(0, 1)}</text></g></svg>`;
+        const based = "data:image/svg+xml," + encodeURIComponent(template);
+        return based;
       }
     },
   },
@@ -168,8 +165,12 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  overflow: hidden;
 }
-.nav-item .title{
+.nav-item .icon-no-padding{
+  padding:0;
+}
+.nav-item .title {
   font-size: 14px;
 }
 .subsites-list {
@@ -179,7 +180,7 @@ export default {
   flex-wrap: wrap;
   overflow: hidden;
 }
-.subsites-list:hover{
+.subsites-list:hover {
   overflow: unset;
 }
 .subsite-item {
@@ -199,7 +200,7 @@ export default {
 }
 .subsite-item:active {
   background-color: var(--accent-color);
-  color:#fff;
+  color: #fff;
   border-color: transparent;
 }
 .subsite-item .title {

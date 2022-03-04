@@ -11,13 +11,37 @@
         <div class="general-window">
           <span class="header-title">添加网址</span>
           <span class="tip">名称</span>
-          <input type="text" v-model="editing.title" name="title" id="title" placeholder="名称" />
+          <input
+            type="text"
+            v-model="editing.title"
+            name="title"
+            id="title"
+            placeholder="名称"
+          />
           <span class="tip">URL</span>
-          <input type="text" v-model="editing.url" name="url" id="url" placeholder="URL" />
+          <input
+            type="text"
+            v-model="editing.url"
+            name="url"
+            id="url"
+            placeholder="URL"
+          />
           <span class="tip">图标</span>
-          <input type="text" v-model="editing.icon" name="icon" id="icon" placeholder="图标URL" />
+          <input
+            type="text"
+            v-model="editing.icon"
+            name="icon"
+            id="icon"
+            placeholder="图标URL"
+          />
           <span class="tip">主色调</span>
-          <input type="text" v-model="editing.color" name="color" id="icon" placeholder="格式:#AABBCC" />
+          <input
+            type="text"
+            v-model="editing.color"
+            name="color"
+            id="icon"
+            placeholder="格式:#AABBCC"
+          />
           <button class="submit-button" @click="addNewFavor()">提交</button>
         </div>
       </div>
@@ -32,7 +56,7 @@
             'icon-check': modifyShow,
           }"
         ></span>
-        <span class="tip">{{!modifyShow?'编辑':'完成'}}</span>
+        <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
       </button>
     </div>
     <div class="nav-list">
@@ -59,8 +83,11 @@
               :style="'background-color: ' + item.attributes.color"
             >
               <img
-                class="icon"
-                :src="getIcon(item.attributes.icon)"
+                :class="{
+                  icon: true,
+                  'icon-no-padding': item.attributes.no_padding,
+                }"
+                :src="getIcon(item)"
                 alt=""
                 srcset=""
               />
@@ -86,10 +113,7 @@
             v-text="item.attributes.title"
           ></span>
         </div>
-        <div
-          class="subsites-list"
-          v-if="testSubsites(item.attributes)"
-        >
+        <div class="subsites-list" v-if="testSubsites(item.attributes)">
           <a
             :href="item_2.attributes.url"
             target="_blank"
@@ -143,8 +167,11 @@
                 :style="'background-color: ' + item_1.attributes.color"
               >
                 <img
-                  class="icon"
-                  :src="getIcon(item_1.attributes.icon)"
+                  :class="{
+                    icon: true,
+                    'icon-no-padding': item_1.attributes.no_padding,
+                  }"
+                  :src="getIcon(item_1)"
                   alt=""
                   srcset=""
                 />
@@ -169,10 +196,7 @@
               v-text="item_1.attributes.title"
             ></span>
           </div>
-          <div
-            class="subsites-list"
-            v-if="testSubsites(item_1.attributes)"
-          >
+          <div class="subsites-list" v-if="testSubsites(item_1.attributes)">
             <a
               :href="item_2.attributes.url"
               target="_blank"
@@ -211,14 +235,14 @@ export default {
       },
       addWindowShow: false,
       modifyShow: false,
-      editing:{
-            title: "",
-            color: "",
-            icon: "",
-            url: "",
-            subsites:{
-              data:[]
-            }
+      editing: {
+        title: "",
+        color: "",
+        icon: "",
+        url: "",
+        subsites: {
+          data: [],
+        },
       },
     };
   },
@@ -233,21 +257,19 @@ export default {
     },
   },
   methods: {
-    testSubsites(attrs){
+    testSubsites(attrs) {
       try {
-        if(attrs.subsites.data[0] !== undefined)
-          return true;
-        else
-          return false;
+        if (attrs.subsites.data[0] !== undefined) return true;
+        else return false;
       } catch (error) {
         console.log(error);
         return false;
       }
     },
-    addNewFavor(){
+    addNewFavor() {
       const model = {
-        id:Date.now(),
-        attributes:this.deepClone(this.editing)
+        id: Date.now(),
+        attributes: this.deepClone(this.editing),
       };
       console.log(model);
       this.navs.favorites.unshift(model);
@@ -281,12 +303,14 @@ export default {
     },
     getIcon(icon) {
       try {
-        let url = icon.data.attributes.url;
+        let url = icon.attributes.icon.data.attributes.url;
         return "http://navapi.mercutio.club" + url;
       } catch (error) {
-        // console.log(error);
-        // console.log(icon);
-        return require("@/assets/images/webpage.svg");
+        const template = `<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg"><g><text font-family="MiSans,sans" font-weight="800" font-size="120" y="120" x="9" fill="${
+          icon.attributes.color == "#ffffff" ? "#000" : "#fff"
+        }">${icon.attributes.title.slice(0, 1)}</text></g></svg>`;
+        const based = "data:image/svg+xml," + encodeURIComponent(template);
+        return based;
       }
     },
     addFavor(item) {
@@ -306,7 +330,7 @@ export default {
       let _obj = JSON.stringify(obj);
       let objClone = JSON.parse(_obj);
       return objClone;
-    } 
+    },
   },
   created() {},
   mounted() {
@@ -365,6 +389,7 @@ export default {
   justify-content: center;
   width: 50px;
   height: 50px;
+  overflow: hidden;
 }
 .nav-item .icon {
   box-sizing: border-box;
@@ -372,6 +397,9 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.nav-item .icon-no-padding {
+  padding: 0;
 }
 .nav-item .title {
   font-size: 16px;
@@ -400,7 +428,7 @@ export default {
 }
 .subsite-item:active {
   background-color: var(--accent-color);
-  color:#fff;
+  color: #fff;
   border-color: transparent;
 }
 .subsite-item .title {
@@ -419,7 +447,7 @@ export default {
   border-radius: var(--item-radius);
   border: 2px solid var(--sub-card-color);
 }
-.btn-modify .iconfont{
+.btn-modify .iconfont {
   font-size: 20px;
 }
 
@@ -472,19 +500,19 @@ export default {
   font-weight: 900;
   font-size: 20px;
 }
-.list-header .icon-button{
+.list-header .icon-button {
   border: 2px solid var(--line-color);
   display: flex;
   justify-content: center;
-  gap:5px;
+  gap: 5px;
 }
-.list-header .icon-button:hover{
+.list-header .icon-button:hover {
   border-color: transparent;
 }
-.list-header .icon-button .iconfont{
+.list-header .icon-button .iconfont {
   font-size: 20px;
 }
-.list-header .icon-button .tip{
+.list-header .icon-button .tip {
   font-size: 14px;
 }
 
