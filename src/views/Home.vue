@@ -1,15 +1,37 @@
 <template>
-  <div :class="{'home':true, 'home-with-bg':bgPrepared}">
+  <div ref="home" :class="{ home: true, 'home-with-bg': bgPrepared }">
     <WallpaperShow />
-    <div class="blocks">
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-main':true}"><GreetingBox /></div>
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}"><Weather /></div>
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-long':true}"><TinyToDo /></div>
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}"></div>
+    <div :class="{'blocks':true}">
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-main': true }"
+      >
+        <GreetingBox />
+      </div>
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-small': true }"
+      >
+        <Weather />
+      </div>
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-long': true }"
+      >
+        <TinyToDo />
+      </div>
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-small': true }"
+      ></div>
       <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
       <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-new':true}"><TinyMusicChart /></div>
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-new':true}"><TinyAnimeChart /></div>
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-new': true }"
+      >
+        <TinyMusicChart />
+      </div>
+      <div
+        :class="{ card: true, 'card-blurred': bgPrepared, 'card-new': true }"
+      >
+        <TinyAnimeChart />
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +46,7 @@ import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
-import WallpaperShow from '@/components/utils/WallpaperShow.vue';
+import WallpaperShow from "@/components/utils/WallpaperShow.vue";
 
 export default {
   name: "Home",
@@ -39,23 +61,47 @@ export default {
     TinyToDo,
     WallpaperShow,
   },
-  computed:{
-    mode:function(){
+  data(){
+    return {
+      ifScrolled:false
+    }
+  },
+  computed: {
+    mode: function () {
       return this.$store.getters.getMode;
     },
     bgPrepared: function () {
-      console.log(this.$store.getters.getBgPrepared)
+      console.log(this.$store.getters.getBgPrepared);
       return this.$store.getters.getBgPrepared;
     },
-  }
+  },
+  methods: {
+    handleScroll() {
+      // console.log(this.$refs.home)
+      // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
+      if (this.$refs.home.scrollTop)
+        this.ifScrolled = true;
+      else this.ifScrolled = false;
+      console.log(this.ifScrolled);
+    },
+  },
+  created() {},
+  mounted() {
+    this.$refs.home
+      .addEventListener("scroll", this.handleScroll);
+    this.title = this.$route.name;
+  },
+  beforeDestroy() {
+    this.$refs.home
+      .removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 
 <style scoped>
-.home{
+.home {
   --padding: 50px;
   padding: var(--padding);
-
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
   .home {
@@ -67,7 +113,7 @@ export default {
     --padding: 20px;
   }
 }
-.home-with-bg{
+.home-with-bg {
   padding-top: 10px;
 }
 .blocks {
@@ -79,6 +125,10 @@ export default {
   gap: 1.5vw;
   height: unset;
   overflow: unset;
+  transition: opacity .3s ease;
+}
+.blocks-hide{
+  opacity: .4;
 }
 @media screen and (min-width: 1080px) {
   .blocks {
@@ -111,9 +161,9 @@ export default {
 .card-no-bg {
   background: transparent;
 }
-.card-blurred{
+.card-blurred {
   background: var(--blurred-card-color);
-  backdrop-filter:blur(var(--blur-width)) saturate(280%);
+  backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
 .card::-webkit-scrollbar {
   width: 5px;
@@ -123,7 +173,6 @@ export default {
   border-radius: 3px;
   background: var(--bg-color);
 }
-
 
 .card-main {
   grid-row: 1 / 3;

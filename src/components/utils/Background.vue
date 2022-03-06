@@ -2,6 +2,7 @@
   <div class="background">
     <div class="bg-box" v-if="bgPrepared == true">
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
+      <div class="bg-mask"></div>
     </div>
   </div>
 </template>
@@ -94,5 +95,27 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.bg-mask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-image: radial-gradient(
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.2) 166%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 0% 75%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+  pointer-events: none;
+  transition: all .2s ease;
 }
 </style>

@@ -86,6 +86,7 @@ export default {
 </script>
 
 <style scoped>
+
 .wallpaper-show {
   height: calc(100vh - 14rem);
   display: flex;
