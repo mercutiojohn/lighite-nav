@@ -6,6 +6,9 @@
     --card-color: #fff;
     --page-color: #fff;
     --sub-card-color: #f3f3f3;
+    /* 模糊 */
+    --blurred-card-color: #ffffffc7;
+    --blurred-sub-card-color: #0000000c;
     /* text */
     --title-color: #000;
     --subtitle-color: #555555;
@@ -13,6 +16,10 @@
     --hover-color: #00000013;
     --active-color: #00000023;
     --line-color: #e0e0e0;
+    /* Dark */
+    --title-color-blurred: #fff;
+    --subtitle-color-blurred: #ddd;
+    --content-color-blurred: #fff;
     /* 强调色 */
     --warn-color: #ff2600;
 }
@@ -23,6 +30,7 @@
         --bg-color: #000;
         /* container */
         --card-color: #414141;
+        --blurred-color: #00000034;
         --page-color: #414141;
         --sub-card-color: #222222;
         /* text */

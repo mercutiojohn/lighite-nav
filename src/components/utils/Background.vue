@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="bg-box" v-if="mode == 'bg'">
+    <div class="bg-box" v-if="bgPrepared == true">
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
     </div>
   </div>
@@ -14,16 +14,16 @@ export default {
     return {
       token: "vdcCmgpn-IyPPE2GJhMX4eL-9O65LJ6XxDpZHZiensE",
       srcs: {
-        full: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=85",
-        raw: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1",
-        regular:
-          "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=1080",
-        small:
-          "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=400",
-        small_s3:
-          "https://s3.us-west-2.amazonaws.com/images.unsplash.com/photo-1644952720775-c769200e6b67",
-        thumb:
-          "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=200",
+        // full: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=85",
+        // raw: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1",
+        // regular:
+        //   "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=1080",
+        // small:
+        //   "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=400",
+        // small_s3:
+        //   "https://s3.us-west-2.amazonaws.com/images.unsplash.com/photo-1644952720775-c769200e6b67",
+        // thumb:
+        //   "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=80&w=200",
       },
       data: {},
     };
@@ -32,16 +32,35 @@ export default {
     mode: function () {
       return this.$store.getters.getMode;
     },
+    bgPrepared:function(){
+      return this.$store.getters.getBgPrepared;
+    }
   },
-  watch: {},
+  watch: {
+    mode(newStat){
+      if(newStat){
+        this.getPic();
+      }else{
+        this.setBgState(false);
+      }
+    },
+    data(){
+      this.$store.commit("setWallpaperData", this.data);
+    }
+  },
   methods: {
+    setBgState(state){
+      this.$store.commit("setBgPrepared", state);
+    },
     getPic() {
+      this.setBgState(false);
       this.$axios({
         baseURL: "https://api.unsplash.com",
         url: "/photos/random",
         method: "get",
         headers: { Authorization: "Client-ID " + this.token },
       }).then((response) => {
+        this.setBgState(true);
         console.log(response.data);
         this.data = response.data;
         this.srcs = response.data.urls;
@@ -50,7 +69,9 @@ export default {
   },
   created() {},
   mounted() {
-    this.getPic();
+    if(mode){
+      this.getPic();
+    }
   },
   beforeDestroy() {},
 };

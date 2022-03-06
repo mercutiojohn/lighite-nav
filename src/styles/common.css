@@ -14,6 +14,8 @@
     /* Card */
     --card-inset-big: 20px;
     --card-inset-small: 10px;
+    /* 模糊 */
+    --blur-width: 100px;
 }
 
 body {
@@ -63,12 +65,24 @@ input[type=text].better-input {
     transition: border-color .2s ease;
 }
 
+input[type=text].better-input-blurred {
+    background: var(--blurred-sub-card-color);
+}
+
 input[type=text].better-input:hover {
     border-color: var(--accent-color);
 }
 
+input[type=text].better-input-blurred:hover {
+    background: var(--card-color);
+}
+
 input[type=text].better-input:focus {
     border-color: var(--accent-color);
+}
+
+input[type=text].better-input-blurred:focus {
+    background: var(--card-color);
 }
 
 input[type=text].better-input::placeholder {
@@ -240,6 +254,11 @@ button.submit-button:active {
     padding: 20px;
     border-top-left-radius: var(--card-radius);
     box-sizing: border-box;
+}
+
+.common-page-blurred {
+    background: var(--blurred-card-color);
+    backdrop-filter: blur(var(--blur-width));
 }
 
 @media screen and (max-width:600px) {

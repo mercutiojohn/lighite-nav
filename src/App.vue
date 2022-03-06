@@ -1,6 +1,6 @@
 <template>
   <Scroll-Div ref="main" view-class="app" width="100vw" height="100vh">
-    <!-- <Background /> -->
+    <Background />
     <Header />
     <div id="main-box">
       <Sidebar />

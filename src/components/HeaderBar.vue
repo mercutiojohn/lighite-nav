@@ -1,7 +1,7 @@
 <template>
-  <div :class="{'header':true,'header-with-bg':ifScrolled}">
+  <div :class="{'header':true,'header-with-bg':ifScrolled,'header-with-bg-blurred':ifScrolled&&bgPrepared}">
     <div class="title-box">
-      <span class="title" v-text="title"></span>
+      <span :class="{'title':true,'title-blurred':bgPrepared}" v-text="title"></span>
     </div>
     <div class="profile-box">
       <TinyClock class="hide-clock"/>
@@ -26,6 +26,9 @@ export default {
     };
   },
   computed: {
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
+    }
   },
   watch: {
     $route(to,from){
@@ -100,6 +103,10 @@ export default {
   font-size: 20px;
   font-weight: 900;
 }
+.title-blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
+}
 .profile-box {
   display: flex;
   align-items: center;
@@ -109,5 +116,9 @@ export default {
 }
 .header-with-bg{
   background: var(--bg-color);
+}
+.header-with-bg-blurred{
+  background: var(--blurred-card-color);
+  backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
 </style>

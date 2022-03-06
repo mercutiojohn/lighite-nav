@@ -6,7 +6,7 @@
     <div class="todo-input-box">
       <input
         type="text"
-        class="better-input"
+        :class="{'better-input':true,'better-input-blurred':bgPrepared}"
         :placeholder="tip"
         id="todoInput"
         @keyup.enter="addTodoItem()"
@@ -68,6 +68,9 @@ export default {
   computed: {
     remoteList: function () {
       return this.$store.getters.getTodoList;
+    },
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
     },
   },
   watch: {

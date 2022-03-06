@@ -3,6 +3,7 @@
     <div
       :class="{
         'search-box': true,
+        'search-box-blurred': bgPrepared,
         'search-focus': focused,
         'search-box-hover': hovered,
       }"
@@ -70,6 +71,9 @@ export default {
   computed: {
     remoteChosenEngine:function(){
       return this.$store.getters.getEngine;
+    },
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
     }
   },
   watch: {
@@ -144,6 +148,9 @@ export default {
   color: var(--title-color);
   transition: border-color 0.2s ease;
   gap: 10px;
+}
+.search-box-blurred{
+  background: var(--blurred-sub-card-color);
 }
 .search-box-hover {
   border-color: var(--accent-color);

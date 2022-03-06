@@ -1,13 +1,16 @@
 <template>
-  <div class="home">
-    <div class="card card-main"><GreetingBox /></div>
-    <div class="card card-small"><Weather /></div>
-    <div class="card card-long"><TinyToDo /></div>
-    <div class="card card-small"></div>
-    <!-- <div class="card card-sub1"><TinyVideo /></div> -->
-    <!-- <div class="card card-sub2"><TinyBook /></div> -->
-    <div class="card card-new"><TinyMusicChart /></div>
-    <div class="card card-new"><TinyAnimeChart /></div>
+  <div :class="{'home':true, 'home-with-bg':bgPrepared}">
+    <WallpaperShow />
+    <div class="blocks">
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-main':true}"><GreetingBox /></div>
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}"><Weather /></div>
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-long':true}"><TinyToDo /></div>
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}">{{mode}}</div>
+      <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
+      <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-new':true}"><TinyMusicChart /></div>
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-new':true}"><TinyAnimeChart /></div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +24,7 @@ import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
+import WallpaperShow from '@/components/utils/WallpaperShow.vue';
 
 export default {
   name: "Home",
@@ -33,15 +37,41 @@ export default {
     GreetingBox,
     Weather,
     TinyToDo,
+    WallpaperShow,
   },
+  computed:{
+    mode:function(){
+      return this.$store.getters.getMode;
+    },
+    bgPrepared: function () {
+      console.log(this.$store.getters.getBgPrepared)
+      return this.$store.getters.getBgPrepared;
+    },
+  }
 };
 </script>
 
 <style scoped>
-.home {
+.home{
   --padding: 50px;
-  box-sizing: border-box;
   padding: var(--padding);
+
+}
+@media screen and (min-width: 700px) and (max-width: 1080px) {
+  .home {
+    --padding: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .home {
+    --padding: 20px;
+  }
+}
+.home-with-bg{
+  padding-top: 10px;
+}
+.blocks {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
@@ -51,7 +81,7 @@ export default {
   overflow: unset;
 }
 @media screen and (min-width: 1080px) {
-  .home {
+  .blocks {
     grid-template-rows: repeat(
       2,
       calc((100vh - var(--head-height) - var(--padding)) / 3)
@@ -59,15 +89,13 @@ export default {
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
-  .home {
-    --padding: 20px;
+  .blocks {
     grid-template-rows: unset, 300px;
     grid-auto-rows: minmax(100px, auto);
   }
 }
 @media screen and (max-width: 700px) {
-  .home {
-    --padding: 20px;
+  .blocks {
     grid-template-rows: unset;
     grid-auto-rows: minmax(100px, auto);
   }
@@ -79,6 +107,13 @@ export default {
   border-radius: var(--card-radius);
   overflow-x: hidden;
   /* overflow-y: scroll; */
+}
+.card-no-bg {
+  background: transparent;
+}
+.card-blurred{
+  background: var(--blurred-card-color);
+  backdrop-filter:blur(var(--blur-width)) saturate(280%);
 }
 .card::-webkit-scrollbar {
   width: 5px;
@@ -156,10 +191,7 @@ export default {
 .bilianime-area::-webkit-scrollbar-button:vertical:decrement:hover {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAVklEQVQ4T6XMwQ3AIAwEQfrvgS5SAn0d8sMSmJXIJY95sPLRJP2C0YHRgdGB0YHRgTH1ZyjUvsIYcnz7BGMdp3oXjkDDVb3fHl9gdGB0YHRgdGB8T20CB+X+675uLU0AAAAASUVORK5CYII=);
 }
-/*  */
-.card-no-bg {
-  background: transparent;
-}
+
 
 .card-main {
   grid-row: 1 / 3;
@@ -218,5 +250,4 @@ export default {
     grid-column-start: span 4;
   }
 }
-
 </style>

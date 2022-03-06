@@ -1,15 +1,15 @@
 <template>
   <div class="sidebar">
     <div class="title-box">
-      <span class="title" v-text="title"></span>
+      <span :class="{'title':true,'title-blurred':bgPrepared}" v-text="title"></span>
     </div>
     <div id="nav">
-      <router-link class="ef-pudding" v-for="(item,index) in tabs" :key="index" :to="item.to" @click.native="scroll()">
+      <router-link :class="{'ef-pudding':true,'blurred':bgPrepared}" v-for="(item,index) in tabs" :key="index" :to="item.to" @click.native="scroll()">
         <span :class="'iconfont '+item.icon"></span>
       </router-link>
     </div>
     <div id="more">
-      <router-link class="ef-pudding" v-for="(item,index) in moreTabs" :key="index" :to="item.to" @click.native="scroll()">
+      <router-link :class="{'ef-pudding':true,'blurred':bgPrepared}" v-for="(item,index) in moreTabs" :key="index" :to="item.to" @click.native="scroll()">
         <span :class="'iconfont '+item.icon"></span>
       </router-link>
     </div>
@@ -55,7 +55,11 @@ export default {
       ]
     };
   },
-  computed: {},
+  computed: {
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
+    }
+  },
   watch: {},
   methods: {
     scroll() {
@@ -122,6 +126,10 @@ export default {
   color: var(--title-color);
   transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
+#nav a.blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
+}
 #nav a .iconfont {
   font-size: var(--icon-size);
 }
@@ -145,6 +153,10 @@ export default {
   color: var(--title-color);
   transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
+#more a.blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
+}
 #more a .iconfont {
   font-size: 25px;
 }
@@ -161,7 +173,10 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
+.title-blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
+}
 @media screen and (max-width: 600px) {
   .title-box {
     display: none;

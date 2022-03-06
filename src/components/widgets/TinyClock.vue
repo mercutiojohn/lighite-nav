@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-clock">
-    <div class="clock-content">
+    <div :class="{'clock-content':true,'clock-content-blurred':bgPrepared}">
       <span class="apm" v-text="apm" v-if="settings.twelveFormat"></span>
       <span class="time" v-text="formatted"></span>
     </div>
@@ -25,6 +25,9 @@ export default {
     remoteSettings: function () {
       return this.$store.getters.getSettings;
     },
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
+    }
   },
   watch: {
     settings() {
@@ -101,6 +104,10 @@ export default {
 .clock-content {
   display: flex;
   align-items: baseline;
+}
+.clock-content-blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
 }
 .clock-content .time {
   font-size: 30px;

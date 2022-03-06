@@ -1,6 +1,11 @@
 <template>
   <div
-    :class="{ navigation: true, 'common-page': true, 'mask-on': addWindowShow }"
+    :class="{
+      navigation: true,
+      'common-page': true,
+      'mask-on': addWindowShow,
+      'common-page-blurred': bgPrepared,
+    }"
   >
     <transition name="fade">
       <div
@@ -46,7 +51,9 @@
             class="better-input"
             placeholder="格式:#AABBCC"
           /> -->
-          <button class="submit-button ef-pudding" @click="addNewFavor()">提交</button>
+          <button class="submit-button ef-pudding" @click="addNewFavor()">
+            提交
+          </button>
         </div>
       </div>
     </transition>
@@ -70,6 +77,7 @@
         :class="{
           'nav-item': true,
           'ef-float': true,
+          'nav-item-blurred':bgPrepared,
           'nav-item-wide': testSubsites(item.attributes),
         }"
         v-for="(item, index) in navs.favorites"
@@ -121,7 +129,10 @@
           <a
             :href="item_2.attributes.url"
             target="_blank"
-            class="subsite-item"
+            :class="{
+              'subsite-item': true,
+              'subsite-item-blurred': bgPrepared,
+            }"
             v-for="(item_2, index_2) in item.attributes.subsites.data"
             :key="index_2"
           >
@@ -154,6 +165,7 @@
           :class="{
             'nav-item': true,
             'ef-float': true,
+            'nav-item-blurred': bgPrepared,
             'nav-item-wide': testSubsites(item_1.attributes),
           }"
           v-for="(item_1, index_1) in item.attributes.sites.data"
@@ -204,7 +216,10 @@
             <a
               :href="item_2.attributes.url"
               target="_blank"
-              class="subsite-item"
+              :class="{
+                'subsite-item': true,
+                'subsite-item-blurred': bgPrepared,
+              }"
               v-for="(item_2, index_2) in item_1.attributes.subsites.data"
               :key="index_2"
             >
@@ -253,6 +268,9 @@ export default {
   computed: {
     remoteNavs: function () {
       return this.$store.getters.getNavs;
+    },
+    bgPrepared: function () {
+      return this.$store.getters.getBgPrepared;
     },
   },
   watch: {
@@ -373,6 +391,9 @@ export default {
   color: var(--content-color);
   padding: 10px;
 }
+.nav-item-blurred {
+  background: var(--blurred-sub-card-color);
+}
 .nav-item:hover {
   background: var(--card-color);
 }
@@ -426,6 +447,10 @@ export default {
   color: var(--content-color);
   padding: 10px;
   box-sizing: border-box;
+}
+.subsite-item-blurred {
+  background: var(--blurred-sub-card-color);
+  border-color: var(--blurred-sub-card-color);
 }
 .subsite-item:hover {
   background: var(--sub-card-color);
@@ -523,7 +548,7 @@ export default {
 .hide {
   display: none;
 }
-.general-window{
-  gap:10px;
+.general-window {
+  gap: 10px;
 }
 </style>

@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        bgPrepared: false,
         chosenEngine: {
             title: "必应",
             url: "https://cn.bing.com/search",
@@ -48,7 +49,7 @@ export default new Vuex.Store({
         settings: {
             twelveFormat: true,
             showSeconds: false,
-            mode: 'bg',
+            mode: true,
         },
         tokens: {
             biliblli: '',
@@ -189,6 +190,9 @@ export default new Vuex.Store({
             }],
             others: []
         },
+        wallpaperData: {
+
+        }
     },
     mutations: {
         update(state, [key, value]) {
@@ -210,6 +214,12 @@ export default new Vuex.Store({
         setNavs(state, navs) {
             localStorage.setItem('navs', encodeURIComponent(JSON.stringify(navs)));
             state.navs = navs;
+        },
+        setBgPrepared(state, bgPrepared) {
+            state.bgPrepared = bgPrepared;
+        },
+        setWallpaperData(state, data) {
+            state.wallpaperData = data;
         }
     },
     actions: {},
@@ -229,12 +239,18 @@ export default new Vuex.Store({
         },
         getSettings: (state) => {
             if (localStorage.getItem("settings")) {
-                state.todoList = JSON.parse(decodeURIComponent(localStorage.getItem('settings')));
+                state.settings = JSON.parse(decodeURIComponent(localStorage.getItem('settings')));
             }
             return state.settings;
         },
         getMode: (state) => {
             return state.settings.mode;
+        },
+        getBgPrepared: (state) => {
+            return state.bgPrepared;
+        },
+        getWallpaperData: (state) => {
+            return state.wallpaperData;
         },
         getEngine: (state) => {
             if (localStorage.getItem("chosenEngine")) {
