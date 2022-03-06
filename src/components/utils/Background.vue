@@ -32,24 +32,24 @@ export default {
     mode: function () {
       return this.$store.getters.getMode;
     },
-    bgPrepared:function(){
+    bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
-    }
+    },
   },
   watch: {
-    mode(newStat){
-      if(newStat){
+    mode(newStat) {
+      if (newStat) {
         this.getPic();
-      }else{
+      } else {
         this.setBgState(false);
       }
     },
-    data(){
+    data() {
       this.$store.commit("setWallpaperData", this.data);
-    }
+    },
   },
   methods: {
-    setBgState(state){
+    setBgState(state) {
       this.$store.commit("setBgPrepared", state);
     },
     getPic() {
@@ -69,9 +69,11 @@ export default {
   },
   created() {},
   mounted() {
-    if(mode){
-      this.getPic();
-    }
+    // setTimeout(() => {
+      if (this.mode) {
+        this.getPic();
+      }
+    // }, 10);
   },
   beforeDestroy() {},
 };

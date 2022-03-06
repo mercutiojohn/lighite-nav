@@ -5,7 +5,7 @@
       <div :class="{'card':true, 'card-blurred':bgPrepared,'card-main':true}"><GreetingBox /></div>
       <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}"><Weather /></div>
       <div :class="{'card':true, 'card-blurred':bgPrepared,'card-long':true}"><TinyToDo /></div>
-      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}">{{mode}}</div>
+      <div :class="{'card':true, 'card-blurred':bgPrepared,'card-small':true}"></div>
       <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
       <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
       <div :class="{'card':true, 'card-blurred':bgPrepared,'card-new':true}"><TinyMusicChart /></div>
