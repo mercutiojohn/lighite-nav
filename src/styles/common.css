@@ -1,4 +1,4 @@
-:root{
+:root {
     /* 高度/宽度参数*/
     --head-height: 60px;
     --side-width: 100px;
@@ -15,6 +15,7 @@
     --card-inset-big: 20px;
     --card-inset-small: 10px;
 }
+
 body {
     margin: 0;
     background-color: var(--bg-color);
@@ -98,6 +99,31 @@ button.icon-button:hover {
 }
 
 button.icon-button:active {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+button.submit-button {
+    background: var(--accent-color);
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    color: #fff;
+    border-radius: var(--item-radius);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-size: 1em;
+}
+
+button.submit-button:hover {
+    background: var(--hover-color);
+    border-color: var(--accent-color);
+    color: var(--content-color)
+}
+
+button.submit-button:active {
     background: var(--accent-color);
     color: #fff;
 }

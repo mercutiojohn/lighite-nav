@@ -9,13 +9,14 @@
         @click.self="showAdd()"
       >
         <div class="general-window">
-          <span class="header-title">添加网址</span>
+          <div class="header"><span class="title">添加网址</span></div>
           <span class="tip">名称</span>
           <input
             type="text"
             v-model="editing.title"
             name="title"
             id="title"
+            class="better-input"
             placeholder="名称"
           />
           <span class="tip">URL</span>
@@ -24,14 +25,16 @@
             v-model="editing.url"
             name="url"
             id="url"
+            class="better-input"
             placeholder="URL"
           />
-          <span class="tip">图标</span>
+          <!-- <span class="tip">图标</span>
           <input
             type="text"
             v-model="editing.icon"
             name="icon"
             id="icon"
+            class="better-input"
             placeholder="图标URL"
           />
           <span class="tip">主色调</span>
@@ -40,9 +43,10 @@
             v-model="editing.color"
             name="color"
             id="icon"
+            class="better-input"
             placeholder="格式:#AABBCC"
-          />
-          <button class="submit-button" @click="addNewFavor()">提交</button>
+          /> -->
+          <button class="submit-button ef-pudding" @click="addNewFavor()">提交</button>
         </div>
       </div>
     </transition>
@@ -237,7 +241,7 @@ export default {
       modifyShow: false,
       editing: {
         title: "",
-        color: "",
+        color: "#ffffff",
         icon: "",
         url: "",
         subsites: {
@@ -518,5 +522,8 @@ export default {
 
 .hide {
   display: none;
+}
+.general-window{
+  gap:10px;
 }
 </style>
