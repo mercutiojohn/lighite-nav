@@ -2,24 +2,26 @@
     /* 颜色*/
     --accent-color: #3c9dff;
     --bg-color: #eee;
-    /* container */
+    /* 容器 */
     --card-color: #fff;
     --page-color: #fff;
     --sub-card-color: #f3f3f3;
-    /* 模糊 */
+    /* 模糊容器 */
     --blurred-card-color: #ffffffc7;
     --blurred-sub-card-color: #0000000c;
-    /* text */
+    /* 文字 */
     --title-color: #000;
     --subtitle-color: #555555;
     --content-color: #000;
     --hover-color: #00000013;
     --active-color: #00000023;
     --line-color: #e0e0e0;
-    /* Dark */
+    /* 模糊文字 */
     --title-color-blurred: #fff;
     --subtitle-color-blurred: #ddd;
     --content-color-blurred: #fff;
+    /* 模糊文字 */
+    --blurred-line-color: #0000001a;
     /* 强调色 */
     --warn-color: #ff2600;
 }
@@ -28,17 +30,22 @@
      :root {
         --accent-color: #3c9dff;
         --bg-color: #000;
-        /* container */
+        /* 容器 */
         --card-color: #414141;
         --blurred-color: #00000034;
         --page-color: #414141;
         --sub-card-color: #222222;
-        /* text */
+        /* 模糊容器 */
+        --blurred-card-color: #2b2b2bb2;
+        --blurred-sub-card-color: #ffffff10;
+        /* 文字 */
         --title-color: #fff;
         --subtitle-color: #ddd;
         --content-color: #fff;
         --hover-color: #ffffff33;
         --active-color: #ffffff71;
         --line-color: #141414;
+        /* 模糊文字 */
+        --blurred-line-color: #ffffff15;
     }
 }
