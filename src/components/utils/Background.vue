@@ -70,11 +70,11 @@ export default {
   },
   created() {},
   mounted() {
-    // setTimeout(() => {
+    setTimeout(() => {
       if (this.mode) {
         this.getPic();
       }
-    // }, 10);
+    }, 10);
   },
   beforeDestroy() {},
 };
