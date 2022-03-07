@@ -79,7 +79,6 @@
         </div>
         <div
           :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
-          v-if="settings.mode"
         >
           <div class="left">
             <span class="settings-icon iconfont icon-cog"></span>
