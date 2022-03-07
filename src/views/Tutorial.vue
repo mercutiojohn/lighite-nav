@@ -1,5 +1,5 @@
 <template>
-  <div class="about common-page">
+  <div class="tutorial common-page">
     <div v-for="(item,index) in text" :key="index">
       <span class="title">{{item.title}}</span>
     </div>

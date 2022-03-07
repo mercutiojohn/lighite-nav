@@ -8,13 +8,16 @@
         'search-box-hover': hovered,
       }"
     >
-      <div class="search-icon-box ef-pudding" :style="{'background-color':chosenEngine.color}" @click="moreChoose? moreChoose = false : moreChoose = true">
-        <img
-          class="search-icon"
-          :src="getIcon(chosenEngine.icon)"
-          alt=""
-          srcset=""
-        />
+      <div class="select-engines ef-pudding" @click="moreChoose? moreChoose = false : moreChoose = true">
+        <div class="search-icon-box" :style="{'background-color':chosenEngine.color}">
+          <img
+            class="search-icon"
+            :src="getIcon(chosenEngine.icon)"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="chevron"><span :class="{'iconfont':true, 'icon-chevron-down':!moreChoose, 'icon-chevron-up':moreChoose}"></span></div>
       </div>
       <form
         class="search-form"
@@ -42,7 +45,7 @@
         <div class="engines-list" v-for="(item, index) in moreEngines" :key="index">
           <span class="engines-list-title">{{ item.attributes.name }}</span>
           <div class="engine-items">
-            <div class="engine-item ef-pudding" v-for="(item_1,index_1) in item.attributes.search_engines.data" :key="index_1" @click="changeEngine(index,index_1)">
+            <div class="engine-item ef-float" v-for="(item_1,index_1) in item.attributes.search_engines.data" :key="index_1" @click="changeEngine(index,index_1)">
               <div class="icon-bg" :style="{'background-color':item_1.attributes.color}"><img :src="getIcon(item_1.attributes.icon)" alt="" srcset="" class="icon"></div>
               <span class="title fix-text-overflow">{{item_1.attributes.title}}</span>
             </div>
@@ -169,6 +172,13 @@ export default {
   font-family: MiSans, "San Francisco", "SF Pro Display", "PingFang SC",
     Helvetica, Arial, sans-serif;
 }
+.select-engines{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap:7px;
+  border-radius: var(--item-radius);
+}
 .search-icon-box {
   border-radius: var(--item-radius);
   display: flex;
@@ -177,7 +187,6 @@ export default {
   width: 40px;
   height: 40px;
   background: #fff;
-  cursor: pointer;
 }
 .search-icon {
   box-sizing: border-box;
@@ -198,13 +207,13 @@ export default {
   /* position: absolute; */
   /* top:0; */
   /* width: 80px; */
-  padding: 20px;
+  padding: 10px;
   background: var(--sub-card-color);
   height: 190px;
   border-radius: var(--card-radius);
   overflow-y: scroll;
   overflow-x: hidden;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .more-engines::-webkit-scrollbar{
   width: 5px;

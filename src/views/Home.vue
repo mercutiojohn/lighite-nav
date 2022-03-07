@@ -110,7 +110,7 @@ export default {
 }
 @media screen and (max-width: 700px) {
   .home {
-    --padding: 20px;
+    --padding: 10px;
   }
 }
 .home-with-bg {

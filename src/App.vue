@@ -84,3 +84,8 @@ export default {
   }
 }
 </style>
+<style>
+.loading{
+  display: none;
+}
+</style>

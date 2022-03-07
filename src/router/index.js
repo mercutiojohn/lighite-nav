@@ -6,24 +6,24 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        name: '主页',
+        name: '',
         component: Home
     },
     {
         path: '/music',
-        name: 'Music',
+        name: '音乐',
         component: () =>
-            import ( /* webpackChunkName: "music" */ '../views/Music.vue')
+            import ( /* webpackChunkName: "music" */ '../views/Fallback.vue')
     }, {
         path: '/video',
-        name: 'Video',
+        name: '视频',
         component: () =>
-            import ( /* webpackChunkName: "video" */ '../views/Video.vue')
+            import ( /* webpackChunkName: "video" */ '../views/Fallback.vue')
     }, {
         path: '/books',
-        name: 'Books',
+        name: '书籍和文章',
         component: () =>
-            import ( /* webpackChunkName: "books" */ '../views/Books.vue')
+            import ( /* webpackChunkName: "books" */ '../views/Fallback.vue')
     }, {
         path: '/navigation',
         name: '导航',
@@ -40,13 +40,13 @@ const routes = [{
             import ( /* webpackChunkName: "tools" */ '../views/Tools.vue')
     },
     {
-        path: '/about',
-        name: 'About',
+        path: '/tutorial',
+        name: '指南',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/About.vue')
+            import ( /* webpackChunkName: "about" */ '../views/Tutorial.vue')
     },
     {
         path: '/settings',
