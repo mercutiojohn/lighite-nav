@@ -1,24 +1,28 @@
 # Lightie · 轻主页
 
-你的主页，工具箱，和影音网址收藏馆。
+- 一个次世代主页；
+- 你的主页，工具箱，和影音网址收藏馆。
 
 ## 预览
 
 https://mercutiojohn.github.io/lighite-nav/#/
 
+## 体验版
+http://lightie.mercutio.club
+
 ## 实现功能:
 
 - [x] 日期/时间
-- [ ] 待办清单
+- [x] 待办清单
   - [x] Vuex+localStorage持久化
   - [ ] 拖动排序
-- [ ] 导航链接收藏
+- [x] 导航链接收藏
 - [ ] 小工具
   - [ ] base64
   - [ ] urlencode-decode
 - [ ] 全局设置
 - [ ] 大日历
-- [ ] 搜索引擎
+- [x] 搜索引擎
   - [ ] 自由定制
 - [ ] 大时间
 - [ ] 大天气
@@ -41,8 +45,8 @@ https://mercutiojohn.github.io/lighite-nav/#/
 - [x] 字体优化
 - [x] 提取通用CSS方法
 - [ ] 差异化字体
-- [ ] 天气优化
-- [ ] 动画归类
+- [x] 天气优化
+- [x] 动画归类
 ## 安装依赖
 ```
 yarn install
