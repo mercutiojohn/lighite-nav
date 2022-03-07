@@ -53,6 +53,52 @@
           </div>
         </div>
       </div>
+      <div class="sub-header">
+        <span class="title">时间</span>
+      </div>
+      <div class="settings-sublist">
+        <div
+          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+        >
+          <div class="left">
+            <span class="settings-icon iconfont icon-cog"></span>
+            <div class="info">
+              <span class="title">显示秒</span>
+              <!-- <span class="desc"></span> -->
+            </div>
+          </div>
+          <div class="right">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              v-model="settings.showSeconds"
+              @click="forceUpdateSettings()"
+            />
+          </div>
+        </div>
+        <div
+          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          v-if="settings.mode"
+        >
+          <div class="left">
+            <span class="settings-icon iconfont icon-cog"></span>
+            <div class="info">
+              <span class="title">12小时制</span>
+              <!-- <span class="desc">模糊效果可能会导致卡顿</span> -->
+            </div>
+          </div>
+          <div class="right">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              v-model="settings.twelveFormat"
+              @click="forceUpdateSettings()"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
