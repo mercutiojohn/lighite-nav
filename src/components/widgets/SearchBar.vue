@@ -3,7 +3,7 @@
     <div
       :class="{
         'search-box': true,
-        'search-box-blurred': bgPrepared,
+        'search-box-blurred': bgPrepared && settings.useBlur,
         'search-focus': focused,
         'search-box-hover': hovered,
       }"
@@ -77,6 +77,9 @@ export default {
     },
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
+    },
+    settings: function(){
+      return this.$store.getters.getSettings;
     }
   },
   watch: {
@@ -116,7 +119,7 @@ export default {
             this.moreEngines = response.data.data;
           });
       } catch (error) {
-        console.log(error);
+        console.info(error);
       }
     },
     changeEngine(index,index_1){

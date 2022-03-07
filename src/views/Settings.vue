@@ -3,31 +3,54 @@
     :class="{
       settings: true,
       'common-page': true,
-      'common-page-blurred': bgPrepared,
+      'common-page-blurred': bgPrepared && settings.useBlur,
     }"
   >
     <div class="settings-list">
       <div class="sub-header">
         <span class="title">壁纸</span>
       </div>
-      <div
-        :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared }"
-      >
-        <div class="left">
-          <span class="settings-icon iconfont icon-box"></span>
-          <div class="info">
-            <span class="title">开启壁纸</span>
-            <span class="desc">模糊效果可能会导致卡顿</span>
+      <div class="settings-sublist">
+        <div
+          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+        >
+          <div class="left">
+            <span class="settings-icon iconfont icon-box"></span>
+            <div class="info">
+              <span class="title">开启壁纸</span>
+              <span class="desc">来自 Unsplash 的精选壁纸</span>
+            </div>
+          </div>
+          <div class="right">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              v-model="settings.mode"
+              @click="forceUpdateSettings()"
+            />
           </div>
         </div>
-        <div class="right">
-          <input
-            type="checkbox"
-            name=""
-            id=""
-            v-model="settings.mode"
-            @click="forceUpdateSettings()"
-          />
+        <div
+          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          v-if="settings.mode"
+        >
+          <div class="left">
+            <span class="settings-icon iconfont icon-drop"></span>
+            <div class="info">
+              <span class="title">开启模糊</span>
+              <span class="desc">模糊效果可能会导致卡顿</span>
+            </div>
+          </div>
+          <div class="right">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              v-model="settings.useBlur"
+              @click="forceUpdateSettings()"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -79,8 +102,18 @@ export default {
   align-items: center;
   justify-content: space-between;
   background: var(--sub-card-color);
+  padding: 18px 15px;
+  /* border-bottom: 1px solid var(--line-color); */
+}
+.settings-item:first-child{
+  border-radius: var(--item-radius) var(--item-radius) 0 0;
+}
+.settings-item:last-child{
+  border-radius: 0 0 var(--item-radius) var(--item-radius);
+  /* border-bottom: none; */
+}
+.settings-item:only-child{
   border-radius: var(--item-radius);
-  padding: 8px 15px;
 }
 .settings-item-blurred {
   background: var(--blurred-sub-card-color);
@@ -105,6 +138,11 @@ export default {
 .settings-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap:10px;
+}
+.settings-sublist{
+  display: flex;
+  flex-direction: column;
+  gap:2px;
 }
 </style>

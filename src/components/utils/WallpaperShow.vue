@@ -28,7 +28,7 @@
             target="_blank"
             class="download"
           >
-            <button class="icon-button">
+            <button :class="{'icon-button':true}">
               <span class="iconfont icon-download"></span>
             </button>
           </a>
@@ -46,6 +46,7 @@
             'icon-chevron-down': hided,
             'icon-chevron-up': !hided,
             'enterd-hide': enterdHide,
+            'btn-no-blur':!settings.useBlur
           }"
         ></span>
       </div>
@@ -72,6 +73,9 @@ export default {
       console.log(this.$store.getters.getWallpaperData);
       return this.$store.getters.getWallpaperData;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   watch: {},
   methods: {
@@ -130,6 +134,10 @@ export default {
   border-radius: var(--item-radius);
   padding: 10px;
   font-size: 23px;
+}
+.btn-no-blur{
+  background: var(--card-color)!important;
+  backdrop-filter: none!important;
 }
 .enterd-hide {
   background: none !important;

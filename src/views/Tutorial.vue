@@ -17,7 +17,7 @@ export default {
     getData(){
       this.$axios.get('http://www.mercutio.club/api/posts?pageSize=100')
       .then((response)=>{
-        console.log(response)
+        // console.log(response)
         this.text = response.data.data;
       })
     }

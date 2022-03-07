@@ -4,7 +4,7 @@
       navigation: true,
       'common-page': true,
       'mask-on': addWindowShow,
-      'common-page-blurred': bgPrepared,
+      'common-page-blurred': bgPrepared && settings.useBlur,
     }"
   >
     <transition name="fade">
@@ -77,7 +77,7 @@
         :class="{
           'nav-item': true,
           'ef-float': true,
-          'nav-item-blurred':bgPrepared,
+          'nav-item-blurred':bgPrepared && settings.useBlur,
           'nav-item-wide': testSubsites(item.attributes),
         }"
         v-for="(item, index) in navs.favorites"
@@ -131,7 +131,7 @@
             target="_blank"
             :class="{
               'subsite-item': true,
-              'subsite-item-blurred': bgPrepared,
+              'subsite-item-blurred': bgPrepared && settings.useBlur,
             }"
             v-for="(item_2, index_2) in item.attributes.subsites.data"
             :key="index_2"
@@ -165,7 +165,7 @@
           :class="{
             'nav-item': true,
             'ef-float': true,
-            'nav-item-blurred': bgPrepared,
+            'nav-item-blurred': bgPrepared && settings.useBlur,
             'nav-item-wide': testSubsites(item_1.attributes),
           }"
           v-for="(item_1, index_1) in item.attributes.sites.data"
@@ -218,7 +218,7 @@
               target="_blank"
               :class="{
                 'subsite-item': true,
-                'subsite-item-blurred': bgPrepared,
+                'subsite-item-blurred': bgPrepared && settings.useBlur,
               }"
               v-for="(item_2, index_2) in item_1.attributes.subsites.data"
               :key="index_2"
@@ -272,6 +272,9 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   watch: {
     navs() {
@@ -284,7 +287,7 @@ export default {
         if (attrs.subsites.data[0] !== undefined) return true;
         else return false;
       } catch (error) {
-        console.log(error);
+        console.info(error);
         return false;
       }
     },

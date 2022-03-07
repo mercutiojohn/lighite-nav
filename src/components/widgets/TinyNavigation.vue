@@ -16,8 +16,8 @@
         :class="{
           'nav-item': true,
           'ef-float': true,
-          'nav-item-blurred': bgPrepared,
-          'nav-item-wide': item.attributes.subsites.data[0] !== undefined,
+          'nav-item-blurred': bgPrepared && settings.useBlur,
+          'nav-item-wide': checkSubsites(item.attributes),
         }"
         v-for="(item, index) in navs.favorites"
         :key="index"
@@ -25,7 +25,7 @@
         <div
           :class="{
             left: true,
-            'left-wide': item.attributes.subsites.data[0] !== undefined,
+            'left-wide': checkSubsites(item.attributes),
           }"
         >
           <div class="top">
@@ -52,14 +52,14 @@
         </div>
         <div
           class="subsites-list"
-          v-if="item.attributes.subsites.data[0] !== undefined"
+          v-if="checkSubsites(item.attributes)"
         >
           <a
             :href="item_2.attributes.url"
             target="_blank"
             :class="{
               'subsite-item': true,
-              'subsite-item-blurred': bgPrepared,
+              'subsite-item-blurred': bgPrepared && settings.useBlur,
             }"
             v-for="(item_2, index_2) in item.attributes.subsites.data"
             :key="index_2"
@@ -100,6 +100,9 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   watch: {
     navs() {
@@ -119,6 +122,19 @@ export default {
         return based;
       }
     },
+    checkSubsites(item){
+      try {
+        if(item.subsites.data[0] !== undefined){
+          return true;
+        }else{
+          return false;
+        }
+      } catch (error) {
+        console.info(error);
+        return false;
+      }
+      
+    }
   },
   created() {},
   mounted() {

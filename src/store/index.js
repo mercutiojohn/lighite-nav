@@ -50,6 +50,7 @@ export default new Vuex.Store({
             twelveFormat: true,
             showSeconds: false,
             mode: true,
+            useBlur: false
         },
         tokens: {
             biliblli: '',

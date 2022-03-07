@@ -3,32 +3,32 @@
     <WallpaperShow />
     <div :class="{'blocks':true}">
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-main': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-main': true }"
       >
         <GreetingBox />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-small': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
       >
         <Weather />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-long': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-long': true }"
       >
         <TinyToDo />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-small': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
       ></div>
       <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
       <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-new': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-new': true }"
       >
         <TinyMusicChart />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared, 'card-new': true }"
+        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-new': true }"
       >
         <TinyAnimeChart />
       </div>
@@ -71,9 +71,11 @@ export default {
       return this.$store.getters.getMode;
     },
     bgPrepared: function () {
-      console.log(this.$store.getters.getBgPrepared);
       return this.$store.getters.getBgPrepared;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   methods: {
     handleScroll() {

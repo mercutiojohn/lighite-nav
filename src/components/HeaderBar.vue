@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     $route(to,from){
-      console.log(to.desc);
+      // console.log(to.desc);
       this.title = to.name;
       // if(to.path == "/tools"){
       //   this.title = "工具"

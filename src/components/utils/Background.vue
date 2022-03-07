@@ -62,7 +62,7 @@ export default {
         headers: { Authorization: "Client-ID " + this.token },
       }).then((response) => {
         this.setBgState(true);
-        console.log(response.data);
+        // console.log(response.data);
         this.data = response.data;
         this.srcs = response.data.urls;
       });

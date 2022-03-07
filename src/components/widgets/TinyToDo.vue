@@ -6,7 +6,7 @@
     <div class="todo-input-box">
       <input
         type="text"
-        :class="{'better-input':true,'better-input-blurred':bgPrepared}"
+        :class="{'better-input':true,'better-input-blurred':bgPrepared && settings.useBlur}"
         :placeholder="tip"
         id="todoInput"
         @keyup.enter="addTodoItem()"
@@ -72,6 +72,9 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   watch: {
     list() {
