@@ -8,7 +8,7 @@
 https://mercutiojohn.github.io/lighite-nav/#/
 
 ## 体验版
-http://lightie.mercutio.club
+https://lightie.mercutio.club
 
 ## 实现功能:
 

@@ -101,7 +101,7 @@ export default {
     getIcon(icon) {
       try {
         let url = icon.data.attributes.url;
-        return "http://navapi.mercutio.club" + url;
+        return "https://navapi.mercutio.club" + url;
       } catch (error) {
         // console.log(error);
         // console.log(icon);
