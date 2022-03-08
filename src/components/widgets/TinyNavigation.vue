@@ -113,7 +113,7 @@ export default {
     getIcon(icon) {
       try {
         let url = icon.attributes.icon.data.attributes.url;
-        return "http://navapi.mercutio.club" + url;
+        return "https://navapi.mercutio.club" + url;
       } catch (error) {
         const template = `<svg width="140" height="140" xmlns="http://www.w3.org/2000/svg"><g><text font-family="MiSans,sans" font-weight="800" font-size="120" y="120" x="9" fill="${
           icon.attributes.color == "#ffffff" ? "#000" : "#fff"
