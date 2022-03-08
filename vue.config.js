@@ -1,11 +1,11 @@
 module.exports = {
     pwa: {
-        name: 'Lightie',
-        themeColor: '#FFFFFF',
-        msTileColor: '#FFFFFF',
-        manifestOptions: {
-            background_color: '#FFFFFF'
-        }
+      name: 'Lightie',
+      themeColor: '#eeeeee',
+      msTileColor: '#FFFFFF',
+      manifestOptions: {
+        background_color: '#eeeeee'
+      }
     },
     lintOnSave: false,
     // outputDir: 'dist',

@@ -6,9 +6,14 @@
       'common-page-blurred': bgPrepared && settings.useBlur,
     }"
   >
-    <div class="settings-list">
+
+    <div
+      class="settings-list"
+      v-for="(item, index) in settingSchema"
+      :key="index"
+    >
       <div class="sub-header">
-        <span class="title">壁纸</span>
+        <span class="title" v-text="item.title"></span>
       </div>
       <div class="settings-sublist">
         <div
@@ -16,123 +21,23 @@
             'settings-item': true,
             'settings-item-blurred': bgPrepared && settings.useBlur,
           }"
+          v-show="itemExists(item_1,'ifShow') ? settings[item_1.ifShow] : true"
+          v-for="(item_1, index_1) in item.children"
+          :key="index_1"
         >
           <div class="left">
-            <span class="settings-icon iconfont icon-box"></span>
+            <span :class="'settings-icon iconfont '+(itemExists(item_1,'icon')?item_1.icon:'icon-cog')"></span>
             <div class="info">
-              <span class="title">开启壁纸</span>
-              <span class="desc">来自 Unsplash 的精选壁纸</span>
+              <span class="title" v-text="item_1.title"></span>
+              <span class="desc" v-text="item_1.desc" v-if="item_1.desc"></span>
             </div>
           </div>
           <div class="right">
             <input
-              type="checkbox"
-              name=""
-              id=""
-              v-model="settings.mode"
-              @click="forceUpdateSettings()"
-            />
-          </div>
-        </div>
-        <div
-          :class="{
-            'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
-          }"
-          v-if="settings.mode"
-        >
-          <div class="left">
-            <span class="settings-icon iconfont icon-drop"></span>
-            <div class="info">
-              <span class="title">开启模糊</span>
-              <span class="desc">模糊效果可能会导致卡顿</span>
-            </div>
-          </div>
-          <div class="right">
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              v-model="settings.useBlur"
-              @click="forceUpdateSettings()"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="sub-header">
-        <span class="title">时间</span>
-      </div>
-      <div class="settings-sublist">
-        <div
-          :class="{
-            'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
-          }"
-        >
-          <div class="left">
-            <span class="settings-icon iconfont icon-cog"></span>
-            <div class="info">
-              <span class="title">显示秒</span>
-              <!-- <span class="desc"></span> -->
-            </div>
-          </div>
-          <div class="right">
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              v-model="settings.showSeconds"
-              @click="forceUpdateSettings()"
-            />
-          </div>
-        </div>
-        <div
-          :class="{
-            'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
-          }"
-        >
-          <div class="left">
-            <span class="settings-icon iconfont icon-cog"></span>
-            <div class="info">
-              <span class="title">12小时制</span>
-              <!-- <span class="desc">模糊效果可能会导致卡顿</span> -->
-            </div>
-          </div>
-          <div class="right">
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              v-model="settings.twelveFormat"
-              @click="forceUpdateSettings()"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="sub-header">
-        <span class="title">主页</span>
-      </div>
-      <div class="settings-sublist">
-        <div
-          :class="{
-            'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
-          }"
-        >
-          <div class="left">
-            <span class="settings-icon iconfont icon-message-square"></span>
-            <div class="info">
-              <span class="title">提示</span>
-              <span class="desc">会给出一些实用建议</span>
-            </div>
-          </div>
-          <div class="right">
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              v-model="settings.showTips"
+              :type="item_1.inputType"
+              :name="item_1.model"
+              :id="item_1.model"
+              v-model="settings[item_1.model]"
               @click="forceUpdateSettings()"
             />
           </div>
@@ -149,6 +54,67 @@ export default {
   data() {
     return {
       settings: {},
+      settingSchema: [
+        {
+          title: "壁纸",
+          children: [
+            {
+              title: "开启壁纸",
+              icon: "icon-box",
+              desc: "来自 Unsplash 的精选壁纸",
+              model: "mode",
+              inputType:"checkbox"
+            },
+            {
+              title: "开启模糊",
+              icon: "icon-box",
+              desc: "模糊效果可能会导致卡顿",
+              model: "useBlur",
+              ifShow: "mode",
+              inputType:"checkbox"
+            },
+          ],
+        },{
+          title: "天气",
+          children: [
+            {
+              title: "城市",
+              desc: "输入天气所在市或县",
+              model: "weatherCity",
+              inputType:"text"
+            },
+          ],
+        },
+        {
+          title: "时间",
+          children: [
+            {
+              title: "显示秒",
+              desc: "",
+              model: "showSeconds",
+              inputType:"checkbox"
+            },
+            {
+              title: "12小时制",
+              desc: "",
+              model: "twelveFormat",
+              inputType:"checkbox"
+            },
+          ],
+        },
+        {
+          title: "主页",
+          children: [
+            {
+              title: "提示",
+              icon: "icon-message-square",
+              desc: "会给出一些实用建议",
+              model: "showTips",
+              inputType:"checkbox"
+            },
+          ],
+        }
+      ],
     };
   },
   computed: {
@@ -169,6 +135,14 @@ export default {
       setTimeout(() => {
         this.$store.commit("setSettings", this.settings);
       }, 10);
+    },
+    itemExists(item, childName) {
+      try {
+        if (item[childName]) return true;
+        else return false;
+      } catch (error) {
+        return false;
+      }
     },
   },
   created() {},
@@ -221,11 +195,14 @@ export default {
 .settings-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
 }
 .settings-sublist {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+.sub-header{
+  padding: 10px 8px;
 }
 </style>

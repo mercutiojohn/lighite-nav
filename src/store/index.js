@@ -7,6 +7,14 @@ export default new Vuex.Store({
     state: {
         bgPrepared: false,
         wallpaperDescHided: false,
+        settings: {
+            twelveFormat: true,
+            showSeconds: false,
+            mode: true,
+            useBlur: false,
+            showTips: true,
+            weatherCity: '杭州'
+        },
         chosenEngine: {
             title: "必应",
             url: "https://cn.bing.com/search",
@@ -47,13 +55,6 @@ export default new Vuex.Store({
                 checked: false
             }
         ],
-        settings: {
-            twelveFormat: true,
-            showSeconds: false,
-            mode: true,
-            useBlur: false,
-            showTips: true
-        },
         tokens: {
             biliblli: '',
             netease: ''

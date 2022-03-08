@@ -3,14 +3,6 @@
           :style="{ 'background': backgroundColorTrans(briefNew) }"
   >
     <transition name="fade" type="out-in">
-      <div class="change-city" v-if="citySelect">
-        <span class="title">切换城市</span>
-        <input type="text" v-model="cityTemp" />
-        <div class="options">
-          <button @click="changeSelect">确定</button>
-          <button @click="cancelSelect">取消</button>
-        </div>
-      </div>
     <!-- </transition> -->
           <!-- <transition name="fade" type="out-in">
       <div class="warning-details" v-if="warningLookup">
@@ -22,8 +14,8 @@
       </div>
     </transition> -->
     <!-- <transition name="fade" type="out-in"> -->
-      <div class="weather-content" v-else>
-        <span class="city" @click="changeSelect">{{ city }}</span>
+      <div class="weather-content">
+        <span class="city" @click="weatherRefresh">{{ city }}</span>
         <div class="weather-loading" v-if="loading">
           <span>天气加载中</span>
         </div>
@@ -89,7 +81,6 @@ export default {
         o3: "95",
       },
       resGeo: "",
-      citySelect: false,
       cityTemp: "",
       aqi: "",
       aqiLevel: "",
@@ -123,11 +114,12 @@ export default {
       timer:''
     };
   },
-  computed: {},
-  watch: {
-    city(newCity){
-      localStorage.weather_city = newCity;
+  computed: {
+    remoteCity: function(){
+      return this.$store.getters.getSettings.weatherCity;
     }
+  },
+  watch: {
   },
   methods: {
     searchWeather: async function () {
@@ -139,19 +131,6 @@ export default {
 
       let key = "0ae07031c52c4d448cb26af87903d648"; //引号中放入前面保存的key
 
-      //方法一：老的API
-      //老的api
-      //这里的引号是tab键上面的引号，主要作用是方便数据拼接
-      // let httpUrlOld = `https://free-api.heweather.net/s6/weather/now?location=${this.city}&key=${key}`;
-      // let resOld = await fetch(httpUrlOld); //请求数据
-      // let resultOld = await resOld.json(); //将请求的数据转换为json数据类型
-      // let nowOld = resultOld.HeWeather6[0].now; //获取到json数据中的实况天气
-      // console.log(nowOld);
-      // this.tmpOld = nowOld.tmp; //获取到当前温度
-      // this.briefOld = nowOld.cond_txt; //获取到当前天气
-      // this.resOld = resultOld;
-
-      //方法二：新的API
       //获取城市的ID
       let locUrl = `https://geoapi.qweather.com/v2/city/lookup?location=${this.city}&key=${key}`;
       let locRes = await fetch(locUrl);
@@ -187,15 +166,8 @@ export default {
       this.warning = warnResult.warning;
       this.loading = false;
     },
-    changeSelect() {
-      this.citySelect
-        ? ((this.city = this.cityTemp),
-          this.searchWeather(),
-          (this.citySelect = false))
-        : ((this.cityTemp = this.city), (this.citySelect = true));
-    },
-    cancelSelect() {
-      this.citySelect = false;
+    weatherRefresh() {
+        this.searchWeather()
     },
     backgroundColorTrans(colorName){
     switch (colorName) {
@@ -258,8 +230,9 @@ export default {
   },
   created() {},
   mounted() {
-    if (localStorage.weather_city)
-      this.city = localStorage.weather_city;
+     this.city = this.remoteCity;
+    // if (localStorage.weather_city)
+    //   this.city = localStorage.weather_city;
     this.searchWeather();
     let _this = this;
     this.timer = setInterval(()=>{
