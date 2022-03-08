@@ -1,7 +1,7 @@
 <template>
 <div class="greeting-box">
     <TinyCalendar />
-    <!-- <OneSentence /> -->
+    <OneSentence />
     <SearchBar />
     <TinyNavigation />
 </div>

@@ -62,9 +62,26 @@ export default {
         headers: { Authorization: "Client-ID " + this.token },
       }).then((response) => {
         this.setBgState(true);
+        console.log(response.data);
+        this.data = response.data;
+        this.srcs = response.data.urls;
+      });
+    },
+    updatePic() {
+      // this.setBgState(false);
+      this.$axios({
+        baseURL: "https://api.unsplash.com",
+        url: "/photos/random",
+        method: "get",
+        headers: { Authorization: "Client-ID " + this.token },
+      }).then((response) => {
+        // this.setBgState(true);
         // console.log(response.data);
         this.data = response.data;
         this.srcs = response.data.urls;
+        setTimeout(()=>{
+          this.$bus.$emit("updatedWallpaper", "test");
+        },2000)
       });
     },
   },
@@ -75,6 +92,9 @@ export default {
         this.getPic();
       }
     }, 10);
+    this.$bus.$on("changeWallpaper", data => {
+        this.updatePic();
+    })
   },
   beforeDestroy() {},
 };

@@ -7,6 +7,8 @@ import axios from 'axios'
 
 Vue.prototype.$axios = axios
 
+Vue.prototype.$bus = new Vue();
+
 
 import ScrollDiv from 'vue-scroll-div';
 

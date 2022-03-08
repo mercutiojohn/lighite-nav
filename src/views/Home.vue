@@ -19,7 +19,9 @@
       </div>
       <div
         :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
-      ></div>
+      >
+        <!-- <OneSentence /> -->
+      </div>
       <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
       <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
       <div
@@ -47,19 +49,21 @@ import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
+// import OneSentence from '@/components/widgets/OneSentence.vue';
 
 export default {
   name: "Home",
   components: {
     TinyBook,
-    TinyVideo,
-    TinyMusic,
+    // TinyVideo,
+    // TinyMusic,
     TinyMusicChart,
     TinyAnimeChart,
     GreetingBox,
     Weather,
     TinyToDo,
     WallpaperShow,
+    // OneSentence,
   },
   data(){
     return {

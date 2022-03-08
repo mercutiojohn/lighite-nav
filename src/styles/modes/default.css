@@ -21,6 +21,7 @@
     --subtitle-color-blurred: #ddd;
     --content-color-blurred: #fff;
     /* 模糊文字 */
+    --blurred-subtitle-color: #ffffffd0;
     --blurred-line-color: #0000001a;
     /* 强调色 */
     --warn-color: #ff2600;

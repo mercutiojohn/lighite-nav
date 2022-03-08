@@ -12,7 +12,10 @@
       </div>
       <div class="settings-sublist">
         <div
-          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          :class="{
+            'settings-item': true,
+            'settings-item-blurred': bgPrepared && settings.useBlur,
+          }"
         >
           <div class="left">
             <span class="settings-icon iconfont icon-box"></span>
@@ -32,7 +35,10 @@
           </div>
         </div>
         <div
-          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          :class="{
+            'settings-item': true,
+            'settings-item-blurred': bgPrepared && settings.useBlur,
+          }"
           v-if="settings.mode"
         >
           <div class="left">
@@ -58,7 +64,10 @@
       </div>
       <div class="settings-sublist">
         <div
-          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          :class="{
+            'settings-item': true,
+            'settings-item-blurred': bgPrepared && settings.useBlur,
+          }"
         >
           <div class="left">
             <span class="settings-icon iconfont icon-cog"></span>
@@ -78,7 +87,10 @@
           </div>
         </div>
         <div
-          :class="{ 'settings-item': true, 'settings-item-blurred': bgPrepared && settings.useBlur }"
+          :class="{
+            'settings-item': true,
+            'settings-item-blurred': bgPrepared && settings.useBlur,
+          }"
         >
           <div class="left">
             <span class="settings-icon iconfont icon-cog"></span>
@@ -98,6 +110,34 @@
           </div>
         </div>
       </div>
+      <div class="sub-header">
+        <span class="title">主页</span>
+      </div>
+      <div class="settings-sublist">
+        <div
+          :class="{
+            'settings-item': true,
+            'settings-item-blurred': bgPrepared && settings.useBlur,
+          }"
+        >
+          <div class="left">
+            <span class="settings-icon iconfont icon-message-square"></span>
+            <div class="info">
+              <span class="title">提示</span>
+              <span class="desc">会给出一些实用建议</span>
+            </div>
+          </div>
+          <div class="right">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              v-model="settings.showTips"
+              @click="forceUpdateSettings()"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -108,9 +148,7 @@ export default {
   components: {},
   data() {
     return {
-        settings:{
-
-        }
+      settings: {},
     };
   },
   computed: {
@@ -127,11 +165,11 @@ export default {
     },
   },
   methods: {
-      forceUpdateSettings(){
-          setTimeout(()=>{
-              this.$store.commit("setSettings", this.settings);
-          },10)
-      }
+    forceUpdateSettings() {
+      setTimeout(() => {
+        this.$store.commit("setSettings", this.settings);
+      }, 10);
+    },
   },
   created() {},
   mounted() {
@@ -150,14 +188,14 @@ export default {
   padding: 18px 15px;
   /* border-bottom: 1px solid var(--line-color); */
 }
-.settings-item:first-child{
+.settings-item:first-child {
   border-radius: var(--item-radius) var(--item-radius) 0 0;
 }
-.settings-item:last-child{
+.settings-item:last-child {
   border-radius: 0 0 var(--item-radius) var(--item-radius);
   /* border-bottom: none; */
 }
-.settings-item:only-child{
+.settings-item:only-child {
   border-radius: var(--item-radius);
 }
 .settings-item-blurred {
@@ -183,11 +221,11 @@ export default {
 .settings-list {
   display: flex;
   flex-direction: column;
-  gap:10px;
+  gap: 10px;
 }
-.settings-sublist{
+.settings-sublist {
   display: flex;
   flex-direction: column;
-  gap:2px;
+  gap: 2px;
 }
 </style>

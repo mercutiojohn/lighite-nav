@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         bgPrepared: false,
+        wallpaperDescHided: false,
         chosenEngine: {
             title: "必应",
             url: "https://cn.bing.com/search",
@@ -50,7 +51,8 @@ export default new Vuex.Store({
             twelveFormat: true,
             showSeconds: false,
             mode: true,
-            useBlur: false
+            useBlur: false,
+            showTips: true
         },
         tokens: {
             biliblli: '',
@@ -221,7 +223,15 @@ export default new Vuex.Store({
         },
         setWallpaperData(state, data) {
             state.wallpaperData = data;
-        }
+        },
+        setShowTips(state, showTips) {
+            state.settings.showTips = showTips;
+            localStorage.setItem('settings', encodeURIComponent(JSON.stringify(state.settings)));
+        },
+        setWallpaperDescHided(state, wallpaperDescHided) {
+            localStorage.setItem('wallpaperDescHided', encodeURIComponent(JSON.stringify(wallpaperDescHided)));
+            state.wallpaperDescHided = wallpaperDescHided;
+        },
     },
     actions: {},
     modules: {},
@@ -252,6 +262,12 @@ export default new Vuex.Store({
         },
         getWallpaperData: (state) => {
             return state.wallpaperData;
+        },
+        getWallpaperDescHided: (state) => {
+            if (localStorage.getItem("wallpaperDescHided")) {
+                state.wallpaperDescHided = JSON.parse(decodeURIComponent(localStorage.getItem('wallpaperDescHided')));
+            }
+            return state.wallpaperDescHided;
         },
         getEngine: (state) => {
             if (localStorage.getItem("chosenEngine")) {

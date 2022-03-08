@@ -3,13 +3,13 @@
     :class="{
       'wallpaper-trans': true,
       'wallpaper-show': bgPrepared,
-      'wallpaper-hided': hided,
+      'wallpaper-hided': wallpaperDescHided,
       'wallpaper-closed': !bgPrepared,
     }"
   >
     <div class="desc" v-if="bgPrepared">
       <transition name="fade">
-        <div class="wallpaper-info" v-if="!hided">
+        <div class="wallpaper-info" v-if="!wallpaperDescHided">
           <a
             :href="wallpaperData.links.html"
             target="_blank"
@@ -21,17 +21,44 @@
               alt=""
               srcset=""
             />
-            <span class="name">{{ wallpaperData.user.name }}</span>
+            <div class="info">
+              <span class="name">{{ wallpaperData.user.name }}</span>
+              <span class="desc">来自 Unsplash，点击查看详情</span>
+            </div>
           </a>
-          <a
-            :href="wallpaperData.links.download"
-            target="_blank"
-            class="download"
-          >
-            <button :class="{'icon-button':true}">
-              <span class="iconfont icon-download"></span>
+          <div class="right">
+            <a
+              :href="wallpaperData.links.download"
+              target="_blank"
+              class="download"
+            >
+              <button
+                :class="{ 'icon-button': true, 'wallpaper-button': true }"
+              >
+                <span
+                  :class="{
+                    iconfont: true,
+                    'icon-download': true,
+                  }"
+                ></span>
+              </button>
+            </a>
+            <button
+              :class="{
+                'icon-button': true,
+                'wallpaper-button': true,
+              }"
+              @click="changeWallpaper()"
+            >
+              <span
+                :class="{
+                  iconfont: true,
+                  'icon-refresh': true,
+                  spinning: spinning,
+                }"
+              ></span>
             </button>
-          </a>
+          </div>
         </div>
       </transition>
       <div
@@ -43,10 +70,10 @@
         <span
           :class="{
             iconfont: true,
-            'icon-chevron-down': hided,
-            'icon-chevron-up': !hided,
+            'icon-chevron-down': wallpaperDescHided,
+            'icon-chevron-up': !wallpaperDescHided,
             'enterd-hide': enterdHide,
-            'btn-no-blur':!settings.useBlur
+            'btn-no-blur': !settings.useBlur,
           }"
         ></span>
       </div>
@@ -61,8 +88,9 @@ export default {
   components: {},
   data() {
     return {
-      hided: false,
+      wallpaperDescHided: false,
       enterdHide: false,
+      spinning: false,
     };
   },
   computed: {
@@ -73,24 +101,41 @@ export default {
       console.log(this.$store.getters.getWallpaperData);
       return this.$store.getters.getWallpaperData;
     },
-    settings: function(){
+    settings: function () {
       return this.$store.getters.getSettings;
-    }
+    },
+    remoteWallpaperDescHided: function () {
+      return this.$store.getters.getWallpaperDescHided;
+    },
   },
-  watch: {},
+  watch: {
+    wallpaperDescHided() {
+      this.$store.commit("setWallpaperDescHided", this.wallpaperDescHided);
+    },
+  },
   methods: {
     hideDesc() {
-      this.hided ? (this.hided = false) : (this.hided = true);
+      this.wallpaperDescHided
+        ? (this.wallpaperDescHided = false)
+        : (this.wallpaperDescHided = true);
+    },
+    changeWallpaper() {
+      this.$bus.$emit("changeWallpaper", "test");
+      this.spinning = true;
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.wallpaperDescHided = this.remoteWallpaperDescHided;
+    this.$bus.$on("updatedWallpaper", (data) => {
+      this.spinning = false;
+    });
+  },
   beforeDestroy() {},
 };
 </script>
 
 <style scoped>
-
 .wallpaper-show {
   height: calc(100vh - 14rem);
   display: flex;
@@ -135,13 +180,19 @@ export default {
   padding: 10px;
   font-size: 23px;
 }
-.btn-no-blur{
-  background: var(--card-color)!important;
-  backdrop-filter: none!important;
+.btn-no-blur {
+  background: var(--card-color) !important;
+  backdrop-filter: none !important;
 }
 .enterd-hide {
   background: none !important;
   backdrop-filter: unset !important;
+}
+.wallpaper-info {
+  color: var(--content-color-blurred);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .author-info {
   padding: 10px;
@@ -151,17 +202,35 @@ export default {
   gap: 10px;
   border-radius: var(--item-radius);
 }
-.wallpaper-info {
-  color: var(--content-color-blurred);
+.author-info .info {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 }
-.download button {
+.author-info .info .desc {
+  color: var(--blurred-subtitle-color);
+  font-size: 0.8em;
+}
+.wallpaper-button {
   padding: 20px;
 }
-.download button span {
+.wallpaper-button span {
   color: var(--content-color-blurred);
   font-size: 25px;
+}
+.spinning {
+  display: block;
+  animation-name: turn;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes turn {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 </style>
