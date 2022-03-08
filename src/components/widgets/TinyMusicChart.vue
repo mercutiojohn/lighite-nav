@@ -68,7 +68,7 @@ export default {
     getChart() {
       this.$axios
         .get(
-          "https://api.mercutio.club:3000/playlist/detail?id=" +
+          "https://musicapi.mercutio.club/playlist/detail?id=" +
             this.charts[this.currChart].id
         )
         .then((response) => {
