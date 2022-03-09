@@ -1,22 +1,22 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1c97b7eec517f2c86255",
+    "revision": "ec461af5f20bfbf7011e",
     "url": "css/about.5c9a8cb2.css"
   },
   {
-    "revision": "4fba157a82cebd906f89",
-    "url": "css/app.29bf0700.css"
+    "revision": "29bf30698cbd9f34165e",
+    "url": "css/app.445d08fb.css"
   },
   {
-    "revision": "2333f778e4144d86d40a",
+    "revision": "b48550a0168ad990ae8c",
     "url": "css/books.dd472137.css"
   },
   {
-    "revision": "c090057c2a88f8a0c57b",
-    "url": "css/navigation.756a1585.css"
+    "revision": "53079f49b43c7305d8c2",
+    "url": "css/navigation.fc7a1de7.css"
   },
   {
-    "revision": "a02720ca6e4e88736a39",
+    "revision": "b3d7f9fc4abfcbc903ba",
     "url": "css/tools.78f15f78.css"
   },
   {
@@ -36,10 +36,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "fonts/iconfont.3ae22019.woff2"
   },
   {
-    "revision": "af136b31773959986525cadd56c4078f",
-    "url": "img/parsecover.af136b31.jpg"
-  },
-  {
     "revision": "ddf4ac8b500b4ebc4447be016a00c6fd",
     "url": "img/protos/webpage.svg"
   },
@@ -48,32 +44,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "574bd08e7c103c54f2850807037d9776",
+    "revision": "b1b8e21d063c86e927c91dd80bdad07a",
     "url": "index.html"
   },
   {
-    "revision": "1c97b7eec517f2c86255",
-    "url": "js/about.0029adc2.js"
+    "revision": "ec461af5f20bfbf7011e",
+    "url": "js/about.35d84559.js"
   },
   {
-    "revision": "4fba157a82cebd906f89",
-    "url": "js/app.b2674a26.js"
+    "revision": "29bf30698cbd9f34165e",
+    "url": "js/app.029faf48.js"
   },
   {
-    "revision": "2333f778e4144d86d40a",
-    "url": "js/books.cf2a27c9.js"
+    "revision": "b48550a0168ad990ae8c",
+    "url": "js/books.cf95eee2.js"
   },
   {
     "revision": "b0e4c88395f73c5134ca",
     "url": "js/chunk-vendors.d55d090b.js"
   },
   {
-    "revision": "c090057c2a88f8a0c57b",
-    "url": "js/navigation.8fe9eae0.js"
+    "revision": "53079f49b43c7305d8c2",
+    "url": "js/navigation.c1482b44.js"
   },
   {
-    "revision": "a02720ca6e4e88736a39",
-    "url": "js/tools.a82b7229.js"
+    "revision": "b3d7f9fc4abfcbc903ba",
+    "url": "js/tools.d7cf54c7.js"
   },
   {
     "revision": "642c6bc02446c3d75ea2e16cadba1339",
