@@ -44,6 +44,13 @@
         </div>
       </div>
     </div>
+    <div class="about">
+      <span class="about-line">壁纸资源来自Unsplash</span>
+      <span class="about-line">音乐内容来自网易云音乐</span>
+      <span class="about-line">视频内容来自Bilibili</span>
+      <span class="about-line">Built with 🧡 by Mercutio</span>
+      <span class="about-line">Copyright © 2021 Mercutio</span>
+    </div>
   </div>
 </template>
 
@@ -204,5 +211,14 @@ export default {
 }
 .sub-header{
   padding: 10px 8px;
+}
+.about{
+  font-size: .7em;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+  padding: 10px 8px;
+  margin-top: 20px;
+  color: var(--subtitle-color);
 }
 </style>
