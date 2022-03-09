@@ -3,34 +3,44 @@
     <WallpaperShow />
     <div :class="{'blocks':true}">
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-main': true }"
+        :class="{ card: true,'fix-scrollbar':true, 'card-blurred': bgPrepared && settings.useBlur, 'card-main': true }"
       >
         <GreetingBox />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
       >
         <Weather />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-long': true }"
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-long': true }"
       >
         <TinyToDo />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
       >
         <!-- <OneSentence /> -->
       </div>
       <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
       <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
+      <!-- <div
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-2': true }"
+      >
+        <TinyBook />
+      </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-new': true }"
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-2': true }"
+      >
+        <TinyVideo />
+      </div> -->
+      <div
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-1': true }"
       >
         <TinyMusicChart />
       </div>
       <div
-        :class="{ card: true, 'card-blurred': bgPrepared && settings.useBlur, 'card-new': true }"
+        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-1': true }"
       >
         <TinyAnimeChart />
       </div>
@@ -40,10 +50,10 @@
 
 <script>
 // @ is an alias to /src
-import TinyBook from "@/components/widgets/TinyBook.vue";
-import TinyVideo from "@/components/widgets/TinyVideo.vue";
+// import TinyBook from "@/components/widgets/TinyBook.vue";
+// import TinyVideo from "@/components/widgets/TinyVideo.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
-import TinyMusic from "@/components/widgets/TinyMusic.vue";
+// import TinyMusic from "@/components/widgets/TinyMusic.vue";
 import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
@@ -54,7 +64,7 @@ import WallpaperShow from "@/components/utils/WallpaperShow.vue";
 export default {
   name: "Home",
   components: {
-    TinyBook,
+    // TinyBook,
     // TinyVideo,
     // TinyMusic,
     TinyMusicChart,
@@ -171,14 +181,6 @@ export default {
   background: var(--blurred-card-color);
   backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
-.card::-webkit-scrollbar {
-  width: 5px;
-  /* background: #000; */
-}
-.card::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background: var(--bg-color);
-}
 
 .card-main {
   grid-row: 1 / 3;
@@ -196,7 +198,10 @@ export default {
 .card-long {
   grid-row: 1 / 3;
 }
-.card-new {
+.card-new-1 {
+  grid-column-start: span 1;
+}
+.card-new-2{
   grid-column-start: span 2;
 }
 @media screen and (min-width: 700px) and (max-width: 1000px) {
@@ -219,8 +224,11 @@ export default {
     grid-row: unset;
     grid-column: 1 / 5;
   }
-  .card-new {
-    grid-column-start: span 2;
+  .card-new-1 {
+    grid-column-start: span 4;
+  }
+  .card-new-2 {
+    grid-column-start: span 4;
   }
 }
 @media screen and (max-width: 700px) {
@@ -233,7 +241,10 @@ export default {
     grid-row: unset;
     grid-column: 1 / 5;
   }
-  .card-new {
+  .card-new-1 {
+    grid-column-start: span 4;
+  }
+  .card-new-2 {
     grid-column-start: span 4;
   }
 }

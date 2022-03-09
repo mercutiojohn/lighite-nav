@@ -7,6 +7,7 @@
       'common-page-blurred': bgPrepared && settings.useBlur,
     }"
   >
+  <!-- 添加浮层 -->
     <transition name="fade">
       <div
         class="general-window-mask"
@@ -57,6 +58,7 @@
         </div>
       </div>
     </transition>
+  <!-- 收藏 -->
     <div class="list-header">
       <span class="title">我的收藏</span>
       <button class="icon-button" @click="showModify()">
@@ -154,6 +156,7 @@
         </div>
       </transition>
     </div>
+    <!-- 推荐列表 -->
     <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
       <div class="list-header">
         <span class="title" v-text="item.attributes.name"></span>

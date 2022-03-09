@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div :class="{'sidebar':true,'sidebar-blurred':bgPrepared}">
     <div class="title-box">
       <span :class="{'title':true,'title-blurred':bgPrepared}" v-text="title"></span>
     </div>
@@ -103,6 +103,10 @@ export default {
     bottom: 0;
     top: none;
   }
+  .sidebar-blurred{
+    background: var(--blurred-card-color);
+    backdrop-filter: blur(var(--blur-width)) saturate(280%);
+  }
 }
 #nav {
   height: 100%;
@@ -177,9 +181,12 @@ export default {
   color: var(--title-color-blurred);
   text-shadow: 0 2px 10px #00000034;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .title-box {
     display: none;
+  }
+  #more a.blurred{
+    text-shadow: unset;
   }
 }
 .title {

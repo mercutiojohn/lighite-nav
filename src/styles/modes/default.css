@@ -41,11 +41,11 @@
         --blurred-sub-card-color: #ffffff10;
         /* 文字 */
         --title-color: #fff;
-        --subtitle-color: #ddd;
+        --subtitle-color: #9c9c9c;
         --content-color: #fff;
         --hover-color: #ffffff33;
         --active-color: #ffffff71;
-        --line-color: #141414;
+        --line-color: #0000004f;
         /* 模糊文字 */
         --blurred-line-color: #ffffff15;
     }

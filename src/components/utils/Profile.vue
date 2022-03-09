@@ -1,6 +1,6 @@
 <template>
 <div class="profile">
-    <div class="avatar"></div>
+    <!-- <div class="avatar"></div> -->
 </div>
 </template>
 

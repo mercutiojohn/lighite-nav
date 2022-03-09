@@ -10,20 +10,20 @@
       </router-link>
     </div>
     <ul class="tabs">
-        <li
-          :class="{
-            tab: true,
-            'tab-active': ifTabActive(item.index),
-            'ef-fadein':true
-          }"
-          v-for="(item, index) in tabs"
-          :key="index"
-          @click="changeTab(item.index)"
-        >
-          {{ item.name }}
-        </li>
-      </ul>
-    <div class="bilianime-content">
+      <li
+        :class="{
+          tab: true,
+          'tab-active': ifTabActive(item.index),
+          'ef-fadein': true,
+        }"
+        v-for="(item, index) in tabs"
+        :key="index"
+        @click="changeTab(item.index)"
+      >
+        {{ item.name }}
+      </li>
+    </ul>
+    <div class="bilianime-content fix-scrollbar card-list-height">
       <div
         class="bilianime-area"
         v-for="(tabItem, tabIndex) in data"
@@ -58,6 +58,7 @@
                   {{ listItem.new_ep ? listItem.new_ep.index_show : "" }}
                 </span>
               </div>
+              <span class="rank" v-text="listIndex + 1 + ' '"></span>
             </a>
           </div>
         </transition>
@@ -127,11 +128,14 @@ export default {
         .then(({ data }) => {
           // console.log(index,data);
           if (index == "timeline") {
-            this.data[index] = data.content.result.latest.splice(0,10);
+            // this.data[index] = data.content.result.latest.splice(0, 10);
+            this.data[index] = data.content.result.latest;
           } else if (index == "rankjp") {
-            this.data[index] = data.content.result.list.splice(0,10);
+            // this.data[index] = data.content.result.list.splice(0, 10);
+            this.data[index] = data.content.result.list;
           } else if (index == "rankcn") {
-            this.data[index] = data.content.data.list.splice(0,10);
+            // this.data[index] = data.content.data.list.splice(0, 10);
+            this.data[index] = data.content.data.list;
           }
           this.data[index].forEach((element, id) => {
             // console.log(index,element)
@@ -155,9 +159,11 @@ export default {
       this.data[type][
         index
       ].cover = require("@/assets/images/video/bili-loading.png");
-      // tthis.data[type][index].cover = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABHCAMAAAB4UkqjAAAAh1BMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d0UCIZXAAAALHRSTlMAoJDx4OYL/DcGF+6+JNi4ycSIT2k6LPeWfRzTVPXPszEQrV0hpo12cEZAZFpRNIQAAAJVSURBVFjD7dbZcpswGIbhHwwSi81q8Ib33fnu//oatRIpmliDhQ/aaZ+TKInnjVgkhb4RJMhP9Fzo8PiD+vEA+JPnqS0+1dRHBJhibAzh2HNeekxP9Z8XBSMZM6SmRBYx65QeM6XsY3rKPqanLGMWqeDmOh0b/Io9+YHi3gKtdExgLznSlyjFMGnUphIMlcgY22C4DSPBxTu4IrXDe+yI6IDWbPSqGVoHoohDyip6XZVB4hFN1TgPyUaYQ5rSWQ0nZGcC6UyJukKypa4yIXX3HLLlqCdHX++HLRfS/9bbWvvHLSLNR3N6tRXdFwdxejekiYF4fDnWYa/WqSm2PqRCSy0hrbP5RxAaW8141N17tVbZ+S1fFYbWFF2+1lqg62BoBdAsqWOLroWhxTh+M8vmWuuaxp1WaWjRSn43yl35sHTLUjxiaWlqnYE4LZoJme3v13MibqepFZRL6otV5V+/Hv+xVvi+FsvZG1qh/LQ7uFXnF/HlwcEfYlDktW2r5EARUiXWc1xRWAC8tGwxsdJ9dcRnYrddMdtrjDZyAy3kXrSJ7O89u8zEZAIKxBRnFzbonWD3ZkfCrrmzP+6979nicjAnW3NZ4OS1R6GtVBa8drTek539up3NAgMvcv51WNZQitCiFBZQaqIMSrx1XrWNoWTy/w1r+hk+xjuMSVjGGC6WZ3S1xlDriqTKxzB+Ra3I4bDHne62drqmied57QR9z0D94dHnOEmvJ/pWAMm4ovL2TTcJ5cRyMlHrbkdG5c/5r82fYqt+K/iR89m2JrP9PEZyI80PsPxVT0P3FAEAAAAASUVORK5CYII=";
+      // this.data[type][index].cover = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAABHCAMAAAB4UkqjAAAAh1BMVEUAAADd3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d0UCIZXAAAALHRSTlMAoJDx4OYL/DcGF+6+JNi4ycSIT2k6LPeWfRzTVPXPszEQrV0hpo12cEZAZFpRNIQAAAJVSURBVFjD7dbZcpswGIbhHwwSi81q8Ib33fnu//oatRIpmliDhQ/aaZ+TKInnjVgkhb4RJMhP9Fzo8PiD+vEA+JPnqS0+1dRHBJhibAzh2HNeekxP9Z8XBSMZM6SmRBYx65QeM6XsY3rKPqanLGMWqeDmOh0b/Io9+YHi3gKtdExgLznSlyjFMGnUphIMlcgY22C4DSPBxTu4IrXDe+yI6IDWbPSqGVoHoohDyip6XZVB4hFN1TgPyUaYQ5rSWQ0nZGcC6UyJukKypa4yIXX3HLLlqCdHX++HLRfS/9bbWvvHLSLNR3N6tRXdFwdxejekiYF4fDnWYa/WqSm2PqRCSy0hrbP5RxAaW8141N17tVbZ+S1fFYbWFF2+1lqg62BoBdAsqWOLroWhxTh+M8vmWuuaxp1WaWjRSn43yl35sHTLUjxiaWlqnYE4LZoJme3v13MibqepFZRL6otV5V+/Hv+xVvi+FsvZG1qh/LQ7uFXnF/HlwcEfYlDktW2r5EARUiXWc1xRWAC8tGwxsdJ9dcRnYrddMdtrjDZyAy3kXrSJ7O89u8zEZAIKxBRnFzbonWD3ZkfCrrmzP+6979nicjAnW3NZ4OS1R6GtVBa8drTek539up3NAgMvcv51WNZQitCiFBZQaqIMSrx1XrWNoWTy/w1r+hk+xjuMSVjGGC6WZ3S1xlDriqTKxzB+Ra3I4bDHne62drqmied57QR9z0D94dHnOEmvJ/pWAMm4ovL2TTcJ5cRyMlHrbkdG5c/5r82fYqt+K/iR89m2JrP9PEZyI80PsPxVT0P3FAEAAAAASUVORK5CYII=";
       this.$axios
-        .get("https://api.mercutio.club" + "/bilibili/get-cover?url=" + coverUrl)
+        .get(
+          "https://api.mercutio.club" + "/bilibili/get-cover?url=" + coverUrl
+        )
         .then(({ data }) => {
           base = "data:image/jpg;base64," + data;
           this.data[type][index].cover = base;
@@ -208,19 +214,22 @@ export default {
 .bilianime-content {
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  padding: 5px 20px;
-  margin: 0 0 20px;
+  /* height: 100%; */
+  padding: 10px;
+  /* margin: 0 0 20px; */
 }
 
 .bilianime-item {
+  box-sizing: border-box;
   display: flex;
+  align-items: center;
   width: 100%;
-  /* padding: 3px 3px; */
-  margin: 5px 0;
-  border-radius: 5px;
+  padding: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
+  color: var(--title-color);
+  border-bottom: 1px solid var(--line-color);
+  justify-content: space-between;
 }
 .bilianime-item:hover {
   background: var(--hover-color);
@@ -232,32 +241,28 @@ export default {
   text-decoration: none;
 }
 
-.bilianime-area {
-}
-
 .bilianime-details {
+  width: calc(100% - 50px - 20px - 10px);
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 }
 .bilianime-cover {
-  border-radius: 5px;
+  border-radius: 2px;
   width: 50px;
   height: 67.171px;
 }
 .bilianime-stats,
 .bilianime-detail {
-  color: var(--content-color);
-  font-size: 10px;
+  color: var(--subtitle-color);
+  font-size: 0.8em;
 }
 .bilianime-title {
-  color: var(--content-color);
   /* display: flex; */
   justify-content: flex-start;
-  font-size: 15px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 .bilianime-title-end {

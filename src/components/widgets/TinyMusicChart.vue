@@ -2,23 +2,25 @@
 <div class="tiny-music-charts">
     <div class="header">
         <span class="title">音乐榜单</span>
-        <router-link to="/music">
-        <button class="icon-button">
-            <span class="label">更多</span>
-            <span class="iconfont icon-chevron-right"></span>
-        </button>
-        </router-link>
+        <div class="right">
+          <a :href="'https://music.163.com/#/playlist?id='+this.charts[this.currChart].id"><button class="play-all icon-button"><span class="iconfont icon-play"></span><span class="tip">播放全部</span></button></a>
+          <router-link to="/music">
+          <button class="icon-button">
+              <span class="label">更多</span>
+              <span class="iconfont icon-chevron-right"></span>
+          </button>
+          </router-link>
+        </div>
     </div>
     <div class="tabs">
         <div :class="{'tab':true,'tab-active':currChart == index,'ef-fadein':true}" v-for="(item,index) in charts" @click="changeChart(index)" :key="index">
             <span class="title" v-text="item.title"></span>
         </div>
     </div>
-    <div class="funcs">
-        <a :href="'https://music.163.com/#/playlist?id='+this.charts[this.currChart].id"><button class="play-all icon-button">播放全部</button></a>
-    </div>
+    <!-- <div class="funcs">
+    </div> -->
     <transition name="fade">
-    <div class="list" v-if="!loading">
+    <div class="list fix-scrollbar card-list-height" v-if="!loading">
         <a class="list-item ef-fadein" v-for="(item,index) in tracks" :key="index" :href="'https://music.163.com/#/song?id='+item.id" target="_blank">
             <img :src="item.al.picUrl" alt="" srcset="" class="album-cover">
             <div class="song-info">
@@ -32,6 +34,7 @@
                     <span v-for="(item_1,index_1) in item.ar" :key="index_1">{{item_1.name + (((index_1 + 1) !== item.ar.length) ? ' / ':'')}}</span>
                 </span>
             </div>
+            <span class="rank" v-text="(index+1)+' '"></span>
         </a>
     </div>
     </transition>
@@ -73,7 +76,8 @@ export default {
         )
         .then((response) => {
           console.log(response.data);
-          this.tracks = response.data.playlist.tracks.splice(0, 10);
+          // this.tracks = response.data.playlist.tracks.splice(0, 10);
+          this.tracks = response.data.playlist.tracks;
           this.loading = false;
         });
     },
@@ -97,6 +101,8 @@ export default {
 .list-item {
   padding: 10px 10px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
   border-bottom: 1px solid var(--line-color);
 }
@@ -106,7 +112,7 @@ export default {
 .list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 10px;
   box-sizing: border-box;
 }
@@ -115,7 +121,7 @@ export default {
   height: 40px;
 }
 .song-info {
-  width: calc(100% - 40px);
+  width: calc(100% - 40px - 30px - 10px);
   display: flex;
   flex-direction: column;
   color: var(--content-color);
@@ -130,8 +136,14 @@ export default {
   color: var(--subtitle-color);
   font-size: 10px;
 }
-.funcs{
+/* .funcs{
   margin: 5px var(--card-inset-big);
   text-align: right;
+} */
+.list-item .rank{
+  flex-shrink: 0;
+  color: var(--subtitle-color);
+  width: 10px;
+  display: block;
 }
 </style>

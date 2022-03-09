@@ -41,7 +41,7 @@
       </form>
     </div>
     <transition name="fade">
-      <div class="more-engines" v-if="moreChoose">
+      <div class="more-engines fix-scrollbar" v-if="moreChoose">
         <div class="engines-list" v-for="(item, index) in moreEngines" :key="index">
           <span class="engines-list-title">{{ item.attributes.name }}</span>
           <div class="engine-items">
@@ -163,6 +163,7 @@ export default {
 }
 .search-focus {
   border-color: var(--accent-color);
+  background: var(--sub-card-color);
 }
 .search-input {
   /* height: 100%; */
@@ -218,14 +219,7 @@ export default {
   overflow-x: hidden;
   margin-top: 10px;
 }
-.more-engines::-webkit-scrollbar{
-  width: 5px;
-  background: transparent;
-}
-.more-engines::-webkit-scrollbar-thumb{
-  background: var(--subtitle-color);
-  border-radius: 4px;
-}
+
 .engines-list{
   display: flex;
   flex-direction: column;
