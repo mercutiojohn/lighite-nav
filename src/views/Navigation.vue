@@ -7,58 +7,72 @@
       'common-page-blurred': bgPrepared && settings.useBlur,
     }"
   >
-  <!-- 添加浮层 -->
+    <!-- 添加浮层 -->
     <transition name="fade">
       <div
         class="general-window-mask"
         v-if="addWindowShow"
         @click.self="showAdd()"
       >
-        <div class="general-window">
-          <div class="header"><span class="title">添加网址</span></div>
-          <span class="tip">名称</span>
-          <input
-            type="text"
-            v-model="editing.title"
-            name="title"
-            id="title"
-            class="better-input"
-            placeholder="名称"
-          />
-          <span class="tip">URL</span>
-          <input
-            type="text"
-            v-model="editing.url"
-            name="url"
-            id="url"
-            class="better-input"
-            placeholder="URL"
-          />
-          <!-- <span class="tip">图标</span>
-          <input
-            type="text"
-            v-model="editing.icon"
-            name="icon"
-            id="icon"
-            class="better-input"
-            placeholder="图标URL"
-          />
-          <span class="tip">主色调</span>
-          <input
-            type="text"
-            v-model="editing.color"
-            name="color"
-            id="icon"
-            class="better-input"
-            placeholder="格式:#AABBCC"
-          /> -->
-          <button class="submit-button ef-pudding" @click="addNewFavor()">
-            提交
-          </button>
+        <div class="general-window fix-scrollbar">
+          <div class="window-content">
+            <div class="header"><span class="title">添加网址</span></div>
+            <span class="tip">名称</span>
+            <input
+              type="text"
+              v-model="editing.title"
+              name="title"
+              id="title"
+              class="better-input"
+              placeholder="名称"
+            />
+            <span class="tip">URL</span>
+            <input
+              type="text"
+              v-model="editing.url"
+              name="url"
+              id="url"
+              class="better-input"
+              placeholder="URL"
+            />
+            <!-- <span class="tip">图标</span>
+            <input
+              type="text"
+              v-model="editing.icon"
+              name="icon"
+              id="icon"
+              class="better-input"
+              placeholder="图标URL"
+            /> -->
+            <span class="tip">主色调</span>
+            <div @click="colorInputClick">
+              <input
+                @click="colorInputClick"
+                type="text"
+                v-model="editing.color"
+                name="color"
+                id="icon"
+                class="better-input"
+                placeholder="格式:#AABBCC"
+                disabled
+              />
+            </div>
+            <div v-show="isShowColors" class="color-select-layer">
+              <sketch-picker
+                v-model="editing.color"
+                @input="colorValueChange"
+              ></sketch-picker>
+            </div>
+          </div>
+          <div class="window-bottom">
+            <button class="submit-button ef-pudding" @click="addNewFavor()">
+              提交
+            </button>
+          </div>
         </div>
       </div>
     </transition>
-  <!-- 收藏 -->
+    <!-- 收藏 -->
     <div class="list-header">
       <span class="title">我的收藏</span>
       <button class="icon-button" @click="showModify()">
@@ -79,11 +93,13 @@
         :class="{
           'nav-item': true,
           'ef-float': true,
-          'nav-item-blurred':bgPrepared && settings.useBlur,
+          'nav-item-blurred': bgPrepared && settings.useBlur,
           'nav-item-wide': testSubsites(item.attributes),
         }"
         v-for="(item, index) in navs.favorites"
         :key="index"
+        @mouseover="navItemHovered(-1, index)"
+        @mouseout="navItemLeave()"
       >
         <div
           :class="{
@@ -147,7 +163,10 @@
       </a>
       <transition name="fade">
         <div
-          class="nav-item ef-float add-nav"
+          :class="{
+            'nav-item ef-float add-nav': true,
+            'nav-item-blurred': bgPrepared && settings.useBlur,
+          }"
           @click="showAdd()"
           v-if="modifyShow"
         >
@@ -171,6 +190,8 @@
             'nav-item-blurred': bgPrepared && settings.useBlur,
             'nav-item-wide': testSubsites(item_1.attributes),
           }"
+          @mouseover="navItemHovered(index, index_1)"
+          @mouseout="navItemLeave()"
           v-for="(item_1, index_1) in item.attributes.sites.data"
           :key="index_1"
         >
@@ -214,6 +235,15 @@
               class="title fix-text-overflow"
               v-text="item_1.attributes.title"
             ></span>
+            <span
+              :class="{
+                desc: true,
+                'desc-show':
+                  currHoverIndex[0] == index && currHoverIndex[1] == index_1,
+              }"
+              v-text="item_1.attributes.desc"
+              v-if="item_1.attributes.desc"
+            ></span>
           </div>
           <div class="subsites-list" v-if="testSubsites(item_1.attributes)">
             <a
@@ -239,11 +269,15 @@
 </template>
 
 <script>
+import { Sketch } from "vue-color";
 export default {
   name: "Navigation",
-  components: {},
+  components: {
+    "sketch-picker": Sketch,
+  },
   data() {
     return {
+      isShowColors: true,
       navs: {
         favorites: [
           {
@@ -266,6 +300,7 @@ export default {
           data: [],
         },
       },
+      currHoverIndex: [-2, -1],
     };
   },
   computed: {
@@ -275,9 +310,9 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
-    settings: function(){
+    settings: function () {
       return this.$store.getters.getSettings;
-    }
+    },
   },
   watch: {
     navs() {
@@ -285,6 +320,18 @@ export default {
     },
   },
   methods: {
+    navItemHovered(list, item) {
+      this.currHoverIndex = [list, item];
+    },
+    navItemLeave() {
+      this.currHoverIndex = [-2, -1];
+    },
+    colorValueChange(val) {
+      this.editing.color = val.hex;
+    },
+    colorInputClick() {
+      this.isShowColors = !this.isShowColors;
+    },
     testSubsites(attrs) {
       try {
         if (attrs.subsites.data[0] !== undefined) return true;
@@ -311,9 +358,10 @@ export default {
       this.modifyShow ? (this.modifyShow = false) : (this.modifyShow = true);
     },
     showAdd() {
-      this.addWindowShow
-        ? (this.addWindowShow = false)
-        : (this.addWindowShow = true);
+      if(this.addWindowShow)
+         {this.addWindowShow = false;this.isShowColors = false}
+        else
+         {this.addWindowShow = true;}
     },
     getRemoteNavs() {
       try {
@@ -432,10 +480,25 @@ export default {
 .nav-item .icon-no-padding {
   padding: 0;
 }
-.nav-item .title {
-  font-size: 16px;
+.nav-item .left .title {
+  font-size: 0.9em;
 }
-
+.nav-item .left .desc {
+  display: none;
+}
+.nav-item .left .desc-show {
+  display: block;
+  position: absolute;
+  bottom: calc(-1em - 20px);
+  left: 0;
+  width: max-content;
+  /* display: block; */
+  padding: 5px 15px;
+  background: var(--card-color);
+  border-radius: var(--item-radius);
+  max-width: 300px;
+  box-shadow: 0 10px 20px 3px #00000024;
+}
 .subsites-list {
   margin-left: 10px;
   display: flex;

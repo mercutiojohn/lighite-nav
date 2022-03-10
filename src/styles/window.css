@@ -12,18 +12,34 @@
 }
 
 .general-window {
+    border-radius: var(--card-radius);
+    background: var(--card-color);
+    width: 400px;
+}
+
+.general-window .window-content {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     padding: 20px;
-    width: 300px;
-    max-height: calc(100vh - 400px);
-    overflow-y: scroll;
-    border-radius: var(--card-radius);
-    background: var(--card-color);
+    max-height: calc(100vh - 200px);
 }
 
-.general-window::-webkit-scrollbar {
-    width: 5px;
+.general-window .window-bottom {
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    position: sticky;
+    background: var(--card-color);
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+button.submit-button {
+    width: 100%;
+}
+
+button.cancel-button {
+    width: 100%;
 }
