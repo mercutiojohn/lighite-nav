@@ -38,6 +38,8 @@
               :href="listItem.url"
               target="_blank"
             >
+              <span class="rank" v-text="listIndex + 1 + ' '"></span>
+
               <img
                 :src="listItem.cover"
                 alt=""
@@ -58,7 +60,6 @@
                   {{ listItem.new_ep ? listItem.new_ep.index_show : "" }}
                 </span>
               </div>
-              <span class="rank" v-text="listIndex + 1 + ' '"></span>
             </a>
           </div>
         </transition>
@@ -272,5 +273,11 @@ export default {
   align-items: center;
   height: 100px;
   color: var(--subtitle-color);
+}
+.bilianime-item .rank{
+  flex-shrink: 0;
+  color: var(--subtitle-color);
+  width: 10px;
+  display: block;
 }
 </style>

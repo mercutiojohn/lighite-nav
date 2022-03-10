@@ -204,6 +204,11 @@ export default {
 .card-new-2{
   grid-column-start: span 2;
 }
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .card-new-1 {
+    grid-column-start: span 2;
+  }
+}
 @media screen and (min-width: 700px) and (max-width: 1000px) {
   .card-main,
   .card-small {

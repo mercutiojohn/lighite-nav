@@ -22,6 +22,7 @@
     <transition name="fade">
     <div class="list fix-scrollbar card-list-height" v-if="!loading">
         <a class="list-item ef-fadein" v-for="(item,index) in tracks" :key="index" :href="'https://music.163.com/#/song?id='+item.id" target="_blank">
+            <span class="rank" v-text="(index+1)+' '"></span>
             <img :src="item.al.picUrl" alt="" srcset="" class="album-cover">
             <div class="song-info">
                 <span class="title fix-text-overflow" v-text="item.name"></span>
@@ -34,7 +35,6 @@
                     <span v-for="(item_1,index_1) in item.ar" :key="index_1">{{item_1.name + (((index_1 + 1) !== item.ar.length) ? ' / ':'')}}</span>
                 </span>
             </div>
-            <span class="rank" v-text="(index+1)+' '"></span>
         </a>
     </div>
     </transition>
@@ -99,7 +99,7 @@ export default {
 </style>
 <style lang="css" scoped>
 .list-item {
-  padding: 10px 10px;
+  padding: 8px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,11 +117,12 @@ export default {
   box-sizing: border-box;
 }
 .album-cover {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  border-radius: 2px;
 }
 .song-info {
-  width: calc(100% - 40px - 30px - 10px);
+  width: calc(100% - 40px - 30px - 5px);
   display: flex;
   flex-direction: column;
   color: var(--content-color);

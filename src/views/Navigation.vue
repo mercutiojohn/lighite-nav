@@ -277,7 +277,7 @@ export default {
   },
   data() {
     return {
-      isShowColors: true,
+      isShowColors: false,
       navs: {
         favorites: [
           {
@@ -317,6 +317,20 @@ export default {
   watch: {
     navs() {
       this.$store.commit("setNavs", this.navs);
+    },
+    addWindowShow(newStat) {
+      if (!newStat) this.isShowColors = false;
+      else {
+        this.editing = {
+          title: "",
+          color: "#ffffff",
+          icon: "",
+          url: "",
+          subsites: {
+            data: [],
+          },
+        };
+      }
     },
   },
   methods: {
@@ -358,10 +372,7 @@ export default {
       this.modifyShow ? (this.modifyShow = false) : (this.modifyShow = true);
     },
     showAdd() {
-      if(this.addWindowShow)
-         {this.addWindowShow = false;this.isShowColors = false}
-        else
-         {this.addWindowShow = true;}
+      this.addWindowShow = !this.addWindowShow;
     },
     getRemoteNavs() {
       try {
