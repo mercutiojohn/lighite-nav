@@ -41,7 +41,7 @@
               <span class="rank" v-text="listIndex + 1 + ' '"></span>
 
               <img
-                :src="listItem.cover"
+                v-lazy="listItem.cover"
                 alt=""
                 srcset=""
                 class="bilianime-cover"

@@ -1,5 +1,5 @@
 <template>
-  <div ref="home" :class="{ home: true, 'home-with-bg': bgPrepared }">
+  <div ref="home" :class="{ home: true, 'home-with-bg': bgPrepared,'fix-scrollbar':true}">
     <WallpaperShow />
     <div :class="{'blocks':true}">
       <div
@@ -118,6 +118,9 @@ export default {
 .home {
   --padding: 50px;
   padding: var(--padding);
+}
+.home::-webkit-scrollbar{
+  display: none;
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
   .home {

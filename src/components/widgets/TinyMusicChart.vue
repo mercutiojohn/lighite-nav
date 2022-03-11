@@ -23,14 +23,14 @@
     <div class="list fix-scrollbar card-list-height" v-if="!loading">
         <a class="list-item ef-fadein" v-for="(item,index) in tracks" :key="index" :href="'https://music.163.com/#/song?id='+item.id" target="_blank">
             <span class="rank" v-text="(index+1)+' '"></span>
-            <img :src="item.al.picUrl" alt="" srcset="" class="album-cover">
+            <img v-lazy="item.al.picUrl" alt="" srcset="" class="album-cover">
             <div class="song-info">
                 <span class="title fix-text-overflow" v-text="item.name"></span>
                 <span class="alias" v-for="(item_1,index_1) in item.alia" :key="index_1">
                     <span v-text="item_1"></span>
                 </span>
                 <!-- <span class="album-name fix-text-overflow" v-text="item.al.name"></span> -->
-                </span>
+                <!-- </span> -->
                 <span class="artists fix-text-overflow">
                     <span v-for="(item_1,index_1) in item.ar" :key="index_1">{{item_1.name + (((index_1 + 1) !== item.ar.length) ? ' / ':'')}}</span>
                 </span>
@@ -55,10 +55,11 @@ export default {
         {
           title: "Billboard榜",
           id: "60198",
-        },{
+        },
+        {
           title: "Oricon榜",
-          id:"60131"
-        }
+          id: "60131",
+        },
       ],
       tracks: [],
       currChart: 0,
@@ -141,7 +142,7 @@ export default {
   margin: 5px var(--card-inset-big);
   text-align: right;
 } */
-.list-item .rank{
+.list-item .rank {
   flex-shrink: 0;
   color: var(--subtitle-color);
   width: 10px;

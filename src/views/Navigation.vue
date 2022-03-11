@@ -72,197 +72,235 @@
         </div>
       </div>
     </transition>
-    <!-- 收藏 -->
-    <div class="list-header">
-      <span class="title">我的收藏</span>
-      <button class="icon-button" @click="showModify()">
-        <span
-          :class="{
-            iconfont: true,
-            'icon-edit-2': !modifyShow,
-            'icon-check': modifyShow,
-          }"
-        ></span>
-        <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
-      </button>
-    </div>
-    <div class="nav-list">
-      <a
-        :href="item.attributes.url"
-        target="_blank"
-        :class="{
-          'nav-item': true,
-          'ef-float': true,
-          'nav-item-blurred': bgPrepared && settings.useBlur,
-          'nav-item-wide': testSubsites(item.attributes),
-        }"
-        v-for="(item, index) in navs.favorites"
-        :key="index"
-        @mouseover="navItemHovered(-1, index)"
-        @mouseout="navItemLeave()"
-      >
-        <div
-          :class="{
-            left: true,
-            'left-wide': testSubsites(item.attributes),
-          }"
-        >
-          <div class="top">
-            <div
-              class="icon-area"
-              :style="'background-color: ' + item.attributes.color"
-            >
-              <img
-                :class="{
-                  icon: true,
-                  'icon-no-padding': item.attributes.no_padding,
-                }"
-                :src="getIcon(item)"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <transition name="fade">
-              <div
-                :class="{
-                  'btn-modify': true,
-                  'remove-favor': true,
-                  'ef-pudding': true,
-                  'icon-button': true,
-                }"
-                @click.prevent="removeFavor(index)"
-                v-if="modifyShow"
-              >
-                <span class="iconfont icon-trash"></span>
-              </div>
-            </transition>
-          </div>
-
-          <span
-            class="title fix-text-overflow"
-            v-text="item.attributes.title"
-          ></span>
+    <!-- 左侧快速导航 -->
+    <div class="left">
+      <div class="header-list fix-scrollbar">
+        <div class="list-header" ref="favorites">
+          <span class="title">分类</span>
         </div>
-        <div class="subsites-list" v-if="testSubsites(item.attributes)">
+        <div class="group">
+          <div :class="{'item':true, 'item-active':currSubItem == -1,'item-blurred':bgPrepared}" @click="goAnchor(-1)">我的收藏</div>
+        </div>
+        <div class="sub-header"><span class="title">精选好站</span></div>
+        <div class="group">
+          <div
+            :class="{'item':true, 'item-active':currSubItem == index,'item-blurred':bgPrepared}"
+            v-for="(item, index) in navs.others"
+            :key="index"
+            @click="goAnchor(index)"
+          >
+            <span class="name" v-text="item.attributes.name"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <!-- 收藏 -->
+      <div class="nav-block">
+        <div class="list-header" ref="favorites">
+          <span class="title">我的收藏</span>
+          <button class="icon-button" @click="showModify()">
+            <span
+              :class="{
+                iconfont: true,
+                'icon-edit-2': !modifyShow,
+                'icon-check': modifyShow,
+              }"
+            ></span>
+            <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
+          </button>
+        </div>
+        <div class="nav-list">
           <a
-            :href="item_2.attributes.url"
+            :href="item.attributes.url"
             target="_blank"
             :class="{
-              'subsite-item': true,
-              'subsite-item-blurred': bgPrepared && settings.useBlur,
+              'nav-item': true,
+              'ef-float': true,
+              'nav-item-blurred': bgPrepared && settings.useBlur,
+              'nav-item-wide': testSubsites(item.attributes),
             }"
-            v-for="(item_2, index_2) in item.attributes.subsites.data"
-            :key="index_2"
+            v-for="(item, index) in navs.favorites"
+            :key="index"
+            @mouseover="navItemHovered(-1, index)"
+            @mouseout="navItemLeave()"
           >
-            <span
-              class="title fix-text-overflow"
-              v-text="item_2.attributes.title"
-            ></span>
-          </a>
-        </div>
-      </a>
-      <transition name="fade">
-        <div
-          :class="{
-            'nav-item ef-float add-nav': true,
-            'nav-item-blurred': bgPrepared && settings.useBlur,
-          }"
-          @click="showAdd()"
-          v-if="modifyShow"
-        >
-          <span class="iconfont icon-add"></span>
-          <span class="tip">自定义</span>
-        </div>
-      </transition>
-    </div>
-    <!-- 推荐列表 -->
-    <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
-      <div class="list-header">
-        <span class="title" v-text="item.attributes.name"></span>
-      </div>
-      <div class="nav-list" v-if="item.attributes.sites.data != null">
-        <a
-          :href="item_1.attributes.url"
-          target="_blank"
-          :class="{
-            'nav-item': true,
-            'ef-float': true,
-            'nav-item-blurred': bgPrepared && settings.useBlur,
-            'nav-item-wide': testSubsites(item_1.attributes),
-          }"
-          @mouseover="navItemHovered(index, index_1)"
-          @mouseout="navItemLeave()"
-          v-for="(item_1, index_1) in item.attributes.sites.data"
-          :key="index_1"
-        >
-          <div
-            :class="{
-              left: true,
-              'left-wide': testSubsites(item_1.attributes),
-            }"
-          >
-            <div class="top">
-              <div
-                class="icon-area"
-                :style="'background-color: ' + item_1.attributes.color"
-              >
-                <img
-                  :class="{
-                    icon: true,
-                    'icon-no-padding': item_1.attributes.no_padding,
-                  }"
-                  :src="getIcon(item_1)"
-                  alt=""
-                  srcset=""
-                />
-              </div>
-              <transition name="fade">
-                <div
-                  :class="{
-                    'btn-modify': true,
-                    'add-favor': true,
-                    'ef-pudding': true,
-                    'icon-button': true,
-                  }"
-                  v-if="modifyShow"
-                  @click.prevent="addFavor(item_1)"
-                >
-                  <span class="iconfont icon-add"></span>
-                </div>
-              </transition>
-            </div>
-            <span
-              class="title fix-text-overflow"
-              v-text="item_1.attributes.title"
-            ></span>
-            <span
+            <div
               :class="{
-                desc: true,
-                'desc-show':
-                  currHoverIndex[0] == index && currHoverIndex[1] == index_1,
+                left: true,
+                'left-wide': testSubsites(item.attributes),
               }"
-              v-text="item_1.attributes.desc"
-              v-if="item_1.attributes.desc"
-            ></span>
-          </div>
-          <div class="subsites-list" v-if="testSubsites(item_1.attributes)">
-            <a
-              :href="item_2.attributes.url"
-              target="_blank"
-              :class="{
-                'subsite-item': true,
-                'subsite-item-blurred': bgPrepared && settings.useBlur,
-              }"
-              v-for="(item_2, index_2) in item_1.attributes.subsites.data"
-              :key="index_2"
             >
+              <div class="top">
+                <div
+                  class="icon-area"
+                  :style="'background-color: ' + item.attributes.color"
+                >
+                  <img
+                    :class="{
+                      icon: true,
+                      'icon-no-padding': item.attributes.no_padding,
+                    }"
+                    :src="getIcon(item)"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <transition name="fade">
+                  <div
+                    :class="{
+                      'btn-modify': true,
+                      'remove-favor': true,
+                      'ef-pudding': true,
+                      'icon-button': true,
+                    }"
+                    @click.prevent="removeFavor(index)"
+                    v-if="modifyShow"
+                  >
+                    <span class="iconfont icon-trash"></span>
+                  </div>
+                </transition>
+              </div>
               <span
                 class="title fix-text-overflow"
-                v-text="item_2.attributes.title"
+                v-text="item.attributes.title"
               ></span>
-            </a>
-          </div>
-        </a>
+            </div>
+            <div class="subsites-list" v-if="testSubsites(item.attributes)">
+              <a
+                :href="item_2.attributes.url"
+                target="_blank"
+                :class="{
+                  'subsite-item': true,
+                  'subsite-item-blurred': bgPrepared && settings.useBlur,
+                }"
+                v-for="(item_2, index_2) in item.attributes.subsites.data"
+                :key="index_2"
+              >
+                <span
+                  class="title fix-text-overflow"
+                  v-text="item_2.attributes.title"
+                ></span>
+              </a>
+            </div>
+          </a>
+          <transition name="fade">
+            <div
+              :class="{
+                'nav-item ef-float add-nav': true,
+                'nav-item-blurred': bgPrepared && settings.useBlur,
+              }"
+              @click="showAdd()"
+              v-if="modifyShow"
+            >
+              <span class="iconfont icon-add"></span>
+              <span class="tip">自定义</span>
+            </div>
+          </transition>
+        </div>
+      </div>
+      <!-- 推荐列表 -->
+      <div class="list-header">
+        <span class="title">精选好站</span>
+        <button class="icon-button" @click="showModify()">
+          <span
+            :class="{
+              iconfont: true,
+              'icon-add': !modifyShow,
+              'icon-check': modifyShow,
+            }"
+          ></span>
+          <span class="tip">{{ !modifyShow ? "添加" : "完成" }}</span>
+        </button>
+      </div>
+      <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
+        <div class="sub-header" :ref="'sublist_' + index">
+          <span class="title" v-text="item.attributes.name"></span>
+        </div>
+        <div class="nav-list" v-if="item.attributes.sites.data != null">
+          <a
+            :href="item_1.attributes.url"
+            target="_blank"
+            :class="{
+              'nav-item': true,
+              'ef-float': true,
+              'nav-item-blurred': bgPrepared && settings.useBlur,
+              'nav-item-wide': testSubsites(item_1.attributes),
+            }"
+            @mouseover="navItemHovered(index, index_1)"
+            @mouseout="navItemLeave()"
+            v-for="(item_1, index_1) in item.attributes.sites.data"
+            :key="index_1"
+          >
+            <div
+              :class="{
+                left: true,
+                'left-wide': testSubsites(item_1.attributes),
+              }"
+            >
+              <div class="top">
+                <div
+                  class="icon-area"
+                  :style="'background-color: ' + item_1.attributes.color"
+                >
+                  <img
+                    :class="{
+                      icon: true,
+                      'icon-no-padding': item_1.attributes.no_padding,
+                    }"
+                    v-lazy="getIcon(item_1)"
+                    alt=""
+                    srcset=""
+                  />
+                </div>
+                <transition name="fade">
+                  <div
+                    :class="{
+                      'btn-modify': true,
+                      'add-favor': true,
+                      'ef-pudding': true,
+                      'icon-button': true,
+                    }"
+                    v-if="modifyShow"
+                    @click.prevent="addFavor(item_1)"
+                  >
+                    <span class="iconfont icon-add"></span>
+                  </div>
+                </transition>
+              </div>
+              <span
+                class="title fix-text-overflow"
+                v-text="item_1.attributes.title"
+              ></span>
+              <span
+                :class="{
+                  desc: true,
+                  'desc-show':
+                    currHoverIndex[0] == index && currHoverIndex[1] == index_1,
+                }"
+                v-text="item_1.attributes.desc"
+                v-if="item_1.attributes.desc"
+              ></span>
+            </div>
+            <div class="subsites-list" v-if="testSubsites(item_1.attributes)">
+              <a
+                :href="item_2.attributes.url"
+                target="_blank"
+                :class="{
+                  'subsite-item': true,
+                  'subsite-item-blurred': bgPrepared && settings.useBlur,
+                }"
+                v-for="(item_2, index_2) in item_1.attributes.subsites.data"
+                :key="index_2"
+              >
+                <span
+                  class="title fix-text-overflow"
+                  v-text="item_2.attributes.title"
+                ></span>
+              </a>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -301,6 +339,7 @@ export default {
         },
       },
       currHoverIndex: [-2, -1],
+      currSubItem:-1,
     };
   },
   computed: {
@@ -334,6 +373,16 @@ export default {
     },
   },
   methods: {
+    goAnchor(index) {
+      if (index == -1) {
+        this.currSubItem = -1;
+        this.$refs.favorites.scrollIntoView();
+      } else {
+        this.currSubItem = index;
+        let tag = "sublist_" + index;
+        this.$refs[tag][0].scrollIntoView();
+      }
+    },
     navItemHovered(list, item) {
       this.currHoverIndex = [list, item];
     },
@@ -432,10 +481,74 @@ export default {
 <style lang="css" src="../styles/window.css" scoped>
 </style>
 <style scoped>
-.navigation {
-  /* overflow: hidden; */
+hr {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--line-color);
 }
-
+.navigation {
+  display: flex;
+  --hlist-width: 250px;
+}
+.navigation > .left {
+  position: sticky;
+  top: 0;
+  width: var(--hlist-width);
+}
+.header-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: scroll;
+  box-sizing: border-box;
+  border-radius: var(--item-radius);
+}
+.header-list .item {
+  padding: 10px 8px;
+  background: var(--sub-card-color);
+  /* border-radius: var(--item-radius); */
+  border-bottom: 1px solid var(--line-color);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.header-list .item-blurred{
+  background: var(--blurred-sub-card-color);
+}
+.header-list .item:first-child {
+  border-radius: var(--item-radius) var(--item-radius) 0 0;
+}
+.header-list .item:last-child {
+  border-radius: 0 0 var(--item-radius) var(--item-radius);
+  border-bottom: none;
+}
+.header-list .item:only-child {
+  border-radius: var(--item-radius);
+  border-bottom: none;
+}
+.header-list .item-active {
+  background: var(--accent-color);
+  color: #fff;
+}
+.header-list .item:hover{
+  background: var(--hover-color);
+  color: var(--content-color);
+}
+@media screen and (max-width: 1000px) {
+  .navigation {
+    --hlist-width: 0;
+  }
+  .header-list {
+    display: none;
+  }
+}
+.navigation > .right {
+  width: calc(100% - var(--hlist-width));
+}
+.nav-block {
+  display: flex;
+  flex-direction: column;
+}
 .nav-list {
   display: grid;
   gap: 10px;
@@ -511,7 +624,6 @@ export default {
   box-shadow: 0 10px 20px 3px #00000024;
 }
 .subsites-list {
-  margin-left: 10px;
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
@@ -586,6 +698,7 @@ export default {
   overflow: hidden;
 }
 .left {
+  margin-right: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -598,16 +711,28 @@ export default {
 }
 /* list */
 .list-header {
-  padding: 10px 0 5px 0;
+  padding: 20px 0 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line-color);
+  /* position: sticky; */
+  /* top:var(--head-height); */
+}
+.list-header .title {
+  font-weight: 900;
+  font-size: 1.4em;
+}
+.sub-header {
+  padding: 30px 0 10px 5px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   /* position: sticky; */
   /* top:var(--head-height); */
 }
-.list-header .title {
-  font-weight: 900;
-  font-size: 20px;
+.sub-header .title {
+  font-size: 1.3em;
 }
 .list-header .icon-button {
   border: 2px solid var(--line-color);

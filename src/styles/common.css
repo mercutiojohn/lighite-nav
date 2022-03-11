@@ -30,6 +30,12 @@ body {
     /* color: #2c3e50; */
 }
 
+body::-webkit-scrollbar {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -54,7 +60,7 @@ input[type=text].better-input {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--input-border-color);
+    border-color: transparent;
     border-radius: var(--card-radius);
     padding: 9px;
     box-sizing: border-box;
@@ -518,6 +524,10 @@ button.submit-button:active {
 }
 
 .fix-scrollbar::-webkit-scrollbar {
+    height: 0;
+}
+
+.fix-scrollbar::-webkit-scrollbar {
     display: block;
     /* width: 8px; */
     width: 4px;
@@ -563,7 +573,7 @@ button.submit-button:active {
 }
 
 .fix-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+    background-color: #cccccc86;
     /* background-color: var(--sub-card-color); */
     border-radius: 5px;
     cursor: pointer;

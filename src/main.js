@@ -10,9 +10,15 @@ Vue.prototype.$axios = axios
 Vue.prototype.$bus = new Vue();
 
 
-import ScrollDiv from 'vue-scroll-div';
-
-Vue.use(ScrollDiv);
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
+    // 配置项
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: 'dist/error.png',
+    loading: 'dist/loading.gif',
+    attempt: 1
+})
 
 import base from '@/utils/api/base.js'
 

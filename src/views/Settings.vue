@@ -228,4 +228,7 @@ export default {
   margin-top: 20px;
   color: var(--subtitle-color);
 }
+input[type=text].better-input {
+    border-color: var(--line-color);
+}
 </style>
