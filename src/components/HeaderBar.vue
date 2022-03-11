@@ -13,7 +13,7 @@
       ></span>
     </div>
     <div class="profile-box">
-      <button ref="addBtn" class="add-to-home-screen icon-button">
+      <button ref="addBtn" :class="{ 'add-to-home-screen':true, 'icon-button': true, 'add-to-home-screen-blurred': bgPrepared }">
         <span class="iconfont icon-add"></span>
         <span class="tip">添加到桌面</span>
       </button>
@@ -100,11 +100,11 @@ export default {
 
     // Notifications
 
-    Notification.requestPermission().then(function (result) {
-      if (result === "granted") {
-        this.randomNotification();
-      }
-    });
+    // Notification.requestPermission().then(function (result) {
+    //   if (result === "granted") {
+    //     this.randomNotification();
+    //   }
+    // });
 
     // A2HS
     let deferredPrompt;
@@ -200,5 +200,9 @@ export default {
 .header-with-bg-blurred {
   background: var(--blurred-card-color);
   backdrop-filter: blur(var(--blur-width)) saturate(280%);
+}
+.add-to-home-screen-blurred{
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
 }
 </style>
