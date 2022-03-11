@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.56dada9c5c4ded2eff164418ec12782e.js"
+  "precache-manifest.28fd2c8364a349c9f6ce87e2f9e6d2e7.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "lighite-nav"});
