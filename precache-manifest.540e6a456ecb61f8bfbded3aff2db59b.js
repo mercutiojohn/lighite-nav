@@ -1,22 +1,22 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "eff30fd8d766aef1b563",
-    "url": "css/about.fc28bf58.css"
+    "revision": "d34d5f3d7e75271f4055",
+    "url": "css/about.9f4c0dd9.css"
   },
   {
-    "revision": "72cce429922018c1ab8e",
-    "url": "css/app.e016ccd5.css"
+    "revision": "1c777e88b2b23fa702d9",
+    "url": "css/app.9e0be619.css"
   },
   {
-    "revision": "b48550a0168ad990ae8c",
+    "revision": "04027d54fbee4760140b",
     "url": "css/books.dd472137.css"
   },
   {
-    "revision": "029dd4bf0ddbeebff5e8",
-    "url": "css/navigation.174264da.css"
+    "revision": "31b5bb2dd6b58a280fdb",
+    "url": "css/navigation.662fd065.css"
   },
   {
-    "revision": "b3d7f9fc4abfcbc903ba",
+    "revision": "0533463fe6cc81f7f6d3",
     "url": "css/tools.78f15f78.css"
   },
   {
@@ -44,32 +44,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "ef1a60d9b4c19cf8aed494f47bcad778",
+    "revision": "7335d84c1e4a81033e6c10ffdd191a98",
     "url": "index.html"
   },
   {
-    "revision": "eff30fd8d766aef1b563",
-    "url": "js/about.5c3d8366.js"
+    "revision": "d34d5f3d7e75271f4055",
+    "url": "js/about.ca722b16.js"
   },
   {
-    "revision": "72cce429922018c1ab8e",
-    "url": "js/app.cc16a531.js"
+    "revision": "1c777e88b2b23fa702d9",
+    "url": "js/app.834d4b70.js"
   },
   {
-    "revision": "b48550a0168ad990ae8c",
-    "url": "js/books.cf95eee2.js"
+    "revision": "04027d54fbee4760140b",
+    "url": "js/books.c810d1d9.js"
   },
   {
-    "revision": "b0e4c88395f73c5134ca",
-    "url": "js/chunk-vendors.d55d090b.js"
+    "revision": "81e597bdb6eb2badb1d6",
+    "url": "js/chunk-vendors.7263dccb.js"
   },
   {
-    "revision": "029dd4bf0ddbeebff5e8",
-    "url": "js/navigation.3efd7cb2.js"
+    "revision": "31b5bb2dd6b58a280fdb",
+    "url": "js/navigation.f674387f.js"
   },
   {
-    "revision": "b3d7f9fc4abfcbc903ba",
-    "url": "js/tools.d7cf54c7.js"
+    "revision": "0533463fe6cc81f7f6d3",
+    "url": "js/tools.553ffcad.js"
   },
   {
     "revision": "642c6bc02446c3d75ea2e16cadba1339",
