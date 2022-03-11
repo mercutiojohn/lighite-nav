@@ -54,11 +54,11 @@ input[type=text].better-input {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
     border-width: 2px;
     border-style: solid;
-    border-color: transparent;
+    border-color: var(--input-border-color);
     border-radius: var(--card-radius);
     padding: 9px;
     box-sizing: border-box;
-    background: var(--input-color);
+    background: var(--input-bg-color);
     color: var(--content-color);
     font-size: 15px;
     border-radius: var(--item-radius);
@@ -151,8 +151,9 @@ input[type=checkbox].better-input+label:before {
     width: 16px;
     height: 16px;
     content: '';
-    border: 2px solid #c0c0c0;
+    border: 2px solid var(--input-border-color);
     transform: translateY(-11px);
+    background: var(--input-bg-color);
 }
 
 .magic-radio+label:after,

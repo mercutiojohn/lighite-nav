@@ -26,7 +26,8 @@
     /* 强调色 */
     --warn-color: #ff2600;
     /* 控件 */
-    --input-color: #fcfcfc;
+    --input-bg-color: #f1f1f1;
+    --input-border-color: #c0c0c0;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -51,6 +52,6 @@
         /* 模糊文字 */
         --blurred-line-color: #ffffff15;
         /* 控件 */
-        --input-color: #313131;
+        --input-bg-color: #313131;
     }
 }
