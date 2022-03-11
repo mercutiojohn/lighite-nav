@@ -25,10 +25,12 @@
           <input
             type="checkbox"
             name=""
-            id=""
+            :id="'todo-'+index"
             v-model="item.checked"
             @click="doneTodo(index)"
+            class="better-input"
           />
+          <label :for="'todo-'+index"></label>
           <!-- <span v-text="index"></span> -->
           <span
             v-text="item.text"

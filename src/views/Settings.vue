@@ -21,8 +21,8 @@
             'settings-item': true,
             'settings-item-blurred': bgPrepared && settings.useBlur,
           }"
-          v-show="itemExists(item_1,'ifShow') ? settings[item_1.ifShow] : true"
           v-for="(item_1, index_1) in item.children"
+          v-if="itemExists(item_1,'ifShow') ? settings[item_1.ifShow] : true"
           :key="index_1"
         >
           <div class="left">
@@ -39,7 +39,9 @@
               :id="item_1.model"
               v-model="settings[item_1.model]"
               @click="forceUpdateSettings()"
+              class="better-input"
             />
+            <label :for="item_1.model" v-if="item_1.inputType == 'checkbox'"></label>
           </div>
         </div>
       </div>
@@ -195,6 +197,11 @@ export default {
 .settings-item .left .info .desc {
   font-size: 0.8em;
   color: var(--subtitle-color);
+}
+.settings-item .right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .settings-icon {
   font-size: 24px;

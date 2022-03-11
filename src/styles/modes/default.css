@@ -25,6 +25,8 @@
     --blurred-line-color: #0000001a;
     /* 强调色 */
     --warn-color: #ff2600;
+    /* 控件 */
+    --input-color: #fcfcfc;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -48,5 +50,7 @@
         --line-color: #0000004f;
         /* 模糊文字 */
         --blurred-line-color: #ffffff15;
+        /* 控件 */
+        --input-color: #313131;
     }
 }

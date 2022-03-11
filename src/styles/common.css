@@ -58,7 +58,7 @@ input[type=text].better-input {
     border-radius: var(--card-radius);
     padding: 9px;
     box-sizing: border-box;
-    background: var(--sub-card-color);
+    background: var(--input-color);
     color: var(--content-color);
     font-size: 15px;
     border-radius: var(--item-radius);
@@ -90,6 +90,169 @@ input[type=text].better-input::placeholder {
 }
 
 input[type=text].better-input {}
+
+
+/* input[type=checkbox].better-input {
+    border: var(--line-color);
+    background: var(--subtitle-color);
+    width: 20px;
+    height: 20px;
+    border-radius: var(--item-radius);
+    overflow: hidden;
+    cursor: pointer;
+} */
+
+
+/*  */
+
+@keyframes hover-color {
+    from {
+        border-color: #c0c0c0;
+    }
+    to {
+        border-color: var(--accent-color);
+    }
+}
+
+.magic-radio,
+input[type=checkbox].better-input {
+    position: absolute;
+    display: none;
+}
+
+.magic-radio[disabled],
+input[type=checkbox].better-input[disabled] {
+    cursor: not-allowed;
+}
+
+.magic-radio+label,
+input[type=checkbox].better-input+label {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all .2s ease;
+}
+
+.magic-radio+label:hover:before,
+input[type=checkbox].better-input+label:hover:before {
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-name: hover-color;
+}
+
+.magic-radio+label:before,
+input[type=checkbox].better-input+label:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    content: '';
+    border: 2px solid #c0c0c0;
+    transform: translateY(-11px);
+}
+
+.magic-radio+label:after,
+input[type=checkbox].better-input+label:after {
+    position: absolute;
+    display: none;
+    content: '';
+}
+
+.magic-radio[disabled]+label,
+input[type=checkbox].better-input[disabled]+label {
+    cursor: not-allowed;
+    color: #e4e4e4;
+}
+
+.magic-radio[disabled]+label:hover,
+.magic-radio[disabled]+label:before,
+.magic-radio[disabled]+label:after,
+input[type=checkbox].better-input[disabled]+label:hover,
+input[type=checkbox].better-input[disabled]+label:before,
+input[type=checkbox].better-input[disabled]+label:after {
+    cursor: not-allowed;
+}
+
+.magic-radio[disabled]+label:hover:before,
+input[type=checkbox].better-input[disabled]+label:hover:before {
+    border: 2px solid #e4e4e4;
+    animation-name: none;
+}
+
+.magic-radio[disabled]+label:before,
+input[type=checkbox].better-input[disabled]+label:before {
+    border-color: #e4e4e4;
+}
+
+.magic-radio:checked+label:before,
+input[type=checkbox].better-input:checked+label:before {
+    animation-name: none;
+}
+
+.magic-radio:checked+label:after,
+input[type=checkbox].better-input:checked+label:after {
+    display: block;
+}
+
+.magic-radio+label:before {
+    border-radius: 50%;
+}
+
+.magic-radio+label:after {
+    top: 7px;
+    left: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-color);
+}
+
+.magic-radio:checked+label:before {
+    border: 2px solid var(--accent-color);
+}
+
+.magic-radio:checked[disabled]+label:before {
+    border: 2px solid #c9e2f9;
+}
+
+.magic-radio:checked[disabled]+label:after {
+    background: #c9e2f9;
+}
+
+input[type=checkbox].better-input+label:before {
+    border-radius: 5px;
+}
+
+input[type=checkbox].better-input+label:after {
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg) translateY(-11px) translateX(-1px);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-top: 0;
+    border-left: 0;
+}
+
+input[type=checkbox].better-input:checked+label:before {
+    border-color: var(--accent-color);
+    background: var(--accent-color);
+}
+
+input[type=checkbox].better-input:checked[disabled]+label:before {
+    border: #c9e2f9;
+    background: #c9e2f9;
+}
+
+
+/*  */
 
 button {
     font-family: MiSans, 'San Francisco', 'SF Pro Display', 'PingFang SC', Helvetica, Arial, sans-serif;
