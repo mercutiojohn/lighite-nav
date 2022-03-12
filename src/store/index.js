@@ -14,7 +14,7 @@ export default new Vuex.Store({
             showSeconds: false,
             mode: true,
             customWallpaper: false,
-            useBlur: false,
+            useBlur: true,
             showTips: true,
             weatherCity: '北京',
         },
