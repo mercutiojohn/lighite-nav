@@ -502,7 +502,7 @@ hr {
   gap: 5px;
   overflow: scroll;
   box-sizing: border-box;
-  border-radius: var(--item-radius);
+  border-radius: 0 0 var(--item-radius) var(--item-radius);
 }
 .header-list .item {
   padding: 10px 8px;
@@ -544,6 +544,7 @@ hr {
 }
 .navigation > .right {
   width: calc(100% - var(--hlist-width));
+  height: max-content;
 }
 .nav-block {
   display: flex;
@@ -716,8 +717,11 @@ hr {
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px solid var(--line-color);
-  /* position: sticky; */
-  /* top:var(--head-height); */
+  position: sticky;
+  top:-20px;
+  background: var(--blurred-card-color);
+  backdrop-filter: blur(30px) saturate(180%);
+  z-index: 300;
 }
 .list-header .title {
   font-weight: 900;
