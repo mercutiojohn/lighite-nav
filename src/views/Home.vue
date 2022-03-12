@@ -107,6 +107,7 @@ export default {
     this.$refs.home
       .addEventListener("scroll", this.handleScroll);
     this.title = this.$route.name;
+    this.$store.commit("setHomeScrollTop", 0);
   },
   beforeDestroy() {
     this.$refs.home
