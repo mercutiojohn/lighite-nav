@@ -10,24 +10,33 @@
     <div class="desc" v-if="bgPrepared">
       <transition name="fade">
         <div class="wallpaper-info" v-if="!wallpaperDescHided">
-          <a
-            :href="wallpaperData.links.html"
-            target="_blank"
-            class="author-info ef-fadein"
-          >
-            <img
-              class="avatar"
-              :src="wallpaperData.user.profile_image.small"
-              alt=""
-              srcset=""
-            />
-            <div class="info">
-              <span class="name">{{ wallpaperData.user.name }}</span>
-              <span class="desc">来自 Unsplash，点击查看详情</span>
-            </div>
-          </a>
+          <div class="left">
+            <a
+              v-if="showDesc"
+              :href="wallpaperData.links.html"
+              target="_blank"
+              class="author-info ef-fadein"
+            >
+              <img
+                class="avatar"
+                :src="wallpaperData.user.profile_image.small"
+                alt=""
+                srcset=""
+              />
+              <div class="info">
+                <span class="name">{{ wallpaperData.user.name }}</span>
+                <span class="desc">来自 Unsplash，点击查看详情</span>
+              </div>
+            </a>
+            <a class="author-info ef-fadein" v-else>
+              <div class="info">
+                <span class="name">壁纸加载失败，要不点击右边刷新试试？</span>
+              </div>
+            </a>
+          </div>
           <div class="right">
             <a
+              v-if="showDesc"
               :href="wallpaperData.links.download"
               target="_blank"
               class="download"
@@ -91,6 +100,7 @@ export default {
       wallpaperDescHided: false,
       enterdHide: false,
       spinning: false,
+      showDesc:false,
     };
   },
   computed: {
@@ -98,7 +108,6 @@ export default {
       return this.$store.getters.getBgPrepared;
     },
     wallpaperData: function () {
-      console.log(this.$store.getters.getWallpaperData);
       return this.$store.getters.getWallpaperData;
     },
     settings: function () {
@@ -112,6 +121,10 @@ export default {
     wallpaperDescHided() {
       this.$store.commit("setWallpaperDescHided", this.wallpaperDescHided);
     },
+    wallpaperData(newStat){
+      if(newStat!=={})
+        this.showDesc = true;
+    }
   },
   methods: {
     hideDesc() {
@@ -130,6 +143,8 @@ export default {
     this.$bus.$on("updatedWallpaper", (data) => {
       this.spinning = false;
     });
+    if(this.wallpaperData!=={})
+        this.showDesc = true;
   },
   beforeDestroy() {},
 };
@@ -220,7 +235,7 @@ export default {
 .spinning {
   display: block;
   animation-name: turn;
-  animation-duration: 1s;
+  animation-duration: .3s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }

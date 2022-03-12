@@ -3,12 +3,14 @@
     <div :class="{ 'bg-box': true }" v-if="bgPrepared == true">
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
       <div
-        :class="{ 'bg-blur': true, 'bg-blur-blurred': wallpaperDescHided,'bg-blur-opacity':ifScrolled||wallpaperDescHided }"
+        :class="{
+          'bg-blur': true,
+          'bg-blur-blurred': wallpaperDescHided,
+          'bg-blur-opacity': ifScrolled || wallpaperDescHided,
+        }"
         :style="'--bg-blurred-width:' + getBlurWidth() + 'px'"
       ></div>
-      <div
-        :class="{ 'bg-mask': true}"
-      ></div>
+      <div :class="{ 'bg-mask': true }"></div>
     </div>
   </div>
 </template>
@@ -19,7 +21,7 @@ export default {
   components: {},
   data() {
     return {
-      token: "ZLRNX87vnX1XSkIzJCuMa5E5ty0jQuWbKl7SIm-0G98",
+      token: "it2DXjurbHmXNPRVjpG25eKJkkGk06_Ocln-QlIBmFg",
       srcs: {
         // full: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1&q=85",
         // raw: "https://images.unsplash.com/photo-1644952720775-c769200e6b67?ixid=MnwzMDU3MzR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NDU5NjA2NjU&ixlib=rb-1.2.1",
@@ -73,35 +75,45 @@ export default {
     setBgState(state) {
       this.$store.commit("setBgPrepared", state);
     },
+    getFallbackPic() {
+      this.srcs = {
+        regular: require("../../assets/images/wallpaper/fallback.jpg"),
+      };
+      this.setBgState(true);
+    },
     getPic() {
+      let _this = this;
       this.setBgState(false);
       this.$axios({
         baseURL: "https://api.unsplash.com",
         url: "/photos/random",
         method: "get",
         headers: { Authorization: "Client-ID " + this.token },
-      }).then((response) => {
-        this.setBgState(true);
-        console.log(response.data);
-        this.data = response.data;
-        this.srcs = response.data.urls;
-      });
+      })
+        .catch(function (error) {
+          // 处理错误情况
+          console.log(error);
+          _this.getFallbackPic();
+        })
+        .then((response) => {
+          this.setBgState(true);
+          // console.log(response.data);
+          this.data = response.data;
+          this.srcs = response.data.urls;
+        });
     },
     updatePic() {
-      // this.setBgState(false);
       this.$axios({
         baseURL: "https://api.unsplash.com",
         url: "/photos/random",
         method: "get",
         headers: { Authorization: "Client-ID " + this.token },
       }).then((response) => {
-        // this.setBgState(true);
-        // console.log(response.data);
         this.data = response.data;
         this.srcs = response.data.urls;
         setTimeout(() => {
           this.$bus.$emit("updatedWallpaper", "test");
-        }, 2000);
+        }, 1000);
       });
     },
   },
@@ -110,6 +122,8 @@ export default {
     setTimeout(() => {
       if (this.mode) {
         this.getPic();
+      } else {
+        // this.getFallbackPic();
       }
     }, 10);
     this.$bus.$on("changeWallpaper", (data) => {
@@ -148,7 +162,7 @@ export default {
   backdrop-filter: blur(var(--bg-blurred-width));
   opacity: 0;
 }
-.bg-mask{
+.bg-mask {
   position: absolute;
   left: 0;
   top: 0;
@@ -170,7 +184,7 @@ export default {
   pointer-events: none;
   /* transition: opacity 0.2s ease; */
 }
-.bg-blur-opacity{
+.bg-blur-opacity {
   opacity: 1;
 }
 .bg-blur-blurred {

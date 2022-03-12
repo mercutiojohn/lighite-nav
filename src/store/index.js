@@ -13,9 +13,10 @@ export default new Vuex.Store({
             twelveFormat: true,
             showSeconds: false,
             mode: true,
+            customWallpaper: false,
             useBlur: false,
             showTips: true,
-            weatherCity: '北京'
+            weatherCity: '北京',
         },
         chosenEngine: {
             title: "必应",

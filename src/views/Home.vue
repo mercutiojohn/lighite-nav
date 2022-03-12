@@ -1,48 +1,25 @@
 <template>
-  <div ref="home" :class="{ home: true, 'home-with-bg': bgPrepared,'fix-scrollbar':true}">
+  <div
+    ref="home"
+    :class="{ home: true, 'home-with-bg': bgPrepared, 'fix-scrollbar': true }"
+  >
     <WallpaperShow />
-    <div :class="{'blocks':true}">
+    <div :class="{ blocks: true }">
       <div
-        :class="{ card: true,'fix-scrollbar':true, 'card-blurred': bgPrepared && settings.useBlur, 'card-main': true }"
+        v-for="(item, index) in cards"
+        :key="index"
+        :class="{
+          card: true,
+          'fix-scrollbar': item.ifFixScrollbar,
+          'card-blurred': bgPrepared && settings.useBlur,
+          'card-main': item.card == 'main',
+          'card-long': item.card == 'long',
+          'card-small': item.card == 'small',
+          'card-new-1': item.card == 'new-1',
+          'card-new-2': item.card == 'new-2'
+        }"
       >
-        <GreetingBox />
-      </div>
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
-      >
-        <Weather />
-      </div>
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-long': true }"
-      >
-        <TinyToDo />
-      </div>
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-small': true }"
-      >
-        <!-- <OneSentence /> -->
-      </div>
-      <!-- <div class="card card-sub1'}"><TinyVideo /></div> -->
-      <!-- <div class="card card-sub2'}"><TinyBook /></div> -->
-      <!-- <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-2': true }"
-      >
-        <TinyBook />
-      </div>
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-2': true }"
-      >
-        <TinyVideo />
-      </div> -->
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-1': true }"
-      >
-        <TinyMusicChart />
-      </div>
-      <div
-        :class="{ card: true,'card-blurred': bgPrepared && settings.useBlur, 'card-new-1': true }"
-      >
-        <TinyAnimeChart />
+        <component v-bind:is="item.component"></component>
       </div>
     </div>
   </div>
@@ -59,6 +36,8 @@ import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
+import Music from "@/views/Music.vue"
+// import { component } from "vue/types/umd";
 // import OneSentence from '@/components/widgets/OneSentence.vue';
 
 export default {
@@ -73,12 +52,42 @@ export default {
     Weather,
     TinyToDo,
     WallpaperShow,
+    Music
     // OneSentence,
   },
-  data(){
+  data() {
     return {
-      ifScrolled:false
-    }
+      ifScrolled: false,
+      cards: [
+        { 
+          component: "GreetingBox", 
+          ifMainCard: true,
+          ifFixScrollbar:true, 
+          title: "网址导航",
+          card:"main"
+        },{ 
+          component: "Weather", 
+          title: "天气",
+          card:"small"
+        },{ 
+          component: "TinyToDo", 
+          title: "待办清单",
+          card:"long"
+        },{ 
+          component: "TinyMusic", 
+          title: "歌词",
+          card:"small"
+        },{ 
+          component: "TinyMusicChart", 
+          title: "音乐排行",
+          card:"new-1"
+        },{ 
+          component: "TinyAnimeChart", 
+          title: "番剧排行",
+          card:"new-1"
+        }
+        ],
+    };
   },
   computed: {
     mode: function () {
@@ -87,16 +96,15 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
-    settings: function(){
+    settings: function () {
       return this.$store.getters.getSettings;
-    }
+    },
   },
   methods: {
     handleScroll() {
       // console.log(this.$refs.home)
       // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
-      if (this.$refs.home.scrollTop)
-        this.ifScrolled = true;
+      if (this.$refs.home.scrollTop) this.ifScrolled = true;
       else this.ifScrolled = false;
       this.$store.commit("setIfScrolled", this.ifScrolled);
       this.$store.commit("setHomeScrollTop", this.$refs.home.scrollTop);
@@ -104,14 +112,12 @@ export default {
   },
   created() {},
   mounted() {
-    this.$refs.home
-      .addEventListener("scroll", this.handleScroll);
+    this.$refs.home.addEventListener("scroll", this.handleScroll);
     this.title = this.$route.name;
     this.$store.commit("setHomeScrollTop", 0);
   },
   beforeDestroy() {
-    this.$refs.home
-      .removeEventListener("scroll", this.handleScroll);
+    this.$refs.home.removeEventListener("scroll", this.handleScroll);
     this.$store.commit("setHomeScrollTop", 0);
   },
 };
@@ -122,7 +128,7 @@ export default {
   --padding: 50px;
   padding: var(--padding);
 }
-.home::-webkit-scrollbar{
+.home::-webkit-scrollbar {
   display: none;
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
@@ -147,10 +153,10 @@ export default {
   gap: 1.5vw;
   height: unset;
   overflow: unset;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
-.blocks-hide{
-  opacity: .4;
+.blocks-hide {
+  opacity: 0.4;
 }
 @media screen and (min-width: 1080px) {
   .blocks {
@@ -207,7 +213,7 @@ export default {
 .card-new-1 {
   grid-column-start: span 1;
 }
-.card-new-2{
+.card-new-2 {
   grid-column-start: span 2;
 }
 @media screen and (min-width: 1000px) and (max-width: 1200px) {
