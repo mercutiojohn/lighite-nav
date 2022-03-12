@@ -3,8 +3,11 @@
     <div :class="{ 'bg-box': true }" v-if="bgPrepared == true">
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
       <div
-        :class="{ 'bg-mask': true, 'bg-mask-blurred': wallpaperDescHided }"
+        :class="{ 'bg-blur': true, 'bg-blur-blurred': wallpaperDescHided,'bg-blur-opacity':ifScrolled||wallpaperDescHided }"
         :style="'--bg-blurred-width:' + getBlurWidth() + 'px'"
+      ></div>
+      <div
+        :class="{ 'bg-mask': true}"
       ></div>
     </div>
   </div>
@@ -133,7 +136,19 @@ export default {
   height: 100%;
   object-fit: cover;
 }
-.bg-mask {
+.bg-blur {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(var(--bg-blurred-width));
+  opacity: 0;
+}
+.bg-mask{
   position: absolute;
   left: 0;
   top: 0;
@@ -153,11 +168,12 @@ export default {
       rgba(0, 0, 0, 0.2) 100%
     );
   pointer-events: none;
-  /* transition: all 0.2s ease; */
-  backdrop-filter: blur(var(--bg-blurred-width));
-
+  /* transition: opacity 0.2s ease; */
 }
-.bg-mask-blurred {
+.bg-blur-opacity{
+  opacity: 1;
+}
+.bg-blur-blurred {
   backdrop-filter: blur(100px);
 }
 </style>

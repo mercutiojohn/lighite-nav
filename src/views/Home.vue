@@ -112,6 +112,7 @@ export default {
   beforeDestroy() {
     this.$refs.home
       .removeEventListener("scroll", this.handleScroll);
+    this.$store.commit("setHomeScrollTop", 0);
   },
 };
 </script>

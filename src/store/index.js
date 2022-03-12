@@ -13,7 +13,7 @@ export default new Vuex.Store({
             twelveFormat: true,
             showSeconds: false,
             mode: true,
-            useBlur: true,
+            useBlur: false,
             showTips: true,
             weatherCity: '北京'
         },
