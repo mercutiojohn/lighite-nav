@@ -182,7 +182,7 @@ export default {
   border-radius: var(--item-radius);
 }
 .settings-item-blurred {
-  background: var(--blurred-sub-card-color);
+  /* background: var(--blurred-sub-card-color); */
 }
 .settings-item .left {
   display: flex;

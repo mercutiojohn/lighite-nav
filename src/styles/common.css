@@ -427,8 +427,8 @@ button.submit-button:active {
 }
 
 .common-page-blurred {
-    background: var(--blurred-card-color);
-    backdrop-filter: blur(var(--blur-width));
+    /* background: var(--blurred-card-color); */
+    /* backdrop-filter: blur(var(--blur-width)); */
 }
 
 @media screen and (max-width:600px) {

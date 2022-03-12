@@ -513,7 +513,7 @@ hr {
   transition: all .2s ease;
 }
 .header-list .item-blurred{
-  background: var(--blurred-sub-card-color);
+  /* background: var(--blurred-sub-card-color); */
 }
 .header-list .item:first-child {
   border-radius: var(--item-radius) var(--item-radius) 0 0;
@@ -571,7 +571,7 @@ hr {
   padding: 10px;
 }
 .nav-item-blurred {
-  background: var(--blurred-sub-card-color);
+  /* background: var(--blurred-sub-card-color); */
 }
 .nav-item:hover {
   background: var(--card-color);
@@ -642,8 +642,8 @@ hr {
   box-sizing: border-box;
 }
 .subsite-item-blurred {
-  background: var(--blurred-sub-card-color);
-  border-color: var(--blurred-sub-card-color);
+  /* background: var(--blurred-sub-card-color); */
+  /* border-color: var(--blurred-sub-card-color); */
 }
 .subsite-item:hover {
   background: var(--sub-card-color);
