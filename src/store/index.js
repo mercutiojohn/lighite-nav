@@ -7,13 +7,15 @@ export default new Vuex.Store({
     state: {
         bgPrepared: false,
         wallpaperDescHided: false,
+        ifScrolled: false,
+        homeScrollTop: 0,
         settings: {
             twelveFormat: true,
             showSeconds: false,
             mode: true,
-            useBlur: false,
+            useBlur: true,
             showTips: true,
-            weatherCity: '杭州'
+            weatherCity: '北京'
         },
         chosenEngine: {
             title: "必应",
@@ -233,6 +235,12 @@ export default new Vuex.Store({
             localStorage.setItem('wallpaperDescHided', encodeURIComponent(JSON.stringify(wallpaperDescHided)));
             state.wallpaperDescHided = wallpaperDescHided;
         },
+        setIfScrolled(state, ifScrolled) {
+            state.ifScrolled = ifScrolled;
+        },
+        setHomeScrollTop(state, homeScrollTop) {
+            state.homeScrollTop = homeScrollTop;
+        },
     },
     actions: {},
     modules: {},
@@ -276,5 +284,11 @@ export default new Vuex.Store({
             }
             return state.chosenEngine;
         },
+        getIfScrolled: (state) => {
+            return state.ifScrolled;
+        },
+        getHomeScrollTop: (state) => {
+            return state.homeScrollTop;
+        }
     }
 })

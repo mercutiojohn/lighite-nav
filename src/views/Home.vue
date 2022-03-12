@@ -98,7 +98,8 @@ export default {
       if (this.$refs.home.scrollTop)
         this.ifScrolled = true;
       else this.ifScrolled = false;
-      console.log(this.ifScrolled);
+      this.$store.commit("setIfScrolled", this.ifScrolled);
+      this.$store.commit("setHomeScrollTop", this.$refs.home.scrollTop);
     },
   },
   created() {},

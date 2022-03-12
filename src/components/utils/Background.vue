@@ -1,8 +1,11 @@
 <template>
   <div class="background">
-    <div class="bg-box" v-if="bgPrepared == true">
+    <div :class="{ 'bg-box': true }" v-if="bgPrepared == true">
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
-      <div class="bg-mask"></div>
+      <div
+        :class="{ 'bg-mask': true, 'bg-mask-blurred': wallpaperDescHided }"
+        :style="'--bg-blurred-width:' + getBlurWidth() + 'px'"
+      ></div>
     </div>
   </div>
 </template>
@@ -36,6 +39,15 @@ export default {
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
     },
+    ifScrolled: function () {
+      return this.$store.getters.getIfScrolled;
+    },
+    homeScrollTop: function () {
+      return this.$store.getters.getHomeScrollTop;
+    },
+    wallpaperDescHided: function () {
+      return this.$store.getters.getWallpaperDescHided;
+    },
   },
   watch: {
     mode(newStat) {
@@ -50,6 +62,11 @@ export default {
     },
   },
   methods: {
+    getBlurWidth() {
+      const width = this.homeScrollTop / 10;
+      if (width > 100) return 100;
+      else return width;
+    },
     setBgState(state) {
       this.$store.commit("setBgPrepared", state);
     },
@@ -79,9 +96,9 @@ export default {
         // console.log(response.data);
         this.data = response.data;
         this.srcs = response.data.urls;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.$bus.$emit("updatedWallpaper", "test");
-        },2000)
+        }, 2000);
       });
     },
   },
@@ -92,9 +109,9 @@ export default {
         this.getPic();
       }
     }, 10);
-    this.$bus.$on("changeWallpaper", data => {
-        this.updatePic();
-    })
+    this.$bus.$on("changeWallpaper", (data) => {
+      this.updatePic();
+    });
   },
   beforeDestroy() {},
 };
@@ -116,7 +133,7 @@ export default {
   height: 100%;
   object-fit: cover;
 }
-.bg-mask{
+.bg-mask {
   position: absolute;
   left: 0;
   top: 0;
@@ -136,6 +153,11 @@ export default {
       rgba(0, 0, 0, 0.2) 100%
     );
   pointer-events: none;
-  transition: all .2s ease;
+  /* transition: all 0.2s ease; */
+  backdrop-filter: blur(var(--bg-blurred-width));
+
+}
+.bg-mask-blurred {
+  backdrop-filter: blur(100px);
 }
 </style>
