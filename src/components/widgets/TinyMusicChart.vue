@@ -14,7 +14,7 @@
     </div>
     <div class="tabs">
         <div :class="{'tab':true,'tab-active':currChart == index,'ef-fadein':true}" v-for="(item,index) in charts" @click="changeChart(index)" :key="index">
-            <span class="title" v-text="item.title"></span>
+            <span class="title fix-text-overflow" v-text="item.title"></span>
         </div>
     </div>
     <!-- <div class="funcs">

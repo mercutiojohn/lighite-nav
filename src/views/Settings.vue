@@ -50,8 +50,10 @@
       <span class="about-line">壁纸资源来自Unsplash</span>
       <span class="about-line">音乐内容来自网易云音乐</span>
       <span class="about-line">视频内容来自Bilibili</span>
+      <span class="about-line">天气数据来自和风天气</span>
       <span class="about-line">Built with 🧡 by Mercutio</span>
       <span class="about-line">Copyright © 2021 Mercutio</span>
+      <span class="about-line">免责声明：壁纸内容由Unsplash实时自动随机选择，本网站不做人工筛选，亦不对壁纸内容负责。</span>
     </div>
   </div>
 </template>

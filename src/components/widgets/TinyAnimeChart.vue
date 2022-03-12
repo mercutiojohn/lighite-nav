@@ -15,6 +15,7 @@
           tab: true,
           'tab-active': ifTabActive(item.index),
           'ef-fadein': true,
+          'fix-text-overflow': true
         }"
         v-for="(item, index) in tabs"
         :key="index"
