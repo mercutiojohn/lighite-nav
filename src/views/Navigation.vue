@@ -73,15 +73,15 @@
       </div>
     </transition>
     <!-- 左侧快速导航 -->
-    <div class="left">
-      <div class="header-list fix-scrollbar">
+    <div class="left fix-scrollbar">
+      <div class="header-list">
         <div class="list-header" ref="favorites">
           <span class="title">分类</span>
         </div>
         <div class="group">
           <div :class="{'item':true, 'item-active':currSubItem == -1,'item-blurred':bgPrepared}" @click="goAnchor(-1)">我的收藏</div>
         </div>
-        <div class="sub-header"><span class="title">精选好站</span></div>
+        <!-- <div class="list-header"><span class="title">精选好站</span></div> -->
         <div class="group">
           <div
             :class="{'item':true, 'item-active':currSubItem == index,'item-blurred':bgPrepared}"
@@ -96,8 +96,7 @@
     </div>
     <div class="right">
       <!-- 收藏 -->
-      <div class="nav-block">
-        <div class="list-header" ref="favorites">
+      <div class="list-header">
           <span class="title">我的收藏</span>
           <button class="icon-button" @click="showModify()">
             <span
@@ -110,6 +109,8 @@
             <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
           </button>
         </div>
+      <div class="nav-block" ref="favorites">
+        
         <div class="nav-list">
           <a
             :href="item.attributes.url"
@@ -210,7 +211,7 @@
               'icon-check': modifyShow,
             }"
           ></span>
-          <span class="tip">{{ !modifyShow ? "添加" : "完成" }}</span>
+          <span class="tip">{{ !modifyShow ? "添加到收藏" : "完成" }}</span>
         </button>
       </div>
       <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
@@ -377,10 +378,13 @@ export default {
       if (index == -1) {
         this.currSubItem = -1;
         this.$refs.favorites.scrollIntoView();
+        // this.$refs.favorites.scrollTop = this.$refs.favorites.offsetTop;
+
       } else {
         this.currSubItem = index;
         let tag = "sublist_" + index;
         this.$refs[tag][0].scrollIntoView();
+        // this.$refs[tag][0].scrollTop = this.$refs[tag][0].offsetTop;
       }
     },
     navItemHovered(list, item) {
@@ -488,23 +492,25 @@ hr {
 }
 .navigation {
   display: flex;
+  padding:0;
   --hlist-width: 250px;
 }
 .navigation > .left {
   position: sticky;
   top: 0;
   width: var(--hlist-width);
+  border-right: 1px solid var(--line-color);
 }
 .header-list {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  overflow: scroll;
+  gap: 10px;
   box-sizing: border-box;
   border-radius: 0 0 var(--item-radius) var(--item-radius);
 }
 .header-list .item {
+  margin: 0 20px;
   padding: 10px 8px;
   background: var(--sub-card-color);
   /* border-radius: var(--item-radius); */
@@ -534,21 +540,27 @@ hr {
   background: var(--hover-color);
   color: var(--content-color);
 }
-@media screen and (max-width: 1000px) {
+.navigation > .right {
+  width: calc(100% - var(--hlist-width));
+  height: max-content;
+}
+@media screen and (max-width: 800px) {
   .navigation {
     --hlist-width: 0;
   }
   .header-list {
     display: none;
   }
+  .navigation > .right {
+    width: 100%;
+    height: max-content;
 }
-.navigation > .right {
-  width: calc(100% - var(--hlist-width));
-  height: max-content;
 }
 .nav-block {
   display: flex;
   flex-direction: column;
+  padding:0 20px;
+  box-sizing: border-box;
 }
 .nav-list {
   display: grid;
@@ -698,8 +710,7 @@ hr {
   height: calc(100vh - var(--head-height));
   overflow: hidden;
 }
-.left {
-  margin-right: 20px;
+.nav-list .left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -707,18 +718,19 @@ hr {
   width: 100%;
   gap: 10px;
 }
-.left-wide {
+.nav-list .left-wide {
   width: 50%;
 }
 /* list */
 .list-header {
-  padding: 20px 0 8px 0;
+  padding: 20px 20px 8px 20px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px solid var(--line-color);
   position: sticky;
-  top:-20px;
+  top:0;
   background: var(--blurred-card-color);
   backdrop-filter: blur(30px) saturate(180%);
   z-index: 300;

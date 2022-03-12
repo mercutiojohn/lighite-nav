@@ -22,7 +22,8 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     color: var(--content-color);
-    font-family: MiSansR, -apple-system,BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    ;
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -57,7 +58,8 @@ ul {
 }
 
 input[type=text].better-input {
-    font-family: MiSansR, -apple-system,BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    ;
     border-width: 2px;
     border-style: solid;
     border-color: transparent;
@@ -262,7 +264,8 @@ input[type=checkbox].better-input:checked[disabled]+label:before {
 /*  */
 
 button {
-    font-family: MiSansR, -apple-system,BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    ;
 }
 
 
@@ -283,6 +286,24 @@ button.icon-button:hover {
 }
 
 button.icon-button:active {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+a.link-button {
+    display: inline-block;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 7px;
+    border-radius: var(--button-small-radius);
+}
+
+a.link-button:hover {
+    background: var(--hover-color);
+}
+
+a.link-button:active {
     background: var(--accent-color);
     color: #fff;
 }
