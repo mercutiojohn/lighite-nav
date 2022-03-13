@@ -29,6 +29,7 @@
 // @ is an alias to /src
 // import TinyBook from "@/components/widgets/TinyBook.vue";
 // import TinyVideo from "@/components/widgets/TinyVideo.vue";
+import TinyBiliRank from "@/components/widgets/TinyBiliRank.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
 // import TinyMusic from "@/components/widgets/TinyMusic.vue";
 import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
@@ -36,7 +37,6 @@ import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
-import Music from "@/views/Music.vue"
 // import { component } from "vue/types/umd";
 // import OneSentence from '@/components/widgets/OneSentence.vue';
 
@@ -52,7 +52,7 @@ export default {
     Weather,
     TinyToDo,
     WallpaperShow,
-    Music
+    TinyBiliRank
     // OneSentence,
   },
   data() {
@@ -84,6 +84,10 @@ export default {
         },{ 
           component: "TinyAnimeChart", 
           title: "番剧排行",
+          card:"new-1"
+        },{ 
+          component: "TinyBiliRank", 
+          title: "Bilibili · 全站排行",
           card:"new-1"
         }
         ],
