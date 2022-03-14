@@ -6,6 +6,22 @@
     <WallpaperShow />
     <div :class="{ blocks: true }">
       <div
+        v-for="(item, index) in fixedCards"
+        :key="index"
+        :class="{
+          card: true,
+          'fix-scrollbar': item.ifFixScrollbar,
+          'card-blurred': bgPrepared && settings.useBlur,
+          'card-main': item.card == 'main',
+          'card-long': item.card == 'long',
+          'card-small': item.card == 'small',
+          'card-new-1': item.card == 'new-1',
+          'card-new-2': item.card == 'new-2'
+        }"
+      >
+        <component v-bind:is="item.component"></component>
+      </div>
+      <div
         v-for="(item, index) in cards"
         :key="index"
         :class="{
@@ -60,7 +76,7 @@ export default {
   data() {
     return {
       ifScrolled: false,
-      cards: [
+      fixedCards:[
         { 
           component: "GreetingBox", 
           ifMainCard: true,
@@ -79,7 +95,10 @@ export default {
           component: "TinyMusic", 
           title: "歌词",
           card:"small"
-        },{ 
+        }
+      ],
+      cards: [
+        { 
           component: "TinyBiliRank", 
           title: "热门视频",
           card:"new-1"
@@ -109,6 +128,14 @@ export default {
     settings: function () {
       return this.$store.getters.getSettings;
     },
+    remoteMainPageData: function () {
+      return this.$store.getters.getMainPageData;
+    },
+  },
+  watch:{
+    cards() {
+      this.$store.commit("setMainPageData", this.cards);
+    },
   },
   methods: {
     handleScroll() {
@@ -122,6 +149,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.cards = this.remoteMainPageData;
     this.$refs.home.addEventListener("scroll", this.handleScroll);
     this.title = this.$route.name;
     this.$store.commit("setHomeScrollTop", 0);

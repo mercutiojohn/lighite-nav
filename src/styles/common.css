@@ -365,15 +365,16 @@ button.submit-button:active {
 }
 
 .ef-fadein {
+    cursor: pointer;
     transition: background-color .2s ease;
 }
 
 .ef-fadein:hover {
-    background: var(--hover-color);
+    background: var(--hover-color)!important;
 }
 
 .ef-fadein:active {
-    background: var(--active-color);
+    background: var(--active-color) !important;
 }
 
 

@@ -4,7 +4,7 @@
       <span class="title">我的导航</span>
       <router-link to="/navigation">
         <button class="icon-button">
-          <span class="label">更多</span>
+          <span class="label">更多 / 自定义</span>
           <span class="iconfont icon-chevron-right"></span>
         </button>
       </router-link>

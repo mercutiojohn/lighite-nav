@@ -3,12 +3,7 @@
     <div class="header">
         <span class="title">热搜</span>
         <div class="right">
-          <router-link to="/music">
-          <button class="icon-button">
-              <span class="label">更多</span>
-              <span class="iconfont icon-chevron-right"></span>
-          </button>
-          </router-link>
+
         </div>
     </div>
     <div class="tabs">

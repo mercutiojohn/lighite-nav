@@ -199,7 +199,24 @@ export default new Vuex.Store({
         },
         wallpaperData: {
 
-        }
+        },
+        mainPageData: [{
+            component: "TinyBiliRank",
+            title: "热门视频",
+            card: "new-1"
+        }, {
+            component: "WeiboHot",
+            title: "微博热搜",
+            card: "new-1"
+        }, {
+            component: "TinyMusicChart",
+            title: "音乐排行",
+            card: "new-1"
+        }, {
+            component: "TinyAnimeChart",
+            title: "番剧排行",
+            card: "new-1"
+        }]
     },
     mutations: {
         update(state, [key, value]) {
@@ -241,6 +258,10 @@ export default new Vuex.Store({
         },
         setHomeScrollTop(state, homeScrollTop) {
             state.homeScrollTop = homeScrollTop;
+        },
+        setMainPageData(state, mainPageData) {
+            localStorage.setItem('mainPageData', encodeURIComponent(JSON.stringify(mainPageData)));
+            state.mainPageData = mainPageData;
         },
     },
     actions: {},
@@ -290,6 +311,12 @@ export default new Vuex.Store({
         },
         getHomeScrollTop: (state) => {
             return state.homeScrollTop;
+        },
+        getMainPageData: (state) => {
+            if (localStorage.getItem("mainPageData")) {
+                state.mainPageData = JSON.parse(decodeURIComponent(localStorage.getItem('mainPageData')));
+            }
+            return state.mainPageData;
         }
     }
 })
