@@ -1,7 +1,7 @@
 <template>
   <div class="bilirank">
     <div class="header">
-      <span class="title">番剧排行</span>
+      <span class="title">热门视频</span>
       <router-link to="/video">
         <button class="icon-button">
           <span class="label">更多</span>
@@ -53,9 +53,11 @@
                 </span>
                 <span class="bilianime-stats">
                   {{ listItem.owner.name }}<br/>
-                  {{ " 观看："+listItem.stat.view }}
-                  {{ " 点赞："+listItem.stat.like }}
-                  {{ " 时长："+listItem.duration }}
+                  {{ " 时长："+getDuration(listItem.duration) }}<br/>
+                  <span class="iconfont icon-youtube"></span>
+                  {{ parseNumber(listItem.stat.view) }}
+                  <span class="iconfont icon-heart"></span>
+                  {{ parseNumber(listItem.stat.like) }}
                 </span>
               </div>
             </a>
@@ -69,7 +71,7 @@
 <script>
 export default {
   components: {},
-  name: "bilianime",
+  name: "TinyBiliRank",
   data() {
     return {
       expand: true,
@@ -114,6 +116,15 @@ export default {
   },
   watch: {},
   methods: {
+    getDuration(time){
+      return (Math.floor(Math.floor(time/60)/60)? Math.floor(Math.floor(time/60)/60)+':':'') + (Math.floor(time/60)%6) + ':' + (time%60 < 10 ? '0':'') + time%60;
+    },
+    parseNumber(num){
+      if(Math.floor(num/10000))
+        return Math.floor(num/10000) + '万'
+      else
+        return num
+    },
     ifTabActive(index) {
       if (index == this.currTabIndex) return true;
       else return false;
@@ -222,20 +233,20 @@ export default {
 }
 
 .bilianime-details {
-  width: calc(100% - 50px - 20px - 10px);
+  width: calc(100% - 50px - 20px - 20px);
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 }
 .bilianime-cover {
   border-radius: 2px;
-  width: 143px;
-  height: 80px;
+  width: 101px;
+  height: 60px;
 }
 .bilianime-stats,
 .bilianime-detail {
   color: var(--subtitle-color);
-  font-size: 0.8em;
+  font-size: 0.6em;
 }
 .bilianime-title {
   /* display: flex; */
@@ -244,6 +255,7 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  font-size: .8em;
 }
 .bilianime-title-end {
   width: 100%;
@@ -256,7 +268,8 @@ export default {
 .bilianime-item .rank {
   flex-shrink: 0;
   color: var(--subtitle-color);
-  width: 10px;
+  width: 20px;
   display: block;
+  font-size: .6em;
 }
 </style>

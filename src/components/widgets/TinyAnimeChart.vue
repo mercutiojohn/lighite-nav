@@ -244,7 +244,7 @@ export default {
 }
 
 .bilianime-details {
-  width: calc(100% - 50px - 20px - 10px);
+  width: calc(100% - 50px - 20px - 20px);
   display: flex;
   flex-direction: column;
   margin-left: 10px;
@@ -278,7 +278,7 @@ export default {
 .bilianime-item .rank{
   flex-shrink: 0;
   color: var(--subtitle-color);
-  width: 10px;
+  width: 20px;
   display: block;
 }
 </style>

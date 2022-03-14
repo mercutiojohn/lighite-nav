@@ -9,6 +9,11 @@
         </button>
         </router-link>
     </div>
+    <div class="placeholder">
+        <span class="line">永远相信</span>
+        <span class="line">美好的事情</span>
+        <span class="line">即将发生</span>
+    </div>
 </div>
 </template>
 
@@ -33,5 +38,12 @@ beforeDestroy(){}
 <style lang="css" src="../../styles/card.css" scoped>
 </style>
 <style lang="css">
-    
+    .placeholder{
+        display: flex;
+        flex-direction: column;
+        font-size: 1.3em;
+        opacity: .2;
+        font-weight: bold;
+        padding: 20px;
+    }
 </style>

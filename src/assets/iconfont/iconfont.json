@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "19060591",
+      "name": "heart",
+      "font_class": "heart",
+      "unicode": "e867",
+      "unicode_decimal": 59495
+    },
+    {
+      "icon_id": "19060706",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e872",
+      "unicode_decimal": 59506
+    },
+    {
+      "icon_id": "19060756",
+      "name": "youtube",
+      "font_class": "youtube",
+      "unicode": "e879",
+      "unicode_decimal": 59513
+    },
+    {
+      "icon_id": "19060849",
+      "name": "clock",
+      "font_class": "clock",
+      "unicode": "e89d",
+      "unicode_decimal": 59549
+    },
+    {
+      "icon_id": "19060889",
+      "name": "eye-off",
+      "font_class": "eye-off",
+      "unicode": "e89e",
+      "unicode_decimal": 59550
+    },
+    {
+      "icon_id": "19060947",
+      "name": "moon",
+      "font_class": "moon1",
+      "unicode": "e8a1",
+      "unicode_decimal": 59553
+    },
+    {
+      "icon_id": "19060986",
+      "name": "search",
+      "font_class": "search1",
+      "unicode": "e8a2",
+      "unicode_decimal": 59554
+    },
+    {
       "icon_id": "19060471",
       "name": "alert-circle",
       "font_class": "alert-circle",

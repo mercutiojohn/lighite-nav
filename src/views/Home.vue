@@ -31,8 +31,9 @@
 // import TinyVideo from "@/components/widgets/TinyVideo.vue";
 import TinyBiliRank from "@/components/widgets/TinyBiliRank.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
-// import TinyMusic from "@/components/widgets/TinyMusic.vue";
+import TinyMusic from "@/components/widgets/TinyMusic.vue";
 import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
+import WeiboHot from "@/components/widgets/WeiboHot.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
@@ -45,14 +46,15 @@ export default {
   components: {
     // TinyBook,
     // TinyVideo,
-    // TinyMusic,
+    TinyMusic,
     TinyMusicChart,
     TinyAnimeChart,
     GreetingBox,
     Weather,
     TinyToDo,
     WallpaperShow,
-    TinyBiliRank
+    TinyBiliRank,
+    WeiboHot
     // OneSentence,
   },
   data() {
@@ -78,16 +80,20 @@ export default {
           title: "歌词",
           card:"small"
         },{ 
+          component: "TinyBiliRank", 
+          title: "热门视频",
+          card:"new-1"
+        },{ 
+          component: "WeiboHot", 
+          title: "微博热搜",
+          card:"new-1"
+        },{ 
           component: "TinyMusicChart", 
           title: "音乐排行",
           card:"new-1"
         },{ 
           component: "TinyAnimeChart", 
           title: "番剧排行",
-          card:"new-1"
-        },{ 
-          component: "TinyBiliRank", 
-          title: "Bilibili · 全站排行",
           card:"new-1"
         }
         ],
