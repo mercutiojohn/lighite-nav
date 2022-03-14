@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "css/about.efe864b0.css"
   },
   {
-    "revision": "6dad609fb6319eb6cb68",
-    "url": "css/app.77da0ece.css"
+    "revision": "50de7c89a9feb50d5e4b",
+    "url": "css/app.b6ad794a.css"
   },
   {
     "revision": "04027d54fbee4760140b",
@@ -24,16 +24,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "fonts/AtmaSerif-BoldItalic.ccf7b7b6.ttf"
   },
   {
-    "revision": "0fe44ff7095717282ae4f500f9520f22",
-    "url": "fonts/iconfont.0fe44ff7.ttf"
+    "revision": "06f9fdcda7b5be6aa876c046608d284c",
+    "url": "fonts/iconfont.06f9fdcd.woff2"
   },
   {
-    "revision": "1fd8ec4966a91f652b07225aab8db2be",
-    "url": "fonts/iconfont.1fd8ec49.woff"
+    "revision": "f6db193ada06fc4189d50f040aa0d54f",
+    "url": "fonts/iconfont.f6db193a.woff"
   },
   {
-    "revision": "3ae2201934d71f3044ca7bb77c21e1b3",
-    "url": "fonts/iconfont.3ae22019.woff2"
+    "revision": "fa55ce3e5ea6c098e70b17082b45329b",
+    "url": "fonts/iconfont.fa55ce3e.ttf"
   },
   {
     "revision": "890df9cdb919792a951bf2561d1d79ca",
@@ -48,7 +48,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "0353a819c28dc9b728aef5f60a7665ad",
+    "revision": "5511c8ef8ef843178f633b56e08fb6e3",
     "url": "index.html"
   },
   {
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "js/about.eee8636b.js"
   },
   {
-    "revision": "6dad609fb6319eb6cb68",
-    "url": "js/app.b6877d34.js"
+    "revision": "50de7c89a9feb50d5e4b",
+    "url": "js/app.c0edf78f.js"
   },
   {
     "revision": "04027d54fbee4760140b",
