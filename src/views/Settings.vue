@@ -15,15 +15,15 @@
           :class="{
             'settings-item': true,
             'settings-item-blurred': bgPrepared && settings.useBlur,
-            'ef-fadein':true
+            'ef-fadein': true,
           }"
-           @click="detailChange()"
+          @click="detailChange()"
         >
           <div class="left">
             <span :class="'settings-icon iconfont icon-cog'"></span>
             <div class="info">
-              <span class="title">首页卡片排序</span>
-              <span class="desc">对首页卡片进行排序</span>
+              <span class="title">首页卡片管理</span>
+              <span class="desc">对首页卡片进行排序或隐藏</span>
             </div>
           </div>
           <div class="right">
@@ -47,12 +47,13 @@
                   @dragenter="dragenter($event, index)"
                   @dragover="dragover($event, index)"
                   @dragstart="dragstart(index)"
-                  draggable
+                  :draggable="!item.hide"
                   v-for="(item, index) in mainPageData"
                   :key="item.component"
-                  class="drag-item"
+                  :class="{'drag-item':true,'drag-item-hide':item.hide}"
                 >
-                  {{ item.title }}
+                  <span class="card-title">{{ item.title }}</span>
+                  <button class="card-func icon-button" @click="item.hide?showCard(index):hideCard(index)"><span :class="{'iconfont':true, 'icon-circleminus':!item.hide,'icon-add':item.hide}"></span></button>
                 </li>
               </transition-group>
             </div>
@@ -202,7 +203,7 @@ export default {
           ],
         },
       ],
-      detailShow: true,
+      detailShow: false,
     };
   },
   computed: {
@@ -262,6 +263,21 @@ export default {
       this.forceUpdateMainPageData();
       e.preventDefault();
     },
+    hideCard(index) {
+      // console.log("hide"+index)
+      this.mainPageData[index].hide = true;
+      const moving = this.mainPageData[index];
+      this.mainPageData.splice(index, 1);
+      this.mainPageData.splice((this.mainPageData.length), 0, moving);
+      this.forceUpdateMainPageData();
+    },
+    showCard(index){
+      this.mainPageData[index].hide = false;
+      const moving = this.mainPageData[index];
+      this.mainPageData.splice(index, 1);
+      this.mainPageData.splice(0, 0, moving);
+      this.forceUpdateMainPageData();
+    }
   },
   created() {},
   mounted() {
@@ -355,6 +371,9 @@ export default {
   gap: 5px;
 }
 .drag-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: move;
   width: 200px;
   background: var(--card-color);
@@ -364,7 +383,14 @@ export default {
   /* height: 50px; */
   padding: 10px;
   /* line-height: 50px; */
-  text-align: center;
+  /* text-align: center; */
+  border: 2px solid transparent;
+  transition:background .2s ease;
+}
+.drag-item-hide{
+  background: transparent;
+  cursor:default;
+  border: 2px solid var(--card-color);
 }
 .drag-move {
   transition: transform 0.3s;

@@ -34,6 +34,7 @@
           'card-new-1': item.card == 'new-1',
           'card-new-2': item.card == 'new-2'
         }"
+        v-if="!item.hide"
       >
         <component v-bind:is="item.component"></component>
       </div>
