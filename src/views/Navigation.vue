@@ -111,7 +111,7 @@
         </div>
       <div class="nav-block" ref="favorites">
         
-        <div class="nav-list">
+        <transition-group name="drag" class="nav-list" tag="div">
           <a
             :href="item.attributes.url"
             target="_blank"
@@ -125,6 +125,10 @@
             :key="index"
             @mouseover="navItemHovered(-1, index)"
             @mouseout="navItemLeave()"
+             @dragenter="dragenter($event, index)"
+              @dragover="dragover($event, index)"
+              @dragstart="dragstart(index)"
+              :draggable="modifyShow"
           >
             <div
               :class="{
@@ -185,6 +189,7 @@
               </a>
             </div>
           </a>
+          
           <transition name="fade">
             <div
               :class="{
@@ -198,7 +203,7 @@
               <span class="tip">自定义</span>
             </div>
           </transition>
-        </div>
+        </transition-group>
       </div>
       <!-- 推荐列表 -->
       <div class="list-header">
@@ -341,6 +346,8 @@ export default {
       },
       currHoverIndex: [-2, -1],
       currSubItem:-1,
+      dragIndex: "",
+      enterIndex: ""
     };
   },
   computed: {
@@ -374,6 +381,22 @@ export default {
     },
   },
   methods: {
+    dragstart(index) {
+      this.dragIndex = index;
+    },
+    dragenter(e, index) {
+      e.preventDefault();
+      if (this.dragIndex !== index) {
+        const moving = this.navs.favorites[this.dragIndex];
+        this.navs.favorites.splice(this.dragIndex, 1);
+        this.navs.favorites.splice(index, 0, moving);
+        this.dragIndex = index;
+      }
+    },
+    dragover(e, index) {
+      // this.forceUpdateMainPageData();
+      e.preventDefault();
+    },
     goAnchor(index) {
       if (index == -1) {
         this.currSubItem = -1;
@@ -771,5 +794,8 @@ hr {
 }
 .general-window {
   gap: 10px;
+}
+.drag-move {
+  transition: transform 0.3s;
 }
 </style>
