@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "92ca32ac55cf48a20706",
-    "url": "css/about.56fc5ed1.css"
+    "revision": "df7cfd5664459978fca8",
+    "url": "css/about.3a8b3483.css"
   },
   {
-    "revision": "6734dd29f02926f110b9",
-    "url": "css/app.dfc45fea.css"
+    "revision": "b124afa5a6e36112d3b8",
+    "url": "css/app.3098ea6c.css"
   },
   {
     "revision": "04027d54fbee4760140b",
     "url": "css/books.dd472137.css"
   },
   {
-    "revision": "7998e553e81c3692e1c3",
-    "url": "css/navigation.f2829cfa.css"
+    "revision": "8044c42b40224be0a695",
+    "url": "css/navigation.b98c2436.css"
   },
   {
-    "revision": "0533463fe6cc81f7f6d3",
-    "url": "css/tools.78f15f78.css"
+    "revision": "9b55f2fb006108d292a9",
+    "url": "css/tools.a5c1798c.css"
   },
   {
     "revision": "ccf7b7b63aacaf075ceeeafb984359e2",
@@ -48,16 +48,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "070447710c7dfc5eded60e0c07da3548",
+    "revision": "5025cd8aa56bc67078c83180d9988800",
     "url": "index.html"
   },
   {
-    "revision": "92ca32ac55cf48a20706",
-    "url": "js/about.0e68c60d.js"
+    "revision": "df7cfd5664459978fca8",
+    "url": "js/about.8207c6ce.js"
   },
   {
-    "revision": "6734dd29f02926f110b9",
-    "url": "js/app.f23deb95.js"
+    "revision": "b124afa5a6e36112d3b8",
+    "url": "js/app.5515ef80.js"
   },
   {
     "revision": "04027d54fbee4760140b",
@@ -68,12 +68,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "js/chunk-vendors.7263dccb.js"
   },
   {
-    "revision": "7998e553e81c3692e1c3",
-    "url": "js/navigation.c2b8ad8b.js"
+    "revision": "8044c42b40224be0a695",
+    "url": "js/navigation.0fa2ea6d.js"
   },
   {
-    "revision": "0533463fe6cc81f7f6d3",
-    "url": "js/tools.553ffcad.js"
+    "revision": "9b55f2fb006108d292a9",
+    "url": "js/tools.1bbcd028.js"
   },
   {
     "revision": "642c6bc02446c3d75ea2e16cadba1339",
