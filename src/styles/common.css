@@ -99,6 +99,23 @@ input[type=text].better-input::placeholder {
 
 input[type=text].better-input {}
 
+textarea.better-input {
+    font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    resize: none;
+    min-height: 200px;
+    border-radius: var(--item-radius);
+    overflow: hidden;
+    background: var(--sub-card-color);
+    border: 2px solid transparent;
+    padding: 10px;
+    transition: all .2s ease;
+    outline: none;
+}
+
+textarea.better-input:focus {
+    border-color: var(--accent-color);
+}
+
 
 /* input[type=checkbox].better-input {
     border: var(--line-color);
@@ -329,6 +346,31 @@ button.submit-button:hover {
 }
 
 button.submit-button:active {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+button.common-button {
+    background: var(--sub-card-color);
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    /* color: #fff; */
+    border-radius: var(--item-radius);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-size: 1em;
+}
+
+button.common-button:hover {
+    background: var(--hover-color);
+    border-color: var(--accent-color);
+    color: var(--content-color)
+}
+
+button.common-button:active {
     background: var(--accent-color);
     color: #fff;
 }

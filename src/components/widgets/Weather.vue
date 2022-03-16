@@ -243,7 +243,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 hello {
   color: #f1ba02;
 }
@@ -327,22 +327,6 @@ hello {
 .change-city > .options {
   display: flex;
   justify-content: center;
-}
-.options button {
-  border: none;
-  background: var(--first-assist-color);
-  color: var(--main-color);
-  height: 50px;
-  width: 80px;
-  border-radius: 25px;
-  transition: all 0.2s ease;
-  margin: 0 10px;
-  cursor: pointer;
-}
-.options button:active {
-  background: var(--accent-color);
-  transform: scale(1.5);
-  color: #fff;
 }
 .air-info {
   display: flex;
