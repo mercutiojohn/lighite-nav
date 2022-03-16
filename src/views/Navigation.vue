@@ -98,16 +98,28 @@
       <!-- 收藏 -->
       <div class="list-header">
           <span class="title">我的收藏</span>
-          <button class="icon-button" @click="showModify()">
-            <span
+          <div class="right">
+            <button class="icon-button" @click="showModify()">
+              <span
+                :class="{
+                  iconfont: true,
+                  'icon-edit-2': !modifyShow,
+                  'icon-check': modifyShow,
+                }"
+              ></span>
+              <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
+            </button>
+            <button
               :class="{
-                iconfont: true,
-                'icon-edit-2': !modifyShow,
-                'icon-check': modifyShow,
+                'icon-button': true,
               }"
-            ></span>
-            <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
-          </button>
+              @click="showAdd()"
+              v-if="modifyShow"
+            >
+                <span class="iconfont icon-add"></span>
+                <span class="tip">自定义</span>
+            </button>
+          </div>
         </div>
       <div class="nav-block" ref="favorites">
         
@@ -119,7 +131,7 @@
               'nav-item': true,
               'ef-float': true,
               'nav-item-blurred': bgPrepared && settings.useBlur,
-              'nav-item-wide': testSubsites(item.attributes),
+              'nav-item-wide': testSubsites(item.attributes)&&!modifyShow,
             }"
             v-for="(item, index) in navs.favorites"
             :key="item.id"
@@ -133,7 +145,7 @@
             <div
               :class="{
                 left: true,
-                'left-wide': testSubsites(item.attributes),
+                'left-wide': testSubsites(item.attributes)&&!modifyShow,
               }"
             >
               <div class="top">
@@ -171,7 +183,7 @@
                 v-text="item.attributes.title"
               ></span>
             </div>
-            <div class="subsites-list" v-if="testSubsites(item.attributes)">
+            <div class="subsites-list" v-if="testSubsites(item.attributes)&&!modifyShow">
               <a
                 :href="item_2.attributes.url"
                 target="_blank"
@@ -190,7 +202,7 @@
             </div>
           </a>
           
-          <transition name="fade">
+          <!-- <transition name="fade"> -->
             <div
               :class="{
                 'nav-item ef-float add-nav': true,
@@ -202,7 +214,7 @@
               <span class="iconfont icon-add"></span>
               <span class="tip">自定义</span>
             </div>
-          </transition>
+          <!-- </transition> -->
         </transition-group>
       </div>
       <!-- 推荐列表 -->
@@ -523,6 +535,10 @@ hr {
   top: 0;
   width: var(--hlist-width);
   border-right: 1px solid var(--line-color);
+}
+.list-header .right{
+  display: flex;
+  gap:10px;
 }
 .header-list {
   width: 100%;
