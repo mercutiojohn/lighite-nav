@@ -122,13 +122,13 @@
               'nav-item-wide': testSubsites(item.attributes),
             }"
             v-for="(item, index) in navs.favorites"
-            :key="index"
+            :key="item.id"
             @mouseover="navItemHovered(-1, index)"
             @mouseout="navItemLeave()"
-             @dragenter="dragenter($event, index)"
-              @dragover="dragover($event, index)"
-              @dragstart="dragstart(index)"
-              :draggable="modifyShow"
+            @dragenter="dragenter($event, index)"
+            @dragover="dragover($event, index)"
+            @dragstart="dragstart(index)"
+            :draggable="modifyShow"
           >
             <div
               :class="{
