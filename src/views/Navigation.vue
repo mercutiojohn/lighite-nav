@@ -249,7 +249,7 @@
           <span class="tip">{{ !modifyShow ? "添加到收藏" : "完成" }}</span>
         </button>
       </div>
-      <div class="nav-block" v-for="(item, index) in navs.others" :key="index">
+      <div :class="{'nav-block':true,'nav-block-highlight':currSubItem == index}" v-for="(item, index) in navs.others" :key="index"> <!--  v-show="currSubItem == index" -->
         <div class="sub-header" :ref="'sublist_' + index">
           <span class="title" v-text="item.attributes.name"></span>
         </div>
@@ -430,12 +430,12 @@ export default {
     goAnchor(index) {
       if (index == -1) {
         this.currSubItem = -1;
-        this.$refs.favorites.scrollIntoView();
+        this.$refs.favorites.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
         // this.$refs.favorites.scrollTop = this.$refs.favorites.offsetTop;
       } else {
         this.currSubItem = index;
         let tag = "sublist_" + index;
-        this.$refs[tag][0].scrollIntoView();
+        this.$refs[tag][0].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
         // this.$refs[tag][0].scrollTop = this.$refs[tag][0].offsetTop;
       }
     },
@@ -564,6 +564,7 @@ hr {
   gap: 10px;
   box-sizing: border-box;
   border-radius: 0 0 var(--item-radius) var(--item-radius);
+  padding-bottom: 20px;
 }
 .header-list .item {
   margin: 0 20px;
@@ -615,8 +616,13 @@ hr {
 .nav-block {
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  margin: 5px 10px;
+  padding: 10px 10px;
   box-sizing: border-box;
+}
+.nav-block-highlight{
+  background: var(--hover-color);
+  border-radius: var(--card-radius);
 }
 .nav-list {
   display: grid;
@@ -805,7 +811,7 @@ hr {
   font-size: 1.4em;
 }
 .sub-header {
-  padding: 30px 0 10px 5px;
+  padding: 15px 0 10px 5px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
