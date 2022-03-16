@@ -30,8 +30,9 @@
         v-for="(tabItem, tabIndex) in data"
         :key="tabIndex"
       >
-        <transition name="fade">
-          <div class="bilianime-list" v-show="currTabIndex == tabIndex">
+        <transition-group name="fade" type="out-in">
+          <Loading v-if="loading" key="loading"/>
+          <div class="bilianime-list" v-if="currTabIndex == tabIndex && !loading"  :key="tabIndex">
             <a
               class="bilianime-item"
               v-for="(listItem, listIndex) in tabItem"
@@ -41,12 +42,14 @@
             >
               <span class="rank" v-text="listIndex + 1 + ' '"></span>
 
-              <img
-                v-lazy="listItem.cover"
-                alt=""
-                srcset=""
-                class="bilianime-cover"
-              />
+              <div class="bilianime-cover-box">
+                <img
+                  v-lazy="listItem.cover"
+                  alt=""
+                  srcset=""
+                  class="bilianime-cover"
+                />
+              </div>
               <div class="bilianime-details">
                 <span class="bilianime-title">
                   {{ listItem.title }}
@@ -63,7 +66,7 @@
               </div>
             </a>
           </div>
-        </transition>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -111,7 +114,7 @@ export default {
         },
       ],
       timer: "",
-      loading: true,
+      loading: false,
       currTabIndex: "rankjp",
     };
   },
@@ -185,6 +188,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.loading = true;
     let _this = this;
     _this.refresh();
     this.timer = setInterval(() => {
@@ -249,10 +253,22 @@ export default {
   flex-direction: column;
   margin-left: 10px;
 }
+.bilianime-cover-box {
+  --cover-w:80px;
+  background: var(--sub-card-color);
+  border-radius: 4px;
+  width: var(--cover-w);
+  height: calc(var(--cover-w) / 3 * 4);
+  overflow: hidden;
+  /* height: 60px; */
+}
 .bilianime-cover {
-  border-radius: 2px;
-  width: 50px;
-  height: 67.171px;
+  background: var(--sub-card-color);
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* height: 60px; */
 }
 .bilianime-stats,
 .bilianime-detail {

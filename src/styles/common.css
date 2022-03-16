@@ -584,7 +584,7 @@ button.common-button:active {
 /* Scrollbar */
 
 .fix-scrollbar {
-    overflow: scroll;
+    overflow: scroll!important;
 }
 
 .fix-scrollbar::-webkit-scrollbar {

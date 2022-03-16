@@ -1,36 +1,58 @@
 <template>
-<div class="weibo-hot">
+  <div class="weibo-hot">
     <div class="header">
-        <span class="title">热搜</span>
-        <div class="right">
-
-        </div>
+      <span class="title">微博热搜</span>
+      <div class="right"></div>
     </div>
-    <div class="tabs">
-        <div :class="{'tab':true,'tab-active':currChart == index,'ef-fadein':true}" v-for="(item,index) in charts" @click="changeChart(index)" :key="index">
-            <span class="title fix-text-overflow" v-text="item.title"></span>
-        </div>
-    </div>
+    <!-- <div class="tabs">
+      <div
+        :class="{
+          tab: true,
+          'tab-active': currChart == index,
+          'ef-fadein': true,
+        }"
+        v-for="(item, index) in charts"
+        @click="changeChart(index)"
+        :key="index"
+      >
+        <span class="title fix-text-overflow" v-text="item.title"></span>
+      </div>
+    </div> -->
     <!-- <div class="funcs">
     </div> -->
-    <transition name="fade">
-    <div class="list fix-scrollbar card-list-height" v-if="!loading">
-        <a class="list-item ef-fadein" v-for="(item,index) in hot.realtime" :key="index" :href="'https://s.weibo.com/weibo?q=%23'+item.word+'%23'" target="_blank" v-show="!item.is_ad">
-            <span class="rank" v-text="(index+1)+' '"></span>
-            <div class="song-info">
-                <span class="title fix-text-overflow" v-text="item.word"></span>
-            </div>
-            <span class="sticker" v-text="item.icon_desc" :style="'background:'+item.icon_desc_color"></span>
+    <transition-group name="fade" type="out-in">
+      <div class="list fix-scrollbar card-list-height" v-if="!loading" key="content">
+        <a
+          class="list-item ef-fadein"
+          v-for="(item, index) in hot.realtime"
+          :key="index"
+          :href="'https://s.weibo.com/weibo?q=%23' + item.word + '%23'"
+          target="_blank"
+          v-show="!item.is_ad"
+        >
+          <span class="rank" v-text="index + 1 + ' '"></span>
+          <div class="song-info">
+            <span class="title fix-text-overflow" v-text="item.word"></span>
+          </div>
+          <span
+            class="sticker"
+            v-text="item.icon_desc"
+            :style="'background:' + item.icon_desc_color"
+          ></span>
         </a>
-    </div>
-    </transition>
-</div>
+      </div>
+      <Loading v-if="loading"  key="loading"/>
+    </transition-group>
+  </div>
 </template>
 
 <script>
+import Loading from "@/components/utils/Loading.vue";
 export default {
   name: "WeiboHot",
-  components: {},
+  components: {
+    Loading,
+  },
   data() {
     return {
       charts: [
@@ -49,22 +71,18 @@ export default {
       ],
       hot: [],
       currChart: 0,
-      loading: true,
+      loading: false,
     };
   },
   computed: {},
   watch: {},
   methods: {
     getChart() {
-      this.$axios
-        .get(
-          this.charts[this.currChart].url
-        )
-        .then((response) => {
-          console.log(response.data);
-          this.hot = response.data.content.data;
-          this.loading = false;
-        });
+      this.$axios.get(this.charts[this.currChart].url).then((response) => {
+        console.log(response.data);
+        this.hot = response.data.content.data;
+        this.loading = false;
+      });
     },
     changeChart(index) {
       this.currChart = index;
@@ -74,6 +92,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.loading = true;
     this.getChart();
   },
   beforeDestroy() {},
@@ -100,6 +119,7 @@ export default {
   /* justify-content: center; */
   padding: 10px;
   box-sizing: border-box;
+  height: calc(400px + 50px);
 }
 .album-cover {
   width: 45px;
@@ -133,14 +153,14 @@ export default {
   display: block;
   text-align: right;
 }
-.list-item .sticker{
+.list-item .sticker {
   width: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   color: #fff;
-  font-size: .8em;
+  font-size: 0.8em;
   height: 20px;
 }
 </style>

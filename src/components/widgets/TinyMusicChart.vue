@@ -19,8 +19,9 @@
     </div>
     <!-- <div class="funcs">
     </div> -->
-    <transition name="fade">
-    <div class="list fix-scrollbar card-list-height" v-if="!loading">
+    <transition-group name="fade" type="out-in">
+    <Loading v-if="loading"  key="loading"/>
+    <div class="list fix-scrollbar card-list-height" v-if="!loading"  key="content">
         <a class="list-item ef-fadein" v-for="(item,index) in tracks" :key="index" :href="'https://music.163.com/#/song?id='+item.id" target="_blank">
             <span class="rank" v-text="(index+1)+' '"></span>
             <img v-lazy="item.al.picUrl" alt="" srcset="" class="album-cover">
@@ -37,14 +38,17 @@
             </div>
         </a>
     </div>
-    </transition>
+    </transition-group>
 </div>
 </template>
 
 <script>
+import Loading from "@/components/utils/Loading.vue";
 export default {
   name: "TinyMusicChart",
-  components: {},
+  components: {
+    Loading
+  },
   data() {
     return {
       charts: [
@@ -63,7 +67,7 @@ export default {
       ],
       tracks: [],
       currChart: 0,
-      loading: true,
+      loading: false,
     };
   },
   computed: {},
@@ -90,6 +94,7 @@ export default {
   },
   created() {},
   mounted() {
+    this.loading = true;
     this.getChart();
   },
   beforeDestroy() {},

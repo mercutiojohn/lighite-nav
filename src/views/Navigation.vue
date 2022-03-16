@@ -79,12 +79,25 @@
           <span class="title">分类</span>
         </div>
         <div class="group">
-          <div :class="{'item':true, 'item-active':currSubItem == -1,'item-blurred':bgPrepared}" @click="goAnchor(-1)">我的收藏</div>
+          <div
+            :class="{
+              item: true,
+              'item-active': currSubItem == -1,
+              'item-blurred': bgPrepared,
+            }"
+            @click="goAnchor(-1)"
+          >
+            我的收藏
+          </div>
         </div>
         <!-- <div class="list-header"><span class="title">精选好站</span></div> -->
         <div class="group">
           <div
-            :class="{'item':true, 'item-active':currSubItem == index,'item-blurred':bgPrepared}"
+            :class="{
+              item: true,
+              'item-active': currSubItem == index,
+              'item-blurred': bgPrepared,
+            }"
             v-for="(item, index) in navs.others"
             :key="index"
             @click="goAnchor(index)"
@@ -97,9 +110,9 @@
     <div class="right">
       <!-- 收藏 -->
       <div class="list-header">
-          <span class="title">我的收藏</span>
-          <div class="right">
-            <transition name="fade">
+        <span class="title">我的收藏</span>
+        <div class="right">
+          <transition name="fade">
             <button
               :class="{
                 'icon-button': true,
@@ -107,25 +120,23 @@
               @click="showAdd()"
               v-if="modifyShow"
             >
-                <span class="iconfont icon-add"></span>
-                <span class="tip">自定义</span>
+              <span class="iconfont icon-add"></span>
+              <span class="tip">自定义</span>
             </button>
-            </transition>
-            <button class="icon-button" @click="showModify()">
-              <span
-                :class="{
-                  iconfont: true,
-                  'icon-edit-2': !modifyShow,
-                  'icon-check': modifyShow,
-                }"
-              ></span>
-              <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
-            </button>
-            
-          </div>
+          </transition>
+          <button class="icon-button" @click="showModify()">
+            <span
+              :class="{
+                iconfont: true,
+                'icon-edit-2': !modifyShow,
+                'icon-check': modifyShow,
+              }"
+            ></span>
+            <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
+          </button>
         </div>
+      </div>
       <div class="nav-block" ref="favorites">
-        
         <transition-group name="drag" class="nav-list" tag="div">
           <a
             :href="item.attributes.url"
@@ -134,7 +145,8 @@
               'nav-item': true,
               'ef-float': true,
               'nav-item-blurred': bgPrepared && settings.useBlur,
-              'nav-item-wide': testSubsites(item.attributes)&&!modifyShow,
+              'nav-item-wide': testSubsites(item.attributes) && !modifyShow,
+              'nav-item-drag':modifyShow
             }"
             v-for="(item, index) in navs.favorites"
             :key="item.id"
@@ -148,7 +160,7 @@
             <div
               :class="{
                 left: true,
-                'left-wide': testSubsites(item.attributes)&&!modifyShow,
+                'left-wide': testSubsites(item.attributes) && !modifyShow,
               }"
             >
               <div class="top">
@@ -186,7 +198,10 @@
                 v-text="item.attributes.title"
               ></span>
             </div>
-            <div class="subsites-list" v-if="testSubsites(item.attributes)&&!modifyShow">
+            <div
+              class="subsites-list"
+              v-if="testSubsites(item.attributes) && !modifyShow"
+            >
               <a
                 :href="item_2.attributes.url"
                 target="_blank"
@@ -204,9 +219,9 @@
               </a>
             </div>
           </a>
-          
+
           <!-- <transition name="fade"> -->
-            <!-- <div
+          <!-- <div
               :class="{
                 'nav-item ef-float add-nav': true,
                 'nav-item-blurred': bgPrepared && settings.useBlur,
@@ -360,9 +375,9 @@ export default {
         },
       },
       currHoverIndex: [-2, -1],
-      currSubItem:-1,
+      currSubItem: -1,
       dragIndex: "",
-      enterIndex: ""
+      enterIndex: "",
     };
   },
   computed: {
@@ -417,7 +432,6 @@ export default {
         this.currSubItem = -1;
         this.$refs.favorites.scrollIntoView();
         // this.$refs.favorites.scrollTop = this.$refs.favorites.offsetTop;
-
       } else {
         this.currSubItem = index;
         let tag = "sublist_" + index;
@@ -460,7 +474,7 @@ export default {
       this.addWindowShow = false;
     },
     showModify() {
-      this.modifyShow ? (this.modifyShow = false) : (this.modifyShow = true);
+      this.modifyShow  = !this.modifyShow;
     },
     showAdd() {
       this.addWindowShow = !this.addWindowShow;
@@ -530,7 +544,7 @@ hr {
 }
 .navigation {
   display: flex;
-  padding:0;
+  padding: 0;
   --hlist-width: 250px;
 }
 .navigation > .left {
@@ -539,9 +553,9 @@ hr {
   width: var(--hlist-width);
   border-right: 1px solid var(--line-color);
 }
-.list-header .right{
+.list-header .right {
   display: flex;
-  gap:10px;
+  gap: 10px;
 }
 .header-list {
   width: 100%;
@@ -558,9 +572,9 @@ hr {
   /* border-radius: var(--item-radius); */
   border-bottom: 1px solid var(--line-color);
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
-.header-list .item-blurred{
+.header-list .item-blurred {
   /* background: var(--blurred-sub-card-color); */
 }
 .header-list .item:first-child {
@@ -578,7 +592,7 @@ hr {
   background: var(--accent-color);
   color: #fff;
 }
-.header-list .item:hover{
+.header-list .item:hover {
   background: var(--hover-color);
   color: var(--content-color);
 }
@@ -596,12 +610,12 @@ hr {
   .navigation > .right {
     width: 100%;
     height: max-content;
-}
+  }
 }
 .nav-block {
   display: flex;
   flex-direction: column;
-  padding:0 20px;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 .nav-list {
@@ -635,6 +649,15 @@ hr {
   background: var(--card-color);
   box-shadow: 0 10px 20px 3px #00000024;
   transform: translateY(-3px);
+}
+.nav-item-drag {
+  cursor: move;
+}
+.nav-item-drag:hover,
+.nav-item-drag:active {
+  background: var(--sub-card-color);
+  box-shadow: none;
+  transform: none;
 }
 .nav-item-wide {
   grid-column-start: span 2;
@@ -772,7 +795,7 @@ hr {
   align-items: flex-end;
   border-bottom: 1px solid var(--line-color);
   position: sticky;
-  top:0;
+  top: 0;
   background: var(--blurred-card-color);
   backdrop-filter: blur(30px) saturate(180%);
   z-index: 300;

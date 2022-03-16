@@ -7,7 +7,7 @@
     <div :class="{ blocks: true }">
       <div
         v-for="(item, index) in fixedCards"
-        :key="index"
+        :key="'s'+index"
         :class="{
           card: true,
           'fix-scrollbar': item.ifFixScrollbar,
@@ -55,6 +55,7 @@ import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
+import Loading from '@/components/utils/Loading.vue'
 // import { component } from "vue/types/umd";
 // import OneSentence from '@/components/widgets/OneSentence.vue';
 
@@ -71,7 +72,8 @@ export default {
     TinyToDo,
     WallpaperShow,
     TinyBiliRank,
-    WeiboHot
+    WeiboHot,
+    Loading
     // OneSentence,
   },
   data() {
@@ -222,8 +224,12 @@ export default {
   box-sizing: border-box;
   background: var(--card-color);
   border-radius: var(--card-radius);
-  overflow-x: hidden;
+  overflow: hidden;
   /* overflow-y: scroll; */
+}
+.card::-webkit-scrollbar{
+  width:0;
+  height:0;
 }
 .card-no-bg {
   background: transparent;

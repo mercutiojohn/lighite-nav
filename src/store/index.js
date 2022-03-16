@@ -134,19 +134,6 @@ export default new Vuex.Store({
                     }
                 }
             }, {
-                "id": 61,
-                "attributes": {
-                    "title": "实习僧",
-                    "url": "https://www.shixiseng.com/",
-                    "desc": null,
-                    "createdAt": "2022-02-26T02:37:32.164Z",
-                    "updatedAt": "2022-02-26T03:33:11.963Z",
-                    "publishedAt": "2022-02-26T02:37:33.725Z",
-                    "color": "#ffffff",
-                    "subsites": { "data": [{ "id": 12, "attributes": { "title": "我的投递", "url": "https://resume.shixiseng.com/my/delivered", "createdAt": "2022-02-26T02:37:07.113Z", "updatedAt": "2022-02-26T03:08:04.661Z", "publishedAt": "2022-02-26T02:37:08.304Z" } }] },
-                    "icon": { "data": { "id": 82, "attributes": { "name": "logo-shixiseng.ea8da47.png", "alternativeText": "logo-shixiseng.ea8da47.png", "caption": "logo-shixiseng.ea8da47.png", "width": 100, "height": 32, "formats": null, "hash": "logo_shixiseng_ea8da47_31249262c1", "ext": ".png", "mime": "image/png", "size": 1.18, "url": "/uploads/logo_shixiseng_ea8da47_31249262c1.png", "previewUrl": null, "provider": "local", "provider_metadata": null, "createdAt": "2022-02-26T03:33:06.168Z", "updatedAt": "2022-02-26T03:33:06.168Z" } } }
-                }
-            }, {
                 "id": 60,
                 "attributes": {
                     "title": "牛客网",
@@ -203,7 +190,7 @@ export default new Vuex.Store({
         mainPageData: [{
             component: "TinyBiliRank",
             title: "热门视频",
-            card: "new-1",
+            card: "new-2",
             hide: false,
         }, {
             component: "WeiboHot",

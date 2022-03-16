@@ -4,7 +4,7 @@
       <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
       <div
         :class="{
-          'bg-blur': true,
+          'bg-blur': settings.useBlur,
           'bg-blur-blurred': wallpaperDescHided,
           'bg-blur-opacity': ifScrolled || wallpaperDescHided,
         }"
@@ -53,6 +53,9 @@ export default {
     wallpaperDescHided: function () {
       return this.$store.getters.getWallpaperDescHided;
     },
+    settings: function(){
+      return this.$store.getters.getSettings;
+    }
   },
   watch: {
     mode(newStat) {
