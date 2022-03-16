@@ -99,16 +99,7 @@
       <div class="list-header">
           <span class="title">我的收藏</span>
           <div class="right">
-            <button class="icon-button" @click="showModify()">
-              <span
-                :class="{
-                  iconfont: true,
-                  'icon-edit-2': !modifyShow,
-                  'icon-check': modifyShow,
-                }"
-              ></span>
-              <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
-            </button>
+            <transition name="fade">
             <button
               :class="{
                 'icon-button': true,
@@ -119,6 +110,18 @@
                 <span class="iconfont icon-add"></span>
                 <span class="tip">自定义</span>
             </button>
+            </transition>
+            <button class="icon-button" @click="showModify()">
+              <span
+                :class="{
+                  iconfont: true,
+                  'icon-edit-2': !modifyShow,
+                  'icon-check': modifyShow,
+                }"
+              ></span>
+              <span class="tip">{{ !modifyShow ? "编辑" : "完成" }}</span>
+            </button>
+            
           </div>
         </div>
       <div class="nav-block" ref="favorites">
@@ -203,7 +206,7 @@
           </a>
           
           <!-- <transition name="fade"> -->
-            <div
+            <!-- <div
               :class="{
                 'nav-item ef-float add-nav': true,
                 'nav-item-blurred': bgPrepared && settings.useBlur,
@@ -213,7 +216,7 @@
             >
               <span class="iconfont icon-add"></span>
               <span class="tip">自定义</span>
-            </div>
+            </div> -->
           <!-- </transition> -->
         </transition-group>
       </div>
