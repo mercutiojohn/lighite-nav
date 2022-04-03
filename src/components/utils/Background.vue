@@ -154,6 +154,7 @@ export default {
   object-fit: cover;
 }
 .bg-blur {
+  /* will-change: transform; */
   position: absolute;
   left: 0;
   top: 0;
@@ -164,6 +165,7 @@ export default {
   transition: opacity 0.2s ease;
   backdrop-filter: blur(var(--bg-blurred-width));
   opacity: 0;
+  transform: translate3d(0,0,0);
 }
 .bg-mask {
   position: absolute;

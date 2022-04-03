@@ -73,8 +73,11 @@
 </template>
 
 <script>
+import Loading from "@/components/utils/Loading.vue";
 export default {
-  components: {},
+  components: {
+    Loading
+  },
   name: "bilianime",
   data() {
     return {

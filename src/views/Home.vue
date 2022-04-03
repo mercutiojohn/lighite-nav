@@ -35,6 +35,7 @@
           'card-new-2': item.card == 'new-2'
         }"
         v-if="!item.hide"
+        :ref="item.component"
       >
         <component v-bind:is="item.component"></component>
       </div>
@@ -54,6 +55,7 @@ import WeiboHot from "@/components/widgets/WeiboHot.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
 import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
+import TopicCovid from "@/components/widgets/TopicCovid.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
 import Loading from '@/components/utils/Loading.vue'
 // import { component } from "vue/types/umd";
@@ -73,7 +75,8 @@ export default {
     WallpaperShow,
     TinyBiliRank,
     WeiboHot,
-    Loading
+    Loading,
+    TopicCovid
     // OneSentence,
   },
   data() {
@@ -101,27 +104,16 @@ export default {
         }
       ],
       cards: [
-        { 
-          component: "TinyBiliRank", 
-          title: "热门视频",
-          card:"new-1"
-        },{ 
-          component: "WeiboHot", 
-          title: "微博热搜",
-          card:"new-1"
-        },{ 
-          component: "TinyMusicChart", 
-          title: "音乐排行",
-          card:"new-1"
-        },{ 
-          component: "TinyAnimeChart", 
-          title: "番剧排行",
-          card:"new-1"
-        }
+
         ],
+        cardTop:{},
+        cardBottom:{}
     };
   },
   computed: {
+    docHeight: function(){
+      return document.body.clientHeight;
+    },
     mode: function () {
       return this.$store.getters.getMode;
     },
@@ -146,6 +138,29 @@ export default {
       // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
       if (this.$refs.home.scrollTop) this.ifScrolled = true;
       else this.ifScrolled = false;
+      // this.cards.forEach(element => {
+      //   this.$refs[element.component][0].style.transform = `scale(${(1 - (
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 / 10
+      //     ).toFixed(2))>1?1:(1 - (
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 / 10
+      //     ).toFixed(2))}) `
+          
+      //   this.$refs[element.component][0].style.opacity = (1 - (
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 
+      //     ).toFixed(2))>1?1:(1 - (
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 
+      //     ).toFixed(2));
+      // });
+/*
+          translateY(${
+            0 - ((
+            (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  
+          ).toFixed(2)<0?0:(
+            (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight) 
+          ).toFixed(2))
+          }px)
+          */
+
       this.$store.commit("setIfScrolled", this.ifScrolled);
       this.$store.commit("setHomeScrollTop", this.$refs.home.scrollTop);
     },

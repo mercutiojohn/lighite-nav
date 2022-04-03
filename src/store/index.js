@@ -188,19 +188,8 @@ export default new Vuex.Store({
 
         },
         mainPageData: [{
-            component: "TinyBiliRank",
-            title: "热门视频",
-            card: "new-2",
-            hide: false,
-        }, {
             component: "WeiboHot",
             title: "微博热搜",
-            card: "new-1",
-            hide: false,
-
-        }, {
-            component: "TinyMusicChart",
-            title: "音乐排行",
             card: "new-1",
             hide: false,
 
@@ -209,6 +198,50 @@ export default new Vuex.Store({
             title: "番剧排行",
             card: "new-1",
             hide: false,
+        }, {
+            component: "TinyBiliRank",
+            title: "热门视频",
+            card: "new-2",
+            hide: false,
+        }, {
+            component: "TinyMusicChart",
+            title: "音乐排行",
+            card: "new-1",
+            hide: false,
+
+        }, {
+            component: "TopicCovid",
+            title: "疫情",
+            card: "new-1",
+            hide: true,
+        }],
+        suggestedMainPageData: [{
+            component: "WeiboHot",
+            title: "微博热搜",
+            card: "new-1",
+            hide: false,
+
+        }, {
+            component: "TinyAnimeChart",
+            title: "番剧排行",
+            card: "new-1",
+            hide: false,
+        }, {
+            component: "TinyBiliRank",
+            title: "热门视频",
+            card: "new-2",
+            hide: false,
+        }, {
+            component: "TinyMusicChart",
+            title: "音乐排行",
+            card: "new-1",
+            hide: false,
+
+        }, {
+            component: "TopicCovid",
+            title: "疫情",
+            card: "new-1",
+            hide: true,
         }]
     },
     mutations: {

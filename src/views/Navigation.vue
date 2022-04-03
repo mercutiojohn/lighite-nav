@@ -113,6 +113,9 @@
         <span class="title">我的收藏</span>
         <div class="right">
           <transition name="fade">
+            <span class="drag-tip" v-if="modifyShow">可以进行拖动排序</span>
+          </transition>
+          <transition name="fade">
             <button
               :class="{
                 'icon-button': true,
@@ -556,6 +559,7 @@ hr {
 .list-header .right {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .header-list {
   width: 100%;
@@ -845,5 +849,9 @@ hr {
 }
 .drag-move {
   transition: transform 0.3s;
+}
+.drag-tip{
+  font-size: .8em;
+  color: var(--subtitle-color);
 }
 </style>

@@ -50,10 +50,21 @@
                   :draggable="!item.hide"
                   v-for="(item, index) in mainPageData"
                   :key="item.component"
-                  :class="{'drag-item':true,'drag-item-hide':item.hide}"
+                  :class="{ 'drag-item': true, 'drag-item-hide': item.hide }"
                 >
                   <span class="card-title">{{ item.title }}</span>
-                  <button class="card-func icon-button" @click="item.hide?showCard(index):hideCard(index)"><span :class="{'iconfont':true, 'icon-circleminus':!item.hide,'icon-add':item.hide}"></span></button>
+                  <button
+                    class="card-func icon-button"
+                    @click="item.hide ? showCard(index) : hideCard(index)"
+                  >
+                    <span
+                      :class="{
+                        iconfont: true,
+                        'icon-circleminus': !item.hide,
+                        'icon-add': item.hide,
+                      }"
+                    ></span>
+                  </button>
                 </li>
               </transition-group>
             </div>
@@ -113,20 +124,21 @@
       <span class="about-line">音乐内容来自网易云音乐</span>
       <span class="about-line">视频内容来自Bilibili</span>
       <span class="about-line">天气数据来自和风天气</span>
-      <span class="about-line"
-        >Built with 🧡 by
+      <span class="about-line">
+        Built with 🧡 by
         <a
           href="https://www.mercutio.club"
           class="link-button"
           target="_blank"
           title="Mercutio的博客"
-          >Mercutio</a
-        ></span
-      >
+        >
+          Mercutio
+        </a>
+      </span>
       <span class="about-line">Copyright © 2021 Mercutio</span>
-      <span class="about-line"
-        >免责声明：壁纸内容由Unsplash实时自动随机选择，本网站不做人工筛选，亦不对壁纸内容负责。</span
-      >
+      <span class="about-line">
+        免责声明：壁纸内容由Unsplash实时自动随机选择，本网站不做人工筛选，亦不对壁纸内容负责。
+      </span>
     </div>
   </div>
 </template>
@@ -268,16 +280,16 @@ export default {
       this.mainPageData[index].hide = true;
       const moving = this.mainPageData[index];
       this.mainPageData.splice(index, 1);
-      this.mainPageData.splice((this.mainPageData.length), 0, moving);
+      this.mainPageData.splice(this.mainPageData.length, 0, moving);
       this.forceUpdateMainPageData();
     },
-    showCard(index){
+    showCard(index) {
       this.mainPageData[index].hide = false;
       const moving = this.mainPageData[index];
       this.mainPageData.splice(index, 1);
       this.mainPageData.splice(0, 0, moving);
       this.forceUpdateMainPageData();
-    }
+    },
   },
   created() {},
   mounted() {
@@ -385,11 +397,11 @@ export default {
   /* line-height: 50px; */
   /* text-align: center; */
   border: 2px solid transparent;
-  transition:background .2s ease;
+  transition: background 0.2s ease;
 }
-.drag-item-hide{
+.drag-item-hide {
   background: transparent;
-  cursor:default;
+  cursor: default;
   border: 2px solid var(--card-color);
 }
 .drag-move {
