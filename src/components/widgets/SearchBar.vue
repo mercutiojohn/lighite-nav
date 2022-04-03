@@ -176,6 +176,9 @@ export default {
   font-family: MiSans, "San Francisco", "SF Pro Display", "PingFang SC",
     Helvetica, Arial, sans-serif;
 }
+.search-input::placeholder{
+  color: var(--placeholder-color);
+}
 .select-engines{
   cursor: pointer;
   display: flex;

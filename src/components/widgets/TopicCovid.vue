@@ -5,7 +5,7 @@
       <div class="right"></div>
     </div>
 
-    <div class="fix-scrollbar card-list-height covid-cntnt">
+    <div class="fix-scrollbar card-list-long-height covid-cntnt">
       <span class="risk-header">疫情风险地区汇总</span>
       <span class="risk-title">高风险地区 · {{ risk.count["2"] }}个</span>
       <span class="time-stamp"
@@ -131,6 +131,10 @@ export default {
 }
 .province-header {
   padding: 10px 0;
+  position:sticky;
+  top:1em;
+  background: var(--card-color);
+  padding: 10px;
 }
 .risk-header {
   /* text-align: center; */
@@ -139,6 +143,11 @@ export default {
 }
 .risk-title {
   font-weight: bold;
+  position:sticky;
+  top:0;
+  background: var(--card-color);
+  padding: 10px;
+
 }
 .time-stamp {
   font-size: 0.6em;

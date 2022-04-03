@@ -107,7 +107,7 @@ export default {
 }
 .clock-content-blurred{
   color: var(--title-color-blurred);
-  text-shadow: 0 2px 10px #00000034;
+  text-shadow: 0 2px 4px #00000059;
 }
 .clock-content .time {
   font-size: 30px;

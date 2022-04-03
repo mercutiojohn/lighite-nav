@@ -13,7 +13,7 @@
         v-model="editingTodoItem.text"
       />
     </div>
-    <ul class="list">
+    <ul class="list card-list-height">
       <li
         class="item"
         v-for="(item, index) in list"

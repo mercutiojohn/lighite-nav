@@ -3,7 +3,7 @@
     <TinyCalendar />
     <OneSentence />
     <SearchBar />
-    <TinyNavigation />
+    <!-- <TinyNavigation /> -->
 </div>
 </template>
 

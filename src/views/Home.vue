@@ -12,11 +12,13 @@
           card: true,
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
-          'card-main': item.card == 'main',
-          'card-long': item.card == 'long',
-          'card-small': item.card == 'small',
-          'card-new-1': item.card == 'new-1',
-          'card-new-2': item.card == 'new-2'
+          'card-no-bg': item.nobg == true,
+          'card-w-2-h-1': item.card == 'w-2-h-1',
+          'card-w-1-h-2': item.card == 'w-1-h-2',
+          'card-w-1-h-1': item.card == 'w-1-h-1',
+          'card-w-1-h-auto': item.card == 'w-1-h-auto',
+          'card-w-2-h-auto': item.card == 'w-2-h-auto',
+          'card-w-4-h-auto': item.card == 'w-4-h-auto'
         }"
       >
         <component v-bind:is="item.component"></component>
@@ -28,11 +30,13 @@
           card: true,
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
-          'card-main': item.card == 'main',
-          'card-long': item.card == 'long',
-          'card-small': item.card == 'small',
-          'card-new-1': item.card == 'new-1',
-          'card-new-2': item.card == 'new-2'
+          'card-no-bg': item.nobg == true,
+          'card-w-2-h-1': item.card == 'w-2-h-1',
+          'card-w-1-h-2': item.card == 'w-1-h-2',
+          'card-w-1-h-1': item.card == 'w-1-h-1',
+          'card-w-1-h-auto': item.card == 'w-1-h-auto',
+          'card-w-2-h-auto': item.card == 'w-2-h-auto',
+          'card-w-4-h-auto': item.card == 'w-4-h-auto'
         }"
         v-if="!item.hide"
         :ref="item.component"
@@ -49,6 +53,7 @@
 // import TinyVideo from "@/components/widgets/TinyVideo.vue";
 import TinyBiliRank from "@/components/widgets/TinyBiliRank.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
+import TinyNavigation from "@/components/widgets/TinyNavigation.vue";
 import TinyMusic from "@/components/widgets/TinyMusic.vue";
 import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
 import WeiboHot from "@/components/widgets/WeiboHot.vue";
@@ -69,6 +74,7 @@ export default {
     TinyMusic,
     TinyMusicChart,
     TinyAnimeChart,
+    TinyNavigation,
     GreetingBox,
     Weather,
     TinyToDo,
@@ -87,20 +93,21 @@ export default {
           component: "GreetingBox", 
           ifMainCard: true,
           ifFixScrollbar:true, 
-          title: "网址导航",
-          card:"main"
+          title: "欢迎",
+          card:"w-2-h-1"
         },{ 
           component: "Weather", 
           title: "天气",
-          card:"small"
-        },{ 
-          component: "TinyToDo", 
-          title: "待办清单",
-          card:"long"
+          card:"w-1-h-1"
         },{ 
           component: "TinyMusic", 
           title: "歌词",
-          card:"small"
+          card:"w-1-h-1"
+        },{ 
+          component: "TinyNavigation", 
+          title: "导航",
+          card:"w-4-h-auto",
+          nobg:true
         }
       ],
       cards: [
@@ -216,10 +223,12 @@ export default {
 }
 @media screen and (min-width: 1080px) {
   .blocks {
-    grid-template-rows: repeat(
-      2,
+    /* grid-template-rows: repeat(
+      1,
       calc((100vh - var(--head-height) - var(--padding)) / 3)
-    );
+    ); */
+    /* grid-template-rows: 220px; */
+    grid-template-rows: repeat(2,auto);
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
@@ -247,81 +256,90 @@ export default {
   height:0;
 }
 .card-no-bg {
-  background: transparent;
+  background: transparent!important;
+  backdrop-filter: none!important;
+  border-radius: 0;
+  overflow: unset;
 }
 .card-blurred {
   background: var(--blurred-card-color);
   backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
 
-.card-main {
-  grid-row: 1 / 3;
-  grid-column: 1 / 3;
+.card-w-2-h-1 {
+  grid-column-start: span 2;
+  grid-row-start:span 1;
 }
 .card-sub1 {
-  grid-column: 1 / 3;
+  grid-row-start:span 1;
 }
 .card-sub2 {
-  grid-column: 3 / 5;
+  grid-row-start:span 1;
 }
-.card-more {
-  grid-column: 1 / 5;
+.card-whole {
+  grid-row-start:span 4;
 }
-.card-long {
-  grid-row: 1 / 3;
-}
-.card-new-1 {
-  grid-column-start: span 1;
-}
-.card-new-2 {
+.card-w-1-h-2 {
+  grid-row-start:span 1;
   grid-column-start: span 2;
 }
+.card-w-1-h-auto {
+  grid-column-start: span 1;
+  /* grid-row-start:span 2; */
+}
+.card-w-2-h-auto {
+  grid-column-start: span 2;
+  /* grid-row-start:span 2; */
+}
+.card-w-4-h-auto{
+  grid-column-start: span 4;
+}
 @media screen and (min-width: 1000px) and (max-width: 1200px) {
-  .card-new-1 {
+  .card-w-1-h-auto {
     grid-column-start: span 2;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1000px) {
-  .card-main,
-  .card-small {
-    grid-column: 1 / 5;
+  .card-w-2-h-1,
+  .card-w-1-h-1 {
+    grid-column-start: span 4;
   }
-  .card-long {
+  .card-w-1-h-2 {
     grid-row: unset;
-    grid-column: 1 / 5;
+    grid-column-start: span 4;
   }
   .card-sub1 {
-    grid-column: 1 / 3;
+    grid-column-start: span 4;
   }
 
   .card-sub2 {
-    grid-column: 3 / 5;
+    grid-column-start: span 4;
   }
   .card-more {
     grid-row: unset;
-    grid-column: 1 / 5;
-  }
-  .card-new-1 {
     grid-column-start: span 4;
   }
-  .card-new-2 {
+  .card-w-1-h-auto {
+    grid-column-start: span 4;
+  }
+  .card-w-1-h-auto {
     grid-column-start: span 4;
   }
 }
 @media screen and (max-width: 700px) {
   .card-sub1,
   .card-sub2,
-  .card-main,
-  .card-small,
-  .card-long,
+  .card-w-2-h-1,
+  .card-w-1-h-1,
+  .card-w-1-h-2,
   .card-more {
     grid-row: unset;
-    grid-column: 1 / 5;
-  }
-  .card-new-1 {
     grid-column-start: span 4;
   }
-  .card-new-2 {
+  .card-w-1-h-auto {
+    grid-column-start: span 4;
+  }
+  .card-w-1-h-auto {
     grid-column-start: span 4;
   }
 }

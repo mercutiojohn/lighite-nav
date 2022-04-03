@@ -7,6 +7,10 @@
     }"
   >
     <div class="settings-list">
+      <button ref="addBtn" :class="{ 'add-to-home-screen':true, 'icon-button': true, 'add-to-home-screen-blurred': bgPrepared }">
+        <span class="iconfont icon-add"></span>
+        <span class="tip">添加到桌面</span>
+      </button>
       <div class="sub-header">
         <span class="title">首页功能</span>
       </div>
@@ -41,6 +45,9 @@
         </div>
         <transition name="fade">
           <div class="settings-detail" v-if="detailShow">
+            <div class="reset">
+              <button class="icon-button" @click="resetMainPageData">重置</button>
+            </div>
             <div class="settings-drag">
               <transition-group name="drag" class="drag-list" tag="ul">
                 <li
@@ -119,6 +126,7 @@
         </div>
       </div>
     </div>
+
     <div class="about">
       <span class="about-line">壁纸资源来自Unsplash</span>
       <span class="about-line">音乐内容来自网易云音乐</span>
@@ -238,6 +246,27 @@ export default {
     },
   },
   methods: {
+    resetSettings(){
+
+    },
+    resetMainPageData(){
+      this.mainPageData = this.$store.state.suggestedMainPageData;
+      this.forceUpdateMainPageData();
+      let arr = [];
+      this.mainPageData.forEach((item)=>{
+        arr.push(item.title);
+      });
+      console.log(arr);
+      arr = [];
+      this.$store.state.suggestedMainPageData.forEach((item)=>{
+        arr.push(item.title);
+      });
+      console.log(arr);
+
+    },
+    addNewCards(){
+
+    },
     detailChange() {
       this.detailShow = !this.detailShow;
     },
@@ -290,11 +319,76 @@ export default {
       this.mainPageData.splice(0, 0, moving);
       this.forceUpdateMainPageData();
     },
+    add2Home() {
+      this.$refs.addBtn.style.display = "none";
+      // 显示安装提示
+      deferredPrompt.prompt();
+      // 等待用户反馈
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the A2HS prompt");
+        } else {
+          console.log("User dismissed the A2HS prompt");
+        }
+        deferredPrompt = null;
+      });
+    },
+    randomNotification() {
+      var notifTitle = '通知订阅成功';
+      var notifBody = "当有活动时,Lightie会通知你";
+      var notifImg = "img/icons/apple-touch-icon-120x120.png";
+      var options = {
+        body: notifBody,
+        icon: notifImg,
+      };
+      var notif = new Notification(notifTitle, options);
+      // setTimeout(this.randomNotification, 1000);
+    },
   },
   created() {},
   mounted() {
     this.settings = this.remoteSettings;
     this.mainPageData = this.remoteMainPageData;
+
+    // Notifications
+
+    // Notification.requestPermission().then(function (result) {
+    //   if (result === "granted") {
+    //     this.randomNotification();
+    //   }
+    // });
+
+    // A2HS
+    let deferredPrompt;
+    const addBtn = this.$refs.addBtn;
+    addBtn.style.display = "none";
+
+    // this.randomNotification();
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      // 防止 Chrome 67 及更早版本自动显示安装提示
+      e.preventDefault();
+      // 稍后再触发此事件
+      deferredPrompt = e;
+      // 更新 UI 以提醒用户可以将 App 安装到桌面
+      addBtn.style.display = "block";
+
+      addBtn.addEventListener("click", (e) => {
+        // 隐藏显示 A2HS 按钮的界面
+        addBtn.style.display = "none";
+        // 显示安装提示
+        deferredPrompt.prompt();
+        // 等待用户反馈
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the A2HS prompt");
+          } else {
+            console.log("User dismissed the A2HS prompt");
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
   },
   beforeDestroy() {},
 };

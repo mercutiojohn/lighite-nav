@@ -1,17 +1,19 @@
 <template>
   <div class="background">
-    <div :class="{ 'bg-box': true }" v-if="bgPrepared == true">
-      <img class="bg-image" :src="srcs.regular" alt="" srcset="" />
-      <div
-        :class="{
-          'bg-blur': settings.useBlur,
-          'bg-blur-blurred': wallpaperDescHided,
-          'bg-blur-opacity': ifScrolled || wallpaperDescHided,
-        }"
-        :style="'--bg-blurred-width:' + getBlurWidth() + 'px'"
-      ></div>
-      <div :class="{ 'bg-mask': true }"></div>
-    </div>
+    <transition name="fade">
+      <div :class="{ 'bg-box': true }" v-if="bgPrepared == true">
+        <img class="bg-image" v-lazy="srcs.regular" alt="" srcset="" />
+        <div
+          :class="{
+            'bg-blur': settings.useBlur,
+            'bg-blur-blurred': wallpaperDescHided,
+            'bg-blur-opacity': ifScrolled || wallpaperDescHided,
+          }"
+          :style="'--bg-blurred-width:' + getBlurWidth() + 'px'"
+        ></div>
+        <div :class="{ 'bg-mask': true }"></div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -106,6 +108,7 @@ export default {
         });
     },
     updatePic() {
+      this.setBgState(false);
       this.$axios({
         baseURL: "https://api.unsplash.com",
         url: "/photos/random",
@@ -115,6 +118,7 @@ export default {
         this.data = response.data;
         this.srcs = response.data.urls;
         setTimeout(() => {
+          this.setBgState(true);
           this.$bus.$emit("updatedWallpaper", "test");
         }, 1000);
       });

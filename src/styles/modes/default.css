@@ -16,6 +16,7 @@
     --hover-color: #00000013;
     --active-color: #00000023;
     --line-color: #e0e0e0;
+    --placeholder-color: #afafaf;
     /* 模糊文字 */
     --title-color-blurred: #fff;
     --subtitle-color-blurred: #ddd;
@@ -28,6 +29,18 @@
     /* 控件 */
     --input-bg-color: #f1f1f1;
     --input-border-color: #c0c0c0;
+    /* 强制夜间文字色 */
+    --title-color-dark: #fff;
+    --subtitle-color-dark: #9c9c9c;
+    --content-color-dark: #fff;
+    --hover-color-dark: #ffffff33;
+    --active-color-dark: #ffffff71;
+    --line-color-dark: #0000004f;
+    /* 强制夜间容器色 */
+    --card-color-dark: #414141;
+    --blurred-color-dark: #00000034;
+    --page-color-dark: #414141;
+    --sub-card-color-dark: #222222;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -49,6 +62,7 @@
         --hover-color: #ffffff33;
         --active-color: #ffffff71;
         --line-color: #0000004f;
+        --placeholder-color: #cac9c9;
         /* 模糊文字 */
         --blurred-line-color: #ffffff15;
         /* 控件 */

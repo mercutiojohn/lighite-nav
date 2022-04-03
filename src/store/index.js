@@ -188,59 +188,67 @@ export default new Vuex.Store({
 
         },
         mainPageData: [{
+            component: "TinyToDo",
+            title: "待办清单",
+            card: "w-1-h-auto",
+            hide: false,
+        }, {
             component: "WeiboHot",
             title: "微博热搜",
-            card: "new-1",
+            card: "w-1-h-auto",
+            hide: false,
+        }, {
+            component: "TinyBiliRank",
+            title: "热门视频",
+            card: "w-2-h-auto",
+            hide: false,
+        }, {
+            component: "TinyMusicChart",
+            title: "音乐排行",
+            card: "w-1-h-auto",
             hide: false,
 
         }, {
             component: "TinyAnimeChart",
             title: "番剧排行",
-            card: "new-1",
+            card: "w-1-h-auto",
             hide: false,
-        }, {
-            component: "TinyBiliRank",
-            title: "热门视频",
-            card: "new-2",
-            hide: false,
-        }, {
-            component: "TinyMusicChart",
-            title: "音乐排行",
-            card: "new-1",
-            hide: false,
-
         }, {
             component: "TopicCovid",
             title: "疫情",
-            card: "new-1",
+            card: "w-1-h-auto",
             hide: true,
         }],
         suggestedMainPageData: [{
+            component: "TinyToDo",
+            title: "待办清单",
+            card: "w-1-h-auto",
+            hide: false,
+        }, {
             component: "WeiboHot",
             title: "微博热搜",
-            card: "new-1",
+            card: "w-1-h-auto",
+            hide: false,
+        }, {
+            component: "TinyBiliRank",
+            title: "热门视频",
+            card: "w-2-h-auto",
+            hide: false,
+        }, {
+            component: "TinyMusicChart",
+            title: "音乐排行",
+            card: "w-1-h-auto",
             hide: false,
 
         }, {
             component: "TinyAnimeChart",
             title: "番剧排行",
-            card: "new-1",
+            card: "w-1-h-auto",
             hide: false,
-        }, {
-            component: "TinyBiliRank",
-            title: "热门视频",
-            card: "new-2",
-            hide: false,
-        }, {
-            component: "TinyMusicChart",
-            title: "音乐排行",
-            card: "new-1",
-            hide: false,
-
         }, {
             component: "TopicCovid",
             title: "疫情",
-            card: "new-1",
+            card: "w-1-h-auto",
             hide: true,
         }]
     },
@@ -343,6 +351,9 @@ export default new Vuex.Store({
                 state.mainPageData = JSON.parse(decodeURIComponent(localStorage.getItem('mainPageData')));
             }
             return state.mainPageData;
+        },
+        getSuggestedMainPageData: (state) => {
+            return state.suggestedMainPageData;
         }
     }
 })

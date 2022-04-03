@@ -24,7 +24,7 @@ body {
     color: var(--content-color);
     font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     ;
-    font-weight: 500;
+    /* font-weight: 400; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* text-align: center; */
@@ -94,7 +94,7 @@ input[type=text].better-input-blurred:focus {
 }
 
 input[type=text].better-input::placeholder {
-    /* color: var(--content-color); */
+    color: var(--placeholder-color);
 }
 
 input[type=text].better-input {}
@@ -668,3 +668,10 @@ button.common-button:active {
 .fix-scrollbar::-webkit-scrollbar-button:vertical:decrement:hover {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAVklEQVQ4T6XMwQ3AIAwEQfrvgS5SAn0d8sMSmJXIJY95sPLRJP2C0YHRgdGB0YHRgTH1ZyjUvsIYcnz7BGMdp3oXjkDDVb3fHl9gdGB0YHRgdGB8T20CB+X+675uLU0AAAAASUVORK5CYII=);
 } */
+
+
+/* Text Effects */
+
+.text-shadow {
+    text-shadow: 0 2px 4px #00000059;
+}

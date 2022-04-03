@@ -21,7 +21,7 @@
     <!-- <div class="funcs">
     </div> -->
     <transition-group name="fade" type="out-in">
-      <div class="list fix-scrollbar card-list-height" v-if="!loading" key="content">
+      <div class="list fix-scrollbar card-list-long-height" v-if="!loading" key="content">
         <a
           class="list-item ef-fadein"
           v-for="(item, index) in hot.realtime"
@@ -119,7 +119,6 @@ export default {
   /* justify-content: center; */
   padding: 10px;
   box-sizing: border-box;
-  height: calc(400px + 50px);
 }
 .album-cover {
   width: 45px;

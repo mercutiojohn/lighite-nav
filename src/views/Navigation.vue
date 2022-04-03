@@ -440,6 +440,9 @@ export default {
         let tag = "sublist_" + index;
         this.$refs[tag][0].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
         // this.$refs[tag][0].scrollTop = this.$refs[tag][0].offsetTop;
+        // setTimeout(()=>{
+        //   this.currSubItem = -1;
+        // },10000);
       }
     },
     navItemHovered(list, item) {

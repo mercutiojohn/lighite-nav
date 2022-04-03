@@ -2,45 +2,55 @@
   <div
     :class="{
       header: true,
-      'header-with-bg': ifScrolled,
-      'header-with-bg-blurred': ifScrolled && bgPrepared,
+      //'header-with-bg': ifScrolled,
+      //'header-with-bg-blurred': ifScrolled && bgPrepared,
     }"
   >
-    <div class="title-box">
-      <span
-        :class="{ title: true, 'title-blurred': bgPrepared }"
-        v-text="title"
-      ></span>
+    <div class="left">
+      
     </div>
-    <div class="profile-box">
-      <button ref="addBtn" :class="{ 'add-to-home-screen':true, 'icon-button': true, 'add-to-home-screen-blurred': bgPrepared }">
-        <span class="iconfont icon-add"></span>
-        <span class="tip">添加到桌面</span>
-      </button>
-      <TinyClock class="hide-clock" />
-      <Profile />
+    <div :class="{'center':true,'big-clock':!ifScrolled && !title && bgPrepared && !wallpaperDescHided, 'big-clock-smaller':!ifScrolled && !title && !bgPrepared}">
+      <transition name="fade">
+        <div class="title-box" v-if="title">
+          <span
+            :class="{ title: true, 'title-blurred': bgPrepared }"
+            v-text="title"
+          ></span>
+        </div>
+        <div class="profile-box" v-else>
+          <TinyClock :class="{'clock':true }"/>
+        </div>
+      </transition>
+    </div>
+    <div class="right">
+        <!-- <Profile /> -->
     </div>
   </div>
 </template>
 
 <script>
 import TinyClock from "@/components/widgets/TinyClock.vue";
-import Profile from "@/components/utils/Profile.vue";
+// import Profile from "@/components/utils/Profile.vue";
 export default {
   name: "Header",
   components: {
     TinyClock,
-    Profile,
   },
   data() {
     return {
       title: "",
-      ifScrolled: false,
+      // ifScrolled: false,
     };
   },
   computed: {
+    wallpaperDescHided: function () {
+      return this.$store.getters.getWallpaperDescHided;
+    },
     bgPrepared: function () {
       return this.$store.getters.getBgPrepared;
+    },
+    ifScrolled: function () {
+      return this.$store.getters.getIfScrolled;
     },
   },
   watch: {
@@ -58,90 +68,26 @@ export default {
     },
   },
   methods: {
-    handleScroll() {
-      // console.log(document.querySelector("body > div").scrollTop +', '+ document.documentElement.scrollTop);
-      if (document.querySelector("body > div").scrollTop)
-        this.ifScrolled = true;
-      else this.ifScrolled = false;
-      console.log(this.ifScrolled);
-    },
-    add2Home() {
-      this.$refs.addBtn.style.display = "none";
-      // 显示安装提示
-      deferredPrompt.prompt();
-      // 等待用户反馈
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the A2HS prompt");
-        } else {
-          console.log("User dismissed the A2HS prompt");
-        }
-        deferredPrompt = null;
-      });
-    },
-    randomNotification() {
-      var notifTitle = '通知订阅成功';
-      var notifBody = "当有活动时,Lightie会通知你";
-      var notifImg = "img/icons/apple-touch-icon-120x120.png";
-      var options = {
-        body: notifBody,
-        icon: notifImg,
-      };
-      var notif = new Notification(notifTitle, options);
-      // setTimeout(this.randomNotification, 1000);
-    },
+    // handleScroll() {
+    //   if (document.querySelector("body > div").scrollTop)
+    //     this.ifScrolled = true;
+    //   else this.ifScrolled = false;
+    //   console.log(this.ifScrolled);
+    // },
   },
   created() {},
   mounted() {
-    document
-      .querySelector("body > div")
-      .addEventListener("scroll", this.handleScroll);
+    // document
+    //   .querySelector("body > div")
+    //   .addEventListener("scroll", this.handleScroll);
     this.title = this.$route.name;
 
-    // Notifications
-
-    // Notification.requestPermission().then(function (result) {
-    //   if (result === "granted") {
-    //     this.randomNotification();
-    //   }
-    // });
-
-    // A2HS
-    let deferredPrompt;
-    const addBtn = this.$refs.addBtn;
-    addBtn.style.display = "none";
-
-    // this.randomNotification();
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      // 防止 Chrome 67 及更早版本自动显示安装提示
-      e.preventDefault();
-      // 稍后再触发此事件
-      deferredPrompt = e;
-      // 更新 UI 以提醒用户可以将 App 安装到桌面
-      addBtn.style.display = "block";
-
-      addBtn.addEventListener("click", (e) => {
-        // 隐藏显示 A2HS 按钮的界面
-        addBtn.style.display = "none";
-        // 显示安装提示
-        deferredPrompt.prompt();
-        // 等待用户反馈
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === "accepted") {
-            console.log("User accepted the A2HS prompt");
-          } else {
-            console.log("User dismissed the A2HS prompt");
-          }
-          deferredPrompt = null;
-        });
-      });
-    });
+    
   },
   beforeDestroy() {
-    document
-      .querySelector("body > div")
-      .removeEventListener("scroll", this.handleScroll);
+    // document
+    //   .querySelector("body > div")
+    //   .removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
@@ -154,10 +100,22 @@ export default {
   /* background: var(--bg-color); */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+.center{
+  transition: transform .5s ease, font-weight .5s ease;
+  font-weight: 500;
+}
+.big-clock{
+  transform: scale(3) translateY(30px);
+  font-weight: 100;
+}
+.big-clock-smaller{
+  transform: scale(2) translateY(20px);
+  font-weight: 200;
 }
 @media screen and (max-width: 600px) {
   .header {
@@ -165,7 +123,7 @@ export default {
     margin-left: 0;
     position: static;
   }
-  .hide-clock {
+  .clock {
     display: none;
   }
 }

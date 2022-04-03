@@ -283,8 +283,8 @@ hello {
 .tmp-n-brief > .temprature {
   font-size: 60px;
   /* font-family: Mitype2018-70,ProximaNova, Politica, Palatino, Caecilia,
-    Bookerly; */
-  font-weight: 500;
+    Bookerly; */ 
+  font-weight: 100;
   /* padding: 0 0 10px 0; */
 }
 .tmp-n-brief > .brief {
@@ -344,6 +344,7 @@ hello {
   /* font-family: ProximaNova, Mitype2018-90; */
   font-size: 20px;
   padding-right: 5px;
+  font-weight: 600;
   /* background: var(--bg-color); */
   /* border-radius: 5px; */
   /* padding: 2px 5px; */
@@ -374,7 +375,7 @@ hello {
 }
 .color-line{
   width: 6px;
-  height: 20px;
+  height: 6px;
   border-radius: 3px;
   margin-right: 5px;
 }

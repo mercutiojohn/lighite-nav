@@ -19,7 +19,7 @@
             >
               <img
                 class="avatar"
-                :src="wallpaperData.user.profile_image.small"
+                v-lazy="wallpaperData.user.profile_image.small"
                 alt=""
                 srcset=""
               />
