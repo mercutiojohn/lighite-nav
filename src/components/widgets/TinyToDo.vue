@@ -143,7 +143,7 @@ export default {
   margin: 0 20px 5px 20px;
 }
 .list {
-  margin: 5px 0 20px 20px;
+  margin: 5px 0 0px 20px;
   overflow-y: scroll;
 }
 .list::-webkit-scrollbar{

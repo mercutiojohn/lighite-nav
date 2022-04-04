@@ -24,7 +24,7 @@ body {
     color: var(--content-color);
     font-family: MiSansR, -apple-system, BlinkMacSystemFont, 'San Francisco', 'SF Pro Display', 'PingFang SC', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     ;
-    /* font-weight: 400; */
+    font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* text-align: center; */
