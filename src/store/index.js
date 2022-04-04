@@ -193,14 +193,19 @@ export default new Vuex.Store({
             card: "w-1-h-auto",
             hide: false,
         }, {
-            component: "WeiboHot",
-            title: "微博热搜",
+            component: "TopicCovid",
+            title: "疫情",
             card: "w-1-h-auto",
             hide: false,
         }, {
             component: "TinyBiliRank",
             title: "热门视频",
             card: "w-2-h-auto",
+            hide: false,
+        }, {
+            component: "WeiboHot",
+            title: "微博热搜",
+            card: "w-1-h-auto",
             hide: false,
         }, {
             component: "TinyMusicChart",
@@ -213,11 +218,6 @@ export default new Vuex.Store({
             title: "番剧排行",
             card: "w-1-h-auto",
             hide: false,
-        }, {
-            component: "TopicCovid",
-            title: "疫情",
-            card: "w-1-h-auto",
-            hide: true,
         }],
         suggestedMainPageData: [{
             component: "TinyToDo",
@@ -225,14 +225,19 @@ export default new Vuex.Store({
             card: "w-1-h-auto",
             hide: false,
         }, {
-            component: "WeiboHot",
-            title: "微博热搜",
+            component: "TopicCovid",
+            title: "疫情",
             card: "w-1-h-auto",
             hide: false,
         }, {
             component: "TinyBiliRank",
             title: "热门视频",
             card: "w-2-h-auto",
+            hide: false,
+        }, {
+            component: "WeiboHot",
+            title: "微博热搜",
+            card: "w-1-h-auto",
             hide: false,
         }, {
             component: "TinyMusicChart",
@@ -245,11 +250,6 @@ export default new Vuex.Store({
             title: "番剧排行",
             card: "w-1-h-auto",
             hide: false,
-        }, {
-            component: "TopicCovid",
-            title: "疫情",
-            card: "w-1-h-auto",
-            hide: true,
         }]
     },
     mutations: {
