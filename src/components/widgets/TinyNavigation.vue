@@ -1,6 +1,10 @@
 <template>
   <div class="tiny-nav">
-    <div :class="{'header':true,'header-blurred':bgPrepared,'text-shadow':bgPrepared}">
+    <div :class="{
+      'header':true,
+      //'header-blurred':bgPrepared,
+      //'text-shadow':bgPrepared
+      }">
       <span class="title">我的导航</span>
       <router-link to="/navigation">
         <button class="icon-button">
@@ -146,6 +150,9 @@ export default {
 <style lang="css" src="../../styles/card.css" scoped>
 </style>
 <style scoped>
+.tiny-nav{
+  padding:20px;
+}
 .header {
   padding: 0 0 10px 0;
 }
@@ -165,8 +172,8 @@ export default {
   align-items: flex-start;
   justify-content: stretch;
   border-radius: var(--card-radius);
-  /* background: var(--sub-card-color); */
-  background: var(--blurred-card-color);
+  background: var(--sub-card-color);
+  /* background: var(--blurred-card-color); */
   transition: all 0.2s ease;
   cursor: pointer;
   border-width: 2px;
@@ -176,9 +183,9 @@ export default {
   padding: 7px;
 }
 .nav-item-blurred {
-  /* background: var(--blurred-sub-card-color); */
-  background: var(--blurred-card-color);
-  backdrop-filter: blur(var(--blur-width));
+  background: var(--blurred-sub-card-color);
+  /* background: var(--blurred-card-color); */
+  /* backdrop-filter: blur(var(--blur-width)); */
 }
 .nav-item:hover {
   background: var(--card-color);

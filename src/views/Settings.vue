@@ -183,11 +183,11 @@ export default {
           ],
         },
         {
-          title: "天气",
+          title: "本地服务",
           children: [
             {
               title: "城市",
-              desc: "输入天气所在市或县",
+              desc: "输入天气/疫情相关信息所在市或县",
               model: "weatherCity",
               inputType: "text",
             },

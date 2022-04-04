@@ -114,7 +114,7 @@ export default {
   font-weight: 100;
 }
 .big-clock-smaller{
-  transform: scale(2) translateY(20px);
+  transform: scale(2) translateY(10px);
   font-weight: 200;
 }
 @media screen and (max-width: 600px) {

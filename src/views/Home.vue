@@ -107,7 +107,7 @@ export default {
           component: "TinyNavigation", 
           title: "导航",
           card:"w-4-h-auto",
-          nobg:true
+          // nobg:true
         }
       ],
       cards: [
