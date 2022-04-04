@@ -322,7 +322,7 @@ export default {
   .card-w-1-h-auto {
     grid-column-start: span 4;
   }
-  .card-w-1-h-auto {
+  .card-w-2-h-auto {
     grid-column-start: span 4;
   }
 }
@@ -339,7 +339,7 @@ export default {
   .card-w-1-h-auto {
     grid-column-start: span 4;
   }
-  .card-w-1-h-auto {
+  .card-w-2-h-auto {
     grid-column-start: span 4;
   }
 }
