@@ -17,6 +17,20 @@ export default new Vuex.Store({
             useBlur: true,
             showTips: true,
             weatherCity: '北京',
+            hitokotoSource: {
+                a: true,
+                b: true,
+                c: true,
+                d: true,
+                e: true,
+                f: true,
+                g: true,
+                h: true,
+                i: true,
+                j: true,
+                k: true,
+                l: true
+            }
         },
         chosenEngine: {
             title: "必应",
@@ -190,65 +204,65 @@ export default new Vuex.Store({
         mainPageData: [{
             component: "TinyToDo",
             title: "待办清单",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TopicCovid",
             title: "疫情",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TinyBiliRank",
             title: "热门视频",
-            card: "w-2-h-auto",
+            card: "w-2-h-2",
             hide: false,
         }, {
             component: "WeiboHot",
             title: "微博热搜",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TinyMusicChart",
             title: "音乐排行",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
 
         }, {
             component: "TinyAnimeChart",
             title: "番剧排行",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }],
         suggestedMainPageData: [{
             component: "TinyToDo",
             title: "待办清单",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TopicCovid",
             title: "疫情",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TinyBiliRank",
             title: "热门视频",
-            card: "w-2-h-auto",
+            card: "w-2-h-2",
             hide: false,
         }, {
             component: "WeiboHot",
             title: "微博热搜",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }, {
             component: "TinyMusicChart",
             title: "音乐排行",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
 
         }, {
             component: "TinyAnimeChart",
             title: "番剧排行",
-            card: "w-1-h-auto",
+            card: "w-1-h-2",
             hide: false,
         }]
     },

@@ -1,18 +1,26 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
-import axios from 'axios'
 
+//Service Worker
+import './registerServiceWorker'
+
+// vue-router
+import router from './router'
+
+// Vuex
+import store from './store'
+
+// Axios
+import axios from 'axios'
 Vue.prototype.$axios = axios
 
+// Bus
 Vue.prototype.$bus = new Vue();
 
-
+//vue-lazyload
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload)
-    // 配置项
+    // LazyLoad配置项
 Vue.use(VueLazyload, {
     preLoad: 1.3,
     error: 'dist/error.png',
@@ -20,11 +28,12 @@ Vue.use(VueLazyload, {
     attempt: 1
 })
 
+//Axios BaseURL
 import base from '@/utils/api/base.js'
-
 let api = base;
 Vue.prototype.$api = api
 
+//Production Tip
 Vue.config.productionTip = false
 
 new Vue({

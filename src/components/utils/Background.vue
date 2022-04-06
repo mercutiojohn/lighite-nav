@@ -114,7 +114,11 @@ export default {
         url: "/photos/random",
         method: "get",
         headers: { Authorization: "Client-ID " + this.token },
-      }).then((response) => {
+      }).catch(function (error) {
+          // 处理错误情况
+          console.log(error);
+          _this.getFallbackPic();
+        }).then((response) => {
         this.data = response.data;
         this.srcs = response.data.urls;
         setTimeout(() => {

@@ -7,7 +7,14 @@
     }"
   >
     <div class="settings-list">
-      <button ref="addBtn" :class="{ 'add-to-home-screen':true, 'icon-button': true, 'add-to-home-screen-blurred': bgPrepared }">
+      <button
+        ref="addBtn"
+        :class="{
+          'add-to-home-screen': true,
+          'icon-button': true,
+          'add-to-home-screen-blurred': bgPrepared,
+        }"
+      >
         <span class="iconfont icon-add"></span>
         <span class="tip">添加到桌面</span>
       </button>
@@ -15,68 +22,71 @@
         <span class="title">首页功能</span>
       </div>
       <div class="settings-sublist">
-        <div
-          :class="{
-            'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
-            'ef-fadein': true,
-          }"
-          @click="detailChange()"
-        >
-          <div class="left">
-            <span :class="'settings-icon iconfont icon-cog'"></span>
-            <div class="info">
-              <span class="title">首页卡片管理</span>
-              <span class="desc">对首页卡片进行排序或隐藏</span>
+        <div class="settings-item">
+          <div
+            :class="{
+              'settings-item-basic': true,
+              'ef-fadein': true,
+            }"
+            @click="detailChangeLegacy()"
+          >
+            <div class="left">
+              <span :class="'settings-icon iconfont icon-cog'"></span>
+              <div class="info">
+                <span class="title">首页卡片管理</span>
+                <span class="desc">对首页卡片进行排序或隐藏</span>
+              </div>
+            </div>
+            <div class="right">
+              <button class="icon-button">
+                <span
+                  :class="{
+                    iconfont: true,
+                    'icon-chevron-down': !detailShow,
+                    'icon-chevron-up': detailShow,
+                  }"
+                  @click.once="detailChangeLegacy()"
+                ></span>
+              </button>
             </div>
           </div>
-          <div class="right">
-            <button class="icon-button">
-              <span
-                :class="{
-                  iconfont: true,
-                  'icon-chevron-down': !detailShow,
-                  'icon-chevron-up': detailShow,
-                }"
-                @click.once="detailChange()"
-              ></span>
-            </button>
-          </div>
-        </div>
-        <transition name="fade">
-          <div class="settings-detail" v-if="detailShow">
-            <div class="reset">
-              <button class="icon-button" @click="resetMainPageData">重置</button>
-            </div>
-            <div class="settings-drag">
-              <transition-group name="drag" class="drag-list" tag="ul">
-                <li
-                  @dragenter="dragenter($event, index)"
-                  @dragover="dragover($event, index)"
-                  @dragstart="dragstart(index)"
-                  :draggable="!item.hide"
-                  v-for="(item, index) in mainPageData"
-                  :key="item.component"
-                  :class="{ 'drag-item': true, 'drag-item-hide': item.hide }"
-                >
-                  <span class="card-title">{{ item.title }}</span>
-                  <button
-                    class="card-func icon-button"
-                    @click="item.hide ? showCard(index) : hideCard(index)"
+          <transition name="fade">
+            <div class="settings-item-more" v-if="detailShow">
+              <div class="settings-sub-item">
+                <button class="icon-button" @click="resetMainPageData">
+                  重置
+                </button>
+              </div>
+              <div class="settings-sub-item settings-drag">
+                <transition-group name="drag" class="drag-list" tag="ul">
+                  <li
+                    @dragenter="dragenter($event, index)"
+                    @dragover="dragover($event, index)"
+                    @dragstart="dragstart(index)"
+                    :draggable="!item.hide"
+                    v-for="(item, index) in mainPageData"
+                    :key="item.component"
+                    :class="{ 'drag-item': true, 'drag-item-hide': item.hide }"
                   >
-                    <span
-                      :class="{
-                        iconfont: true,
-                        'icon-circleminus': !item.hide,
-                        'icon-add': item.hide,
-                      }"
-                    ></span>
-                  </button>
-                </li>
-              </transition-group>
+                    <span class="card-title">{{ item.title }}</span>
+                    <button
+                      class="card-func icon-button"
+                      @click="item.hide ? showCard(index) : hideCard(index)"
+                    >
+                      <span
+                        :class="{
+                          iconfont: true,
+                          'icon-circleminus': !item.hide,
+                          'icon-add': item.hide,
+                        }"
+                      ></span>
+                    </button>
+                  </li>
+                </transition-group>
+              </div>
             </div>
-          </div>
-        </transition>
+          </transition>
+        </div>
       </div>
     </div>
     <div
@@ -91,62 +101,151 @@
         <div
           :class="{
             'settings-item': true,
-            'settings-item-blurred': bgPrepared && settings.useBlur,
           }"
           v-for="(item_1, index_1) in item.children"
           v-if="itemExists(item_1, 'ifShow') ? settings[item_1.ifShow] : true"
           :key="index_1"
         >
-          <div class="left">
-            <span
-              :class="
-                'settings-icon iconfont ' +
-                (itemExists(item_1, 'icon') ? item_1.icon : 'icon-cog')
-              "
-            ></span>
-            <div class="info">
-              <span class="title" v-text="item_1.title"></span>
-              <span class="desc" v-text="item_1.desc" v-if="item_1.desc"></span>
+          <div
+            :class="{
+              'settings-item-basic': true,
+              'ef-fadein': item_1.inputType == 'more',
+            }"
+            @click="item_1.inputType == 'more' ? detailChange(item_1) : ''"
+          >
+            <div class="left">
+              <span
+                :class="
+                  'settings-icon iconfont ' +
+                  (itemExists(item_1, 'icon') ? item_1.icon : 'icon-cog')
+                "
+              ></span>
+              <div class="info">
+                <span class="title" v-text="item_1.title"></span>
+                <span
+                  class="desc"
+                  v-text="item_1.desc"
+                  v-if="item_1.desc"
+                ></span>
+              </div>
+            </div>
+            <div class="right">
+              <input
+                v-if="
+                  item_1.inputType == 'checkbox' || item_1.inputType == 'text'
+                "
+                :type="item_1.inputType"
+                :name="item_1.model"
+                :id="item_1.model"
+                v-model="settings[item_1.model]"
+                @click="forceUpdateSettings()"
+                @keyup="forceUpdateSettings()"
+                @mouseout="forceUpdateSettings()"
+                @mouseleave="forceUpdateSettings()"
+                class="better-input"
+              />
+              <label
+                :for="item_1.model"
+                v-if="item_1.inputType == 'checkbox'"
+              ></label>
+              <div v-if="item_1.inputType == 'more'" class="type-more">
+                <button class="icon-button">
+                  <span
+                    :class="{
+                      iconfont: true,
+                      'icon-chevron-down': !item_1.detailShow,
+                      'icon-chevron-up': item_1.detailShow,
+                    }"
+                    @click.once="detailChange(item_1)"
+                  ></span>
+                </button>
+              </div>
+              <div v-if="item_1.inputType == 'button'" class="type-button">
+                <button
+                  class="common-button"
+                  v-text="item_1.buttonTitle"
+                  @click="execFunc(item_1)"
+                ></button>
+              </div>
             </div>
           </div>
-          <div class="right">
-            <input
-              :type="item_1.inputType"
-              :name="item_1.model"
-              :id="item_1.model"
-              v-model="settings[item_1.model]"
-              @click="forceUpdateSettings()"
-              class="better-input"
-            />
-            <label
-              :for="item_1.model"
-              v-if="item_1.inputType == 'checkbox'"
-            ></label>
-          </div>
+          <transition name="fade">
+            <div class="settings-item-more" v-if="item_1.detailShow">
+              <div
+                class="settings-sub-item"
+                v-for="(item_2, index_2) in item_1.details"
+                :key="index_2"
+              >
+                <div class="left">
+                  <div class="info">
+                    <span class="title" v-text="item_2.title"></span>
+                  </div>
+                </div>
+                <div class="right">
+                  <input
+                    v-if="
+                      item_2.inputType == 'checkbox' ||
+                      item_2.inputType == 'text'
+                    "
+                    :type="item_2.inputType"
+                    :name="item_2.model"
+                    :id="item_2.model"
+                    v-model="settings[item_1.model][item_2.model]"
+                    @click="forceUpdateSettings()"
+                    @keyup="forceUpdateSettings()"
+                    @mouseout="forceUpdateSettings()"
+                    @mouseleave="forceUpdateSettings()"
+                    class="better-input"
+                  />
+                  <label
+                    :for="item_2.model"
+                    v-if="item_2.inputType == 'checkbox'"
+                  ></label>
+                  <div v-if="item_1.inputType == 'button'" class="type-button">
+                    <button
+                      class="common-button"
+                      v-text="item_2.buttonTitle"
+                      @click="execFunc(item_2)"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
         </div>
       </div>
     </div>
 
     <div class="about">
-      <span class="about-line">壁纸资源来自Unsplash</span>
-      <span class="about-line">音乐内容来自网易云音乐</span>
-      <span class="about-line">视频内容来自Bilibili</span>
-      <span class="about-line">天气数据来自和风天气</span>
-      <span class="about-line">
-        Built with 🧡 by
+      <span class="about-line" style="text-align:center;"> Built with 🧡 by Mercutio </span>
+      <span class="about-line" style="text-align:center;">
         <a
           href="https://www.mercutio.club"
           class="link-button"
           target="_blank"
           title="Mercutio的博客"
         >
-          Mercutio
-        </a>
-      </span>
+          MercBlog
+        </a></span
+      >
+      <span class="about-line">来源：</span>
+      <ul class="about-list">
+        <li class="about-line">壁纸资源来自Unsplash</li>
+        <li class="about-line">音乐内容来自网易云音乐</li>
+        <li class="about-line">视频内容来自Bilibili</li>
+        <li class="about-line">天气数据来自和风天气</li>
+        <li class="about-line">一言数据来自Hitokoto</li>
+      </ul>
+      <span class="about-line">免责声明：</span>
+      <ul class="about-list">
+        <li class="about-line">
+          壁纸内容由Unsplash实时自动随机选择，本网站不做人工筛选，亦不对壁纸内容负责。
+        </li>
+        <li class="about-line">
+          一言内容由Hitokoto实时自动随机选择，本网站不做人工筛选，亦不对语句内容负责。
+        </li>
+      </ul>
       <span class="about-line">Copyright © 2021 Mercutio</span>
-      <span class="about-line">
-        免责声明：壁纸内容由Unsplash实时自动随机选择，本网站不做人工筛选，亦不对壁纸内容负责。
-      </span>
     </div>
   </div>
 </template>
@@ -220,6 +319,41 @@ export default {
               model: "showTips",
               inputType: "checkbox",
             },
+            {
+              title: "一言",
+              icon: "icon-message-square",
+              desc: "选择首页一句话内容分类",
+              model: "hitokotoSource",
+              inputType: "more",
+              detailShow: false,
+              details: [
+                { title: "动画", inputType: "checkbox", model: "a" },
+                { title: "漫画", inputType: "checkbox", model: "b" },
+                { title: "游戏", inputType: "checkbox", model: "c" },
+                { title: "文学", inputType: "checkbox", model: "d" },
+                { title: "原创", inputType: "checkbox", model: "e" },
+                { title: "影视", inputType: "checkbox", model: "h" },
+                { title: "诗词", inputType: "checkbox", model: "i" },
+                { title: "网易云", inputType: "checkbox", model: "j" },
+                { title: "哲学", inputType: "checkbox", model: "k" },
+                { title: "抖机灵", inputType: "checkbox", model: "l" },
+                { title: "来自网络", inputType: "checkbox", model: "f" },
+                { title: "其他", inputType: "checkbox", model: "g" },
+              ],
+            },
+          ],
+        },
+        {
+          title: "通用",
+          children: [
+            {
+              title: "重置",
+              icon: "icon-message-square",
+              desc: "将主页设置重置为初始状态",
+              inputType: "button",
+              buttonTitle: "重置为初始状态",
+              buttonFunction: "resetSettings",
+            },
           ],
         },
       ],
@@ -246,29 +380,32 @@ export default {
     },
   },
   methods: {
-    resetSettings(){
-
+    execFunc(item) {
+      this[item.buttonFunction]();
     },
-    resetMainPageData(){
+    resetSettings() {
+      console.log("hello");
+    },
+    resetMainPageData() {
       this.mainPageData = this.$store.state.suggestedMainPageData;
       this.forceUpdateMainPageData();
       let arr = [];
-      this.mainPageData.forEach((item)=>{
+      this.mainPageData.forEach((item) => {
         arr.push(item.title);
       });
       console.log(arr);
       arr = [];
-      this.$store.state.suggestedMainPageData.forEach((item)=>{
+      this.$store.state.suggestedMainPageData.forEach((item) => {
         arr.push(item.title);
       });
       console.log(arr);
-
     },
-    addNewCards(){
-
-    },
-    detailChange() {
+    addNewCards() {},
+    detailChangeLegacy() {
       this.detailShow = !this.detailShow;
+    },
+    detailChange(item) {
+      item.detailShow = !item.detailShow;
     },
     forceUpdateSettings() {
       setTimeout(() => {
@@ -334,7 +471,7 @@ export default {
       });
     },
     randomNotification() {
-      var notifTitle = '通知订阅成功';
+      var notifTitle = "通知订阅成功";
       var notifBody = "当有活动时,Lightie会通知你";
       var notifImg = "img/icons/apple-touch-icon-120x120.png";
       var options = {
@@ -397,11 +534,17 @@ export default {
 <style scoped>
 .settings-item {
   display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* background: var(--sub-card-color); */
+  /* padding: 18px 15px; */
+}
+.settings-item-basic {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--sub-card-color);
   padding: 18px 15px;
-  /* border-bottom: 1px solid var(--line-color); */
 }
 .settings-item:first-child {
   border-radius: var(--item-radius) var(--item-radius) 0 0;
@@ -448,12 +591,9 @@ export default {
   flex-direction: column;
   gap: 2px;
 }
-.settings-detail {
+.settings-item-more {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  background: var(--sub-card-color);
-  padding: 10px 15px;
 }
 .settings-detail:first-child {
   border-radius: var(--item-radius) var(--item-radius) 0 0;
@@ -513,7 +653,19 @@ export default {
   margin-top: 20px;
   color: var(--subtitle-color);
 }
+.about-list {
+  list-style-type: disc;
+  padding-inline-start: 15px;
+}
 input[type="text"].better-input {
   border-color: var(--line-color);
+}
+.settings-sub-item {
+  background: var(--sub-card-color);
+  padding: 10px 15px;
+  border-top: 1px solid var(--line-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

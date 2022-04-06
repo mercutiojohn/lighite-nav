@@ -7,18 +7,19 @@
     <div :class="{ blocks: true }">
       <div
         v-for="(item, index) in fixedCards"
-        :key="'s'+index"
+        :key="'s' + index"
         :class="{
           card: true,
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
           'card-no-bg': item.nobg == true,
-          'card-w-2-h-1': item.card == 'w-2-h-1',
-          'card-w-1-h-2': item.card == 'w-1-h-2',
           'card-w-1-h-1': item.card == 'w-1-h-1',
+          'card-w-1-h-2': item.card == 'w-1-h-2',
+          'card-w-2-h-1': item.card == 'w-2-h-1',
+          'card-w-2-h-2': item.card == 'w-2-h-2',
           'card-w-1-h-auto': item.card == 'w-1-h-auto',
           'card-w-2-h-auto': item.card == 'w-2-h-auto',
-          'card-w-4-h-auto': item.card == 'w-4-h-auto'
+          'card-w-4-h-auto': item.card == 'w-4-h-auto',
         }"
       >
         <component v-bind:is="item.component"></component>
@@ -31,12 +32,13 @@
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
           'card-no-bg': item.nobg == true,
-          'card-w-2-h-1': item.card == 'w-2-h-1',
-          'card-w-1-h-2': item.card == 'w-1-h-2',
           'card-w-1-h-1': item.card == 'w-1-h-1',
+          'card-w-1-h-2': item.card == 'w-1-h-2',
+          'card-w-2-h-1': item.card == 'w-2-h-1',
+          'card-w-2-h-2': item.card == 'w-2-h-2',
           'card-w-1-h-auto': item.card == 'w-1-h-auto',
           'card-w-2-h-auto': item.card == 'w-2-h-auto',
-          'card-w-4-h-auto': item.card == 'w-4-h-auto'
+          'card-w-4-h-auto': item.card == 'w-4-h-auto',
         }"
         v-if="!item.hide"
         :ref="item.component"
@@ -54,7 +56,7 @@
 import TinyBiliRank from "@/components/widgets/TinyBiliRank.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
 import TinyNavigation from "@/components/widgets/TinyNavigation.vue";
-import TinyMusic from "@/components/widgets/TinyMusic.vue";
+import Hitokoto from "@/components/widgets/Hitokoto.vue";
 import TinyMusicChart from "@/components/widgets/TinyMusicChart.vue";
 import WeiboHot from "@/components/widgets/WeiboHot.vue";
 import GreetingBox from "@/components/widgets/GreetingBox.vue";
@@ -62,7 +64,7 @@ import Weather from "@/components/widgets/Weather.vue";
 import TinyToDo from "@/components/widgets/TinyToDo.vue";
 import TopicCovid from "@/components/widgets/TopicCovid.vue";
 import WallpaperShow from "@/components/utils/WallpaperShow.vue";
-import Loading from '@/components/utils/Loading.vue'
+import Loading from "@/components/utils/Loading.vue";
 // import { component } from "vue/types/umd";
 // import OneSentence from '@/components/widgets/OneSentence.vue';
 
@@ -71,7 +73,7 @@ export default {
   components: {
     // TinyBook,
     // TinyVideo,
-    TinyMusic,
+    Hitokoto,
     TinyMusicChart,
     TinyAnimeChart,
     TinyNavigation,
@@ -82,43 +84,42 @@ export default {
     TinyBiliRank,
     WeiboHot,
     Loading,
-    TopicCovid
+    TopicCovid,
     // OneSentence,
   },
   data() {
     return {
       ifScrolled: false,
-      fixedCards:[
-        { 
-          component: "GreetingBox", 
+      fixedCards: [
+        {
+          component: "GreetingBox",
           ifMainCard: true,
-          ifFixScrollbar:true, 
+          ifFixScrollbar: true,
           title: "欢迎",
-          card:"w-2-h-1"
-        },{ 
-          component: "Weather", 
+          card: "w-2-h-1",
+        },{
+          component: "Hitokoto",
+          title: "一言",
+          card: "w-1-h-1",
+        },
+        {
+          component: "Weather",
           title: "天气",
-          card:"w-1-h-1"
-        },{ 
-          component: "TinyMusic", 
-          title: "歌词",
-          card:"w-1-h-1"
-        },{ 
-          component: "TinyNavigation", 
+          card: "w-1-h-1",
+        },
+        {
+          component: "TinyNavigation",
           title: "导航",
-          card:"w-4-h-auto",
-          // nobg:true
-        }
+          card: "w-4-h-auto",
+        },
       ],
-      cards: [
-
-        ],
-        cardTop:{},
-        cardBottom:{}
+      cards: [],
+      cardTop: {},
+      cardBottom: {},
     };
   },
   computed: {
-    docHeight: function(){
+    docHeight: function () {
       return document.body.clientHeight;
     },
     mode: function () {
@@ -134,7 +135,7 @@ export default {
       return this.$store.getters.getMainPageData;
     },
   },
-  watch:{
+  watch: {
     cards() {
       this.$store.commit("setMainPageData", this.cards);
     },
@@ -151,14 +152,14 @@ export default {
       //     ).toFixed(2))>1?1:(1 - (
       //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 / 10
       //     ).toFixed(2))}) `
-          
+
       //   this.$refs[element.component][0].style.opacity = (1 - (
-      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000
       //     ).toFixed(2))>1?1:(1 - (
-      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000 
+      //       (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  / 1000
       //     ).toFixed(2));
       // });
-/*
+      /*
           translateY(${
             0 - ((
             (this.$refs[element.component][0].getBoundingClientRect().bottom - this.docHeight)  
@@ -211,8 +212,7 @@ export default {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
-  grid-auto-rows: minmax(300px, auto);
+  grid-auto-rows: minmax(220px, auto);
   gap: 1.5vw;
   height: unset;
   overflow: unset;
@@ -227,8 +227,8 @@ export default {
       1,
       calc((100vh - var(--head-height) - var(--padding)) / 3)
     ); */
-    /* grid-template-rows: 220px; */
-    grid-template-rows: repeat(2,auto);
+    grid-template-rows: repeat(auto-fill, 220px);
+    /* grid-template-rows: repeat(2,auto); */
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1080px) {
@@ -251,13 +251,13 @@ export default {
   overflow: hidden;
   /* overflow-y: scroll; */
 }
-.card::-webkit-scrollbar{
-  width:0;
-  height:0;
+.card::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 .card-no-bg {
-  background: transparent!important;
-  backdrop-filter: none!important;
+  background: transparent !important;
+  backdrop-filter: none !important;
   border-radius: 0;
   overflow: unset;
 }
@@ -265,23 +265,30 @@ export default {
   background: var(--blurred-card-color);
   backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
-
+.card-w-1-h-1 {
+  grid-column-start: span 1;
+  grid-row-start: span 1;
+}
 .card-w-2-h-1 {
   grid-column-start: span 2;
-  grid-row-start:span 1;
+  grid-row-start: span 1;
 }
 .card-sub1 {
-  grid-row-start:span 1;
+  grid-row-start: span 1;
 }
 .card-sub2 {
-  grid-row-start:span 1;
+  grid-row-start: span 1;
 }
 .card-whole {
-  grid-row-start:span 4;
+  grid-row-start: span 4;
 }
 .card-w-1-h-2 {
-  grid-row-start:span 1;
+  grid-column-start: span 1;
+  grid-row-start: span 2;
+}
+.card-w-2-h-2 {
   grid-column-start: span 2;
+  grid-row-start: span 2;
 }
 .card-w-1-h-auto {
   grid-column-start: span 1;
@@ -291,7 +298,7 @@ export default {
   grid-column-start: span 2;
   /* grid-row-start:span 2; */
 }
-.card-w-4-h-auto{
+.card-w-4-h-auto {
   grid-column-start: span 4;
 }
 @media screen and (min-width: 1000px) and (max-width: 1200px) {
