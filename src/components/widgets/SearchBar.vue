@@ -211,16 +211,19 @@ export default {
   /* background: #000; */
 }
 .more-engines {
-  /* position: absolute; */
-  /* top:0; */
-  /* width: 80px; */
-  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   background: var(--sub-card-color);
-  height: 190px;
+  /* height: 190px; */
   border-radius: var(--card-radius);
   overflow-y: scroll;
   overflow-x: hidden;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .engines-list{

@@ -13,6 +13,7 @@
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
           'card-no-bg': item.nobg == true,
+          'card-has-float': item.hasFloat == true,
           'card-w-1-h-1': item.card == 'w-1-h-1',
           'card-w-1-h-2': item.card == 'w-1-h-2',
           'card-w-2-h-1': item.card == 'w-2-h-1',
@@ -32,6 +33,7 @@
           'fix-scrollbar': item.ifFixScrollbar,
           'card-blurred': bgPrepared && settings.useBlur,
           'card-no-bg': item.nobg == true,
+          'card-has-float': item.hasFloat == true,
           'card-w-1-h-1': item.card == 'w-1-h-1',
           'card-w-1-h-2': item.card == 'w-1-h-2',
           'card-w-2-h-1': item.card == 'w-2-h-1',
@@ -96,9 +98,10 @@ export default {
         {
           component: "GreetingBox",
           ifMainCard: true,
-          ifFixScrollbar: true,
+          // ifFixScrollbar: true,
           title: "欢迎",
           card: "w-2-h-1",
+          hasFloat:true
         },{
           component: "Hitokoto",
           title: "一言",
@@ -262,6 +265,9 @@ export default {
   backdrop-filter: none !important;
   border-radius: 0;
   overflow: unset;
+}
+.card-has-float{
+  overflow: unset!important;
 }
 .card-blurred {
   background: var(--blurred-card-color);
