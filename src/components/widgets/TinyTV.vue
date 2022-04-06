@@ -10,21 +10,22 @@
       :key="timer"
       @sendPlayerItem="updatePlayerItem"
     /> -->
-    <div :class="{ poster: true, 'poster-hided': playing }">
-      <img
-        :src="
-          require('@/assets/images/video/posters/' +
-            flvUrls[currUrl].poster +
-            '.png')
-        "
-        alt=""
-      />
+    <div class="header">
+      <span class="title">Spinnin Records Live</span>
     </div>
-    <video id="videoElement" controls :class="{ 'video-element-hided': !playing }"></video>
-    <!-- <div :class="{ controls: true, 'controls-hided': !ctrlDisplay }">
-      <button @click="play" v-if="!playing">播放</button>
-      <button @click="pause">停止</button>
-    </div> -->
+    <div class="video-window">
+      <div :class="{ poster: true, 'poster-hided': playing }">
+        <img
+          :src="
+            require('@/assets/images/video/posters/' +
+              flvUrls[currUrl].poster +
+              '.png')
+          "
+          alt=""
+        />
+      </div>
+      <video id="videoElement" controls :class="{ 'video-element-hided': !playing }"></video>
+    </div>
   </div>
 </template>
 
@@ -114,32 +115,60 @@ export default {
   },
 };
 </script>
-
+<style lang="css" src="../../styles/card.css" scoped>
+</style>
 <style>
 .television {
-  height: calc(380px / 16 * 9);
+  /* height: calc(380px / 16 * 9); */
+  height: 100%;
   width: 100%;
+  /* padding: 10px; */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  /* background: #000; */
 }
 #videoElement {
   width: 100%;
-  height: calc(380px / 16 * 9);
+  height: 100%;
+  /* height: calc(380px / 16 * 9); */
 }
 .television .poster {
-    filter: brightness(60%);
+  filter: brightness(60%);
   width: 100%;
+  height: 100%;
   transition: opacity 0.2s ease;
   cursor: pointer;
   transition: filter .2s ease;
+
 }
 .television .poster:hover{
     filter: brightness(100%);
 }
 .television .poster img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-window{
+  width: calc(100% - 20px);
+  height: calc(100% - 50px);
+  margin: 0 10px 10px;
+  box-sizing: border-box;
+  background: #000;
+  border-radius: var(--item-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .television .poster-hided {
-  opacity: 0;
-  height: 0;
+  /* opacity: 0; */
+  /* height: 0; */
+  display: none;
 }
 .television .controls {
   height: 40px;
@@ -148,9 +177,9 @@ export default {
   transition: height 0.2s ease;
   display: flex;
 }
-.television .controls-hided {
+/* .television .controls-hided {
   height: 0;
-}
+} */
 .video-element-hided{
     display:none;
 }

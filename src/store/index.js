@@ -232,11 +232,11 @@ export default new Vuex.Store({
             title: "番剧排行",
             card: "w-1-h-2",
             hide: false,
-        }, {
-            component: "TinyTV",
-            title: "直播间",
-            card: "w-1-h-1",
-            hide: false,
+            // }, {
+            //     component: "TinyTV",
+            //     title: "直播间",
+            //     card: "w-1-h-1",
+            //     hide: false,
         }],
         suggestedMainPageData: [{
             component: "TinyToDo",
@@ -269,11 +269,11 @@ export default new Vuex.Store({
             title: "番剧排行",
             card: "w-1-h-2",
             hide: false,
-        }, {
-            component: "TinyTV",
-            title: "直播间",
-            card: "w-1-h-1",
-            hide: false,
+            // }, {
+            //     component: "TinyTV",
+            //     title: "直播间",
+            //     card: "w-1-h-1",
+            //     hide: false,
         }]
     },
     mutations: {
