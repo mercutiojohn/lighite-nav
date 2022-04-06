@@ -13,7 +13,7 @@
     <div :class="{ poster: true, 'poster-hided': playing }">
       <img
         :src="
-          require('@/assets/img/video-posters/' +
+          require('@/assets/images/video/posters/' +
             flvUrls[currUrl].poster +
             '.png')
         "
@@ -31,10 +31,8 @@
 <script>
 import flvjs from "flv.js";
 
-import VideoPlayer from "@/components/VideoPlayer";
 export default {
   name: "Television",
-  components: { VideoPlayer },
   data() {
     return {
       timer: "",

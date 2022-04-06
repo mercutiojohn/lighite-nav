@@ -53,6 +53,7 @@
 // @ is an alias to /src
 // import TinyBook from "@/components/widgets/TinyBook.vue";
 // import TinyVideo from "@/components/widgets/TinyVideo.vue";
+import TinyTV from "@/components/widgets/TinyTV.vue";
 import TinyBiliRank from "@/components/widgets/TinyBiliRank.vue";
 import TinyAnimeChart from "@/components/widgets/TinyAnimeChart.vue";
 import TinyNavigation from "@/components/widgets/TinyNavigation.vue";
@@ -73,6 +74,7 @@ export default {
   components: {
     // TinyBook,
     // TinyVideo,
+    TinyTV,
     Hitokoto,
     TinyMusicChart,
     TinyAnimeChart,
@@ -111,7 +113,7 @@ export default {
           component: "TinyNavigation",
           title: "导航",
           card: "w-4-h-auto",
-        },
+        }
       ],
       cards: [],
       cardTop: {},
