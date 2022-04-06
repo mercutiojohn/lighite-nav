@@ -1,22 +1,22 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "86483d64cd5fcc169715",
-    "url": "css/about.a2260715.css"
+    "revision": "b9d98f06843dc3586a2e",
+    "url": "css/about.07bc1de0.css"
   },
   {
-    "revision": "779d7f757c8ed749c62e",
-    "url": "css/app.118bbcdc.css"
+    "revision": "8ff90953d6be91fbf5c5",
+    "url": "css/app.81b57c9a.css"
   },
   {
-    "revision": "04027d54fbee4760140b",
+    "revision": "6bff09af886a07915882",
     "url": "css/books.dd472137.css"
   },
   {
-    "revision": "a7c134aa499c1cc4806c",
+    "revision": "76640027cfb47a5e7526",
     "url": "css/navigation.47f9fa9a.css"
   },
   {
-    "revision": "9b55f2fb006108d292a9",
+    "revision": "e33d364c39ac6b1ee506",
     "url": "css/tools.a5c1798c.css"
   },
   {
@@ -48,32 +48,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "2c69a59a8678eb067e5485f6b4bcb292",
+    "revision": "206747834d931cb6a2b0953b2575f6a7",
     "url": "index.html"
   },
   {
-    "revision": "86483d64cd5fcc169715",
-    "url": "js/about.2d1f851c.js"
+    "revision": "b9d98f06843dc3586a2e",
+    "url": "js/about.52c65ceb.js"
   },
   {
-    "revision": "779d7f757c8ed749c62e",
-    "url": "js/app.740ce24e.js"
+    "revision": "8ff90953d6be91fbf5c5",
+    "url": "js/app.fed8189d.js"
   },
   {
-    "revision": "04027d54fbee4760140b",
-    "url": "js/books.c810d1d9.js"
+    "revision": "6bff09af886a07915882",
+    "url": "js/books.3b655281.js"
   },
   {
-    "revision": "81e597bdb6eb2badb1d6",
-    "url": "js/chunk-vendors.7263dccb.js"
+    "revision": "f4a994df49dfa101d858",
+    "url": "js/chunk-vendors.76da47e9.js"
   },
   {
-    "revision": "a7c134aa499c1cc4806c",
-    "url": "js/navigation.b8e51444.js"
+    "revision": "76640027cfb47a5e7526",
+    "url": "js/navigation.022abd79.js"
   },
   {
-    "revision": "9b55f2fb006108d292a9",
-    "url": "js/tools.1bbcd028.js"
+    "revision": "e33d364c39ac6b1ee506",
+    "url": "js/tools.de55d7eb.js"
   },
   {
     "revision": "642c6bc02446c3d75ea2e16cadba1339",
