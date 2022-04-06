@@ -15,7 +15,7 @@
               v-if="showDesc"
               :href="wallpaperData.links.html"
               target="_blank"
-              class="author-info ef-fadein"
+              class="author-info ef-fadein text-shadow"
             >
               <img
                 class="avatar"
@@ -28,7 +28,7 @@
                 <span class="desc">来自 Unsplash，点击查看详情</span>
               </div>
             </a>
-            <a class="author-info ef-fadein" v-else>
+            <a class="author-info ef-fadein text-shadow" v-else>
               <div class="info">
                 <span class="name">壁纸加载失败，要不点击右边刷新试试？</span>
               </div>
@@ -143,7 +143,7 @@ export default {
     this.$bus.$on("updatedWallpaper", (data) => {
       this.spinning = false;
     });
-    if(this.wallpaperData!=={})
+    if(this.wallpaperData!=={} && !wallpaperData.links.html)
         this.showDesc = true;
   },
   beforeDestroy() {},
@@ -160,10 +160,7 @@ export default {
   padding: 0 0 20px 0;
 }
 .wallpaper-closed {
-  /* height: 40px; */
-  /* background: var(--card-color); */
-  /* border-radius: var(--card-radius); */
-  /* margin: 0 50px; */
+  height: 0;
 }
 .wallpaper-trans {
   transition: height 0.4s ease;

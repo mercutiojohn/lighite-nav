@@ -18,18 +18,18 @@ export default new Vuex.Store({
             showTips: true,
             weatherCity: '北京',
             hitokotoSource: {
-                a: true,
-                b: true,
-                c: true,
-                d: true,
-                e: true,
-                f: true,
-                g: true,
-                h: true,
+                a: false,
+                b: false,
+                c: false,
+                d: false,
+                e: false,
+                f: false,
+                g: false,
+                h: false,
                 i: true,
-                j: true,
-                k: true,
-                l: true
+                j: false,
+                k: false,
+                l: false
             }
         },
         chosenEngine: {

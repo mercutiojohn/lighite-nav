@@ -86,8 +86,21 @@ export default {
     },
     getHitokoto() {
       this.loading = true;
+      let qstring = '?';
+      let index = 0;
+      for(let item in this.hitokotoKind){
+        
+        if(this.hitokotoKind[item]){
+          if(index){
+            qstring +='&'
+          }
+          qstring +='c='+item
+          index++;
+        }
+      }
+      console.log(qstring);
       this.$axios
-        .get("https://v1.hitokoto.cn?c=" + this.hitoKind)
+        .get("https://v1.hitokoto.cn" + qstring)
         .then(({ data }) => {
           this.data = data;
           this.formatLines();
@@ -100,6 +113,9 @@ export default {
     // display: function () {
     //   return this.$store.state.settings.showHitokoto;
     // },
+    hitokotoKind:function(){
+      return this.$store.state.settings.hitokotoSource;
+    }
   },
   created() {
 

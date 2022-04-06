@@ -84,7 +84,7 @@ export default {
       this.srcs = {
         regular: require("../../assets/images/wallpaper/fallback.jpg"),
       };
-      this.setBgState(true);
+      setTimeout(()=>{this.setBgState(true)},500);
     },
     getPic() {
       let _this = this;

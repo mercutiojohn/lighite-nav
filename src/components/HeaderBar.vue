@@ -6,10 +6,15 @@
       //'header-with-bg-blurred': ifScrolled && bgPrepared,
     }"
   >
-    <div class="left">
-      
+    <div :class="{'left':true,'left-big-padding':!title}">
     </div>
-    <div :class="{'center':true,'big-clock':!ifScrolled && !title && bgPrepared && !wallpaperDescHided, 'big-clock-smaller':!ifScrolled && !title && !bgPrepared}">
+    <div
+      :class="{
+        center: true,
+        'big-clock': !ifScrolled && !title && bgPrepared && !wallpaperDescHided,
+        'big-clock-smaller': !ifScrolled && !title && !bgPrepared,
+      }"
+    >
       <transition name="fade">
         <div class="title-box" v-if="title">
           <span
@@ -18,23 +23,26 @@
           ></span>
         </div>
         <div class="profile-box" v-else>
-          <TinyClock :class="{'clock':true }"/>
+          <TinyClock :class="{ clock: true }" />
         </div>
       </transition>
     </div>
     <div class="right">
-        <!-- <Profile /> -->
+      <!-- <Profile /> -->
+      <OneSentence />
     </div>
   </div>
 </template>
 
 <script>
 import TinyClock from "@/components/widgets/TinyClock.vue";
+import OneSentence from '@/components/widgets/OneSentence.vue'
 // import Profile from "@/components/utils/Profile.vue";
 export default {
   name: "Header",
   components: {
     TinyClock,
+    OneSentence,
   },
   data() {
     return {
@@ -81,8 +89,6 @@ export default {
     //   .querySelector("body > div")
     //   .addEventListener("scroll", this.handleScroll);
     this.title = this.$route.name;
-
-    
   },
   beforeDestroy() {
     // document
@@ -100,20 +106,42 @@ export default {
   /* background: var(--bg-color); */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-.center{
-  transition: transform .5s ease, font-weight .5s ease;
-  font-weight: 500;
+.left{
+  /* width: calc((100vw - var(--side-width) - 200px) / 2);
+  transition: padding-left .2s ease,width .2s ease;
+  overflow: hidden;
+  background: #fff; */
 }
-.big-clock{
+.left-big-padding{
+  /* width: calc((100vw - var(--side-width) - 200px - 50px)/2);
+  padding-left: 50px; */
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: var(--head-height);
+  top:0;
+  left: var(--side-width);
+  width: calc(100% - var(--side-width));
+  transition: transform 0.5s ease, font-weight 0.5s ease;
+  font-weight: 500;
+  z-index: -1;
+}
+.right{
+  margin-right: 10px;
+}
+.big-clock {
   transform: scale(3) translateY(30px);
   font-weight: 100;
 }
-.big-clock-smaller{
+.big-clock-smaller {
   transform: scale(2) translateY(10px);
   font-weight: 200;
 }
@@ -159,7 +187,7 @@ export default {
   background: var(--blurred-card-color);
   backdrop-filter: blur(var(--blur-width)) saturate(280%);
 }
-.add-to-home-screen-blurred{
+.add-to-home-screen-blurred {
   color: var(--title-color-blurred);
   text-shadow: 0 2px 10px #00000034;
 }

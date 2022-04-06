@@ -354,8 +354,8 @@ button.common-button {
     background: var(--sub-card-color);
     border-width: 2px;
     border-style: solid;
-    border-color: transparent;
-    /* color: #fff; */
+    border-color: var(--line-color);
+    color: var(--content-color);
     border-radius: var(--item-radius);
     padding: 10px;
     border: none;

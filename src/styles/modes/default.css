@@ -35,7 +35,7 @@
     --content-color-dark: #fff;
     --hover-color-dark: #ffffff33;
     --active-color-dark: #ffffff71;
-    --line-color-dark: #0000004f;
+    --line-color-dark: #7e7e7e4f;
     /* 强制夜间容器色 */
     --card-color-dark: #414141;
     --blurred-color-dark: #00000034;
@@ -61,7 +61,7 @@
         --content-color: #fff;
         --hover-color: #ffffff33;
         --active-color: #ffffff71;
-        --line-color: #0000004f;
+        --line-color: var(--line-color-dark);
         --placeholder-color: #cac9c9;
         /* 模糊文字 */
         --blurred-line-color: #ffffff15;
