@@ -240,7 +240,7 @@
       </div>
       <!-- 推荐列表 -->
       <div class="list-header">
-        <span class="title">精选好站</span>
+        <span class="title">站点推荐</span>
         <button class="icon-button" @click="showModify()">
           <span
             :class="{

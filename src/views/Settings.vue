@@ -19,7 +19,7 @@
         <span class="tip">添加到桌面</span>
       </button>
       <div class="sub-header">
-        <span class="title">首页功能</span>
+        <span class="title">卡片</span>
       </div>
       <div class="settings-sublist">
         <div class="settings-item">
@@ -33,7 +33,7 @@
             <div class="left">
               <span :class="'settings-icon iconfont icon-cog'"></span>
               <div class="info">
-                <span class="title">首页卡片管理</span>
+                <span class="title">卡片管理</span>
                 <span class="desc">对首页卡片进行排序或隐藏</span>
               </div>
             </div>
@@ -267,14 +267,14 @@ export default {
             {
               title: "开启壁纸",
               icon: "icon-box",
-              desc: "来自 Unsplash 的精选壁纸",
+              desc: "来自 Unsplash 的随机壁纸",
               model: "mode",
               inputType: "checkbox",
             },
             {
               title: "开启模糊",
               icon: "icon-box",
-              desc: "模糊效果可能会导致卡顿",
+              desc: "低配置设备开启模糊效果可能会导致卡顿",
               model: "useBlur",
               ifShow: "mode",
               inputType: "checkbox",
@@ -285,8 +285,8 @@ export default {
           title: "本地服务",
           children: [
             {
-              title: "城市",
-              desc: "输入天气/疫情相关信息所在市或县",
+              title: "所在地",
+              desc: "设置您所在市、直辖市或县，以查看天气和疫情信息",
               model: "weatherCity",
               inputType: "text",
             },
@@ -348,7 +348,7 @@ export default {
           children: [
             {
               title: "重置",
-              icon: "icon-message-square",
+              icon: "icon-cog",
               desc: "将主页设置重置为初始状态",
               inputType: "button",
               buttonTitle: "重置为初始状态",
