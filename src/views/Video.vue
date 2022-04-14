@@ -48,7 +48,9 @@ return {
 },
 computed: {},
 watch: {},
-methods: {},
+methods: {
+    
+},
 created(){},
 mounted(){},
 beforeDestroy(){}

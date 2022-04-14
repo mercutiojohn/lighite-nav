@@ -489,7 +489,7 @@ export default {
       try {
         this.$api
           .get(
-            "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites"
+            "/collections?populate[0]=sites&populate[1]=sites.icon&populate[2]=sites.subsites&pagination[page]=1&pagination[pageSize]=50"
           )
           .then((response) => {
             // console.log(response.data.data);
