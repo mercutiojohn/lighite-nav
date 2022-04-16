@@ -3,33 +3,37 @@
 - 一个次世代主页；
 - 你的主页，工具箱，和影音网址收藏馆。
 
-## 预览
 
+
+<!-- ## 体验版
+https://lightie.mercutio.club -->
+
+## GitHub Pages
 https://mercutiojohn.github.io/lighite-nav/#/
 
-## 体验版
-https://lightie.mercutio.club
+## vercel
+https://lighite-nav.vercel.app/#/
 
 ## 实现功能:
 
 - [x] 日期/时间
 - [x] 待办清单
   - [x] Vuex+localStorage持久化
-  - [ ] 拖动排序
+  - [x] 拖动排序
 - [x] 导航链接收藏
-- [ ] 小工具
-  - [ ] base64
-  - [ ] urlencode-decode
-- [ ] 全局设置
-  - [ ] 时间设置
+- [x] 小工具
+  - [x] base64
+  - [x] urlencode-decode
+- [x] 全局设置
+  - [x] 时间设置
   - [x] 壁纸设置
 - [ ] 大日历
 - [x] 搜索引擎
   - [ ] 自由定制
 - [x] 壁纸
-  - [ ] 壁纸自定义
-  - [ ] 模糊效果单独开关
-- [ ] 大时间
+  - [x] 壁纸自定义
+  - [x] 模糊效果单独开关
+- [x] 大时间
 - [ ] 大天气
 - [ ] 大待办
 - [ ] Markdown笔记
