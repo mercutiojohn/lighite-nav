@@ -13,7 +13,7 @@ const routes = [{
         path: '/music',
         name: '音乐',
         component: () =>
-            import ( /* webpackChunkName: "music" */ '../views/Fallback.vue')
+            import ( /* webpackChunkName: "music" */ '../views/Music.vue')
     }, {
         path: '/video',
         name: '视频',

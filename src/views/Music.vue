@@ -141,7 +141,8 @@ export default {
   components: {},
   data() {
     return {
-      base_url: `https://musicapi.mercutio.club`,
+      // base_url: `https://merc-music-api.vercel.app/`,
+      base_url: 'https://musicapi.mercutio.club',
       // base_url: "http://cloud-music.pl-fe.cn",
       songs: "",
       albums: "",

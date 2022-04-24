@@ -47,7 +47,7 @@ https://lighite-nav.vercel.app/#/
   - [ ] b站直播提醒
   - [ ] b站关注更新
 - [ ] 云同步
-- [ ] 自定义首页模块
+- [x] 自定义首页模块
 - [ ] Chrome插件
 - [ ] Electron本地版本
 ## 杂项
