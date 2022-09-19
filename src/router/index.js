@@ -32,7 +32,7 @@ const routes = [{
     },
     {
         path: '/tools',
-        name: '工具',
+        name: '百宝箱',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.

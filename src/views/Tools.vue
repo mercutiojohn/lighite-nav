@@ -53,6 +53,7 @@ import Base64 from "@/components/tools/Base64.vue";
 import Typing from "@/components/tools/Typing.vue";
 import MbtiTest from "@/components/tools/MbtiTest.vue";
 import RegexTest from "@/components/tools/RegexTest.vue";
+import BangumiCalendar from "@/components/tools/BangumiCalendar.vue";
 export default {
   name: "Tools",
   components: {
@@ -60,12 +61,21 @@ export default {
     UrlEncode,
     Typing,
     MbtiTest,
-    RegexTest
+    RegexTest,
+    BangumiCalendar
   },
   data() {
     return {
       toolsList: [
         {
+          title: "影音",
+          items: [
+            {
+              title: "番组放送",
+              component: "BangumiCalendar",
+            },
+          ]
+        },{
           title: "编码转换",
           items: [
             {
@@ -80,7 +90,6 @@ export default {
               title: "正则表达式可视化",
               component: "RegexTest",
             },
-            
           ],
         },
         {
@@ -159,7 +168,7 @@ export default {
 
 <style scoped>
 .tools {
-  padding:0;
+  padding: 0;
   display: flex;
 }
 .header {
@@ -234,8 +243,8 @@ export default {
   color: #fff;
 }
 .tool-item-active {
-  background: var(--accent-color)!important;
+  background: var(--accent-color) !important;
   color: #fff;
-  cursor:unset;
+  cursor: unset;
 }
 </style>
