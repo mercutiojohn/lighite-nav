@@ -1,4 +1,4 @@
-<templat>
+<template>
   <!-- <Scroll-Div ref="main" view-class="app" width="100vw" height="100vh"> -->
   <div
     id="app"
@@ -39,7 +39,20 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    // JS媒体查询
+    ifDark(){
+      // Create a media condition that targets viewports at least 768px wide
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      // Check if the media query is true
+      if (mediaQuery.matches) {
+        // Then trigger an alert
+        return true;
+      }else{
+        return false
+      }
+    }
+  },
   watch: {
     $route(to, from) {
       // console.log(to.path);
@@ -48,7 +61,15 @@ export default {
   },
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+    // 如果夜间模式,设置标题栏颜色为黑色
+    this.$nextTick(()=>{
+      if(this.ifDark){
+        console.log('Good Night!');
+        themeColor.content = '#000';
+      }
+    });
+  },
   beforeDestroy() {},
 };
 </script>
