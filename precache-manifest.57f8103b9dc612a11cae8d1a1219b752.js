@@ -1,26 +1,26 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "12af28a775f7170ad765",
+    "revision": "6a3e849c6a57c169fa71",
     "url": "css/about.f86a478b.css"
   },
   {
-    "revision": "c738d758175098b64f29",
-    "url": "css/app.1e906509.css"
+    "revision": "65fde9790549360f8786",
+    "url": "css/app.1860edb4.css"
   },
   {
-    "revision": "b8b5cdddc3d1056621e4",
+    "revision": "ad3da6e98d8b1adbd81b",
     "url": "css/books.dd472137.css"
   },
   {
-    "revision": "03bf6a4696ff3490f478",
+    "revision": "a23aeeddcc71d4479721",
     "url": "css/music.90ed2241.css"
   },
   {
-    "revision": "433e3c266fd8a28739f6",
+    "revision": "27c83d0bfe4d643cdd55",
     "url": "css/navigation.1f2a844d.css"
   },
   {
-    "revision": "cc770157d673c5b03fff",
+    "revision": "783aed92826ef3cc6681",
     "url": "css/tools.d019819a.css"
   },
   {
@@ -56,39 +56,39 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/webpage.ddf4ac8b.svg"
   },
   {
-    "revision": "3899254ff74575273c361693be335d9f",
+    "revision": "f92b115655c1fcd6d8ff5b4bd1c2a439",
     "url": "index.html"
   },
   {
-    "revision": "12af28a775f7170ad765",
-    "url": "js/about.9030ceb8.js"
+    "revision": "6a3e849c6a57c169fa71",
+    "url": "js/about.9c906d91.js"
   },
   {
-    "revision": "c738d758175098b64f29",
-    "url": "js/app.cffd31ba.js"
+    "revision": "65fde9790549360f8786",
+    "url": "js/app.b0822155.js"
   },
   {
-    "revision": "b8b5cdddc3d1056621e4",
-    "url": "js/books.a73ebe0d.js"
+    "revision": "ad3da6e98d8b1adbd81b",
+    "url": "js/books.8a4d1768.js"
   },
   {
     "revision": "a41bb3336184022213bd",
     "url": "js/chunk-vendors.c7610761.js"
   },
   {
-    "revision": "03bf6a4696ff3490f478",
-    "url": "js/music.844c4d39.js"
+    "revision": "a23aeeddcc71d4479721",
+    "url": "js/music.c17b74f7.js"
   },
   {
-    "revision": "433e3c266fd8a28739f6",
-    "url": "js/navigation.63ae4ee5.js"
+    "revision": "27c83d0bfe4d643cdd55",
+    "url": "js/navigation.43c8a584.js"
   },
   {
-    "revision": "cc770157d673c5b03fff",
-    "url": "js/tools.a25beaf6.js"
+    "revision": "783aed92826ef3cc6681",
+    "url": "js/tools.67f90852.js"
   },
   {
-    "revision": "642c6bc02446c3d75ea2e16cadba1339",
+    "revision": "5e23df777f4ac87e95b351afe9db55fc",
     "url": "manifest.json"
   },
   {
