@@ -1,8 +1,8 @@
 <template>
   <div :class="{'sidebar':true,'sidebar-blurred':bgPrepared}">
-    <div class="title-box">
+    <!-- <div class="title-box">
       <span :class="{'title':true,'title-blurred':bgPrepared}" v-text="title"></span>
-    </div>
+    </div> -->
     <div id="nav">
       <router-link :class="{'ef-pudding':true,'blurred':bgPrepared}" v-for="(item,index) in tabs" :key="index" :to="item.to" @click.native="scroll()">
         <span :class="'iconfont '+item.icon"></span>
@@ -22,7 +22,7 @@ export default {
   components: {},
   data() {
     return {
-      title: "Lightie",
+      // title: "Lightie",
       tabs:[
         {
           to:"/",
@@ -102,6 +102,8 @@ export default {
     position: fixed;
     bottom: 0;
     top: none;
+    /* 适配移动端安全区 */
+    padding: 0 0 env(safe-area-inset-bottom, 0) 0;
   }
   .sidebar-blurred{
     background: var(--blurred-card-color);
@@ -167,20 +169,18 @@ export default {
 #more a.router-link-exact-active {
   color: var(--accent-color);
 }
-.title-box {
+/* .title-box {
   height: var(--head-height);
-  /* width: 150px; */
   padding: 10px;
   box-sizing: border-box;
-  /* background: rgb(128, 128, 128); */
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.title-blurred{
+} */
+/* .title-blurred{
   color: var(--title-color-blurred);
   text-shadow: 0 2px 10px #00000034;
-}
+} */
 @media screen and (max-width: 700px) {
   .title-box {
     display: none;
@@ -189,9 +189,9 @@ export default {
     text-shadow: unset;
   }
 }
-.title {
+/* .title {
   font-family: AtmaSerif;
   font-size: 30px;
   font-weight: 900;
-}
+} */
 </style>

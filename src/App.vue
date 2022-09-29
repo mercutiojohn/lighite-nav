@@ -1,4 +1,4 @@
-<template>
+<templat>
   <!-- <Scroll-Div ref="main" view-class="app" width="100vw" height="100vh"> -->
   <div
     id="app"
@@ -86,6 +86,9 @@ export default {
     overflow-y: unset;
     height: auto;
     min-height: calc(100vh - var(--head-height) - var(--bottom-height));
+    /* 适配移动端安全区 */
+    padding: 0 0 env(safe-area-inset-bottom, 0) 0;
+
   }
 }
 </style>

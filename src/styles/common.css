@@ -27,8 +27,13 @@ body {
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* 禁止移动端下拉刷新 */
+    overscroll-behavior-y: contain;
     /* text-align: center; */
     /* color: #2c3e50; */
+    /* 适配移动端安全区 */
+    /* padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0); */
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) 0 env(safe-area-inset-left, 0);
 }
 
 body::-webkit-scrollbar {

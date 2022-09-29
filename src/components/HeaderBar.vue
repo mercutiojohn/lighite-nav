@@ -2,11 +2,19 @@
   <div
     :class="{
       header: true,
+      'header-pwa-colored': pwaHeaderBarColored,
       //'header-with-bg': ifScrolled,
       //'header-with-bg-blurred': ifScrolled && bgPrepared,
     }"
   >
-    <div :class="{'left':true,'left-big-padding':!title}">
+  <div class="header-content">
+    <!-- <div :class="{'left':true,'left-big-padding':!title}">
+    </div> -->
+    <div class="logo-box">
+      <span
+        :class="{ logo: true, 'logo-blurred': bgPrepared && !pwaHeaderBarColored, 'logo-pwa-colored':pwaHeaderBarColored}"
+        v-text="logoText"
+      ></span>
     </div>
     <div
       :class="{
@@ -18,7 +26,7 @@
       <transition name="fade">
         <div class="title-box" v-if="title">
           <span
-            :class="{ title: true, 'title-blurred': bgPrepared }"
+            :class="{ title: true, 'title-blurred': bgPrepared && !pwaHeaderBarColored, 'title-pwa-colored':pwaHeaderBarColored }"
             v-text="title"
           ></span>
         </div>
@@ -32,11 +40,12 @@
       <OneSentence />
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import TinyClock from "@/components/widgets/TinyClock.vue";
-import OneSentence from '@/components/widgets/OneSentence.vue'
+import OneSentence from "@/components/widgets/OneSentence.vue";
 // import Profile from "@/components/utils/Profile.vue";
 export default {
   name: "Header",
@@ -47,6 +56,7 @@ export default {
   data() {
     return {
       title: "",
+      logoText: "Lightie",
       // ifScrolled: false,
     };
   },
@@ -59,6 +69,17 @@ export default {
     },
     ifScrolled: function () {
       return this.$store.getters.getIfScrolled;
+    },
+    pwaHeaderBarColored() {
+      if ("windowControlsOverlay" in navigator) {
+        if(navigator.windowControlsOverlay.visible){
+          return true;
+        }else{
+          return false;
+        }
+      }else{
+        return false;
+      }
     },
   },
   watch: {
@@ -101,25 +122,64 @@ export default {
 <style scoped>
 .header {
   height: var(--head-height);
-  width: calc(100% - var(--side-width));
-  margin-left: var(--side-width);
+  width: 100%;
+  /* width: calc(100% - var(--side-width)); */
+  /* margin-left: var(--side-width); */
   /* background: var(--bg-color); */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 1000;
+  -webkit-app-region: drag;
 }
-.left{
+.header-pwa-colored{
+  /* background-image: linear-gradient(#eee 60%,transparent); */
+  /* background: #eee; */
+}
+.header-content{
+  height: var(--head-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Use the environment variable for the left anchoring with a fallback. */
+  padding-left: env(titlebar-area-x, 0);
+  /* Use the environment variable for the top anchoring with a fallback. */
+  padding-top: env(titlebar-area-y, 0);
+  /* Use the environment variable for setting the width with a fallback. */
+  width: env(titlebar-area-width, 100%);
+  /* Use the environment variable for setting the height with a fallback. */
+  /* height: env(titlebar-area-height, var(--head-height)); */
+}
+.left {
   /* width: calc((100vw - var(--side-width) - 200px) / 2);
   transition: padding-left .2s ease,width .2s ease;
   overflow: hidden;
   background: #fff; */
 }
-.left-big-padding{
+.left-big-padding {
   /* width: calc((100vw - var(--side-width) - 200px - 50px)/2);
   padding-left: 50px; */
+}
+.logo-box {
+  height: env(titlebar-area-height, var(--head-height));
+  /* width: 150px; */
+  padding: 10px;
+  box-sizing: border-box;
+  /* background: rgb(128, 128, 128); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-blurred {
+  color: var(--title-color-blurred);
+  text-shadow: 0 2px 10px #00000034;
+}
+.logo {
+  font-family: AtmaSerif;
+  font-size: 30px;
+  font-weight: 900;
+}
+.logo-pwa-colored{
+  /* color:#000; */
 }
 .center {
   display: flex;
@@ -127,14 +187,14 @@ export default {
   align-items: center;
   position: fixed;
   height: var(--head-height);
-  top:0;
+  top: 0;
   left: var(--side-width);
   width: calc(100% - var(--side-width));
   transition: transform 0.5s ease, font-weight 0.5s ease;
   font-weight: 500;
   z-index: -1;
 }
-.right{
+.right {
   margin-right: 10px;
 }
 .big-clock {
@@ -168,6 +228,9 @@ export default {
   /* font-family: AtmaSerif; */
   font-size: 20px;
   font-weight: 900;
+}
+.title-pwa-colored{
+  /* color: #000; */
 }
 .title-blurred {
   color: var(--title-color-blurred);
