@@ -1,7 +1,7 @@
 <template>
   <div class="bangumi-calendar fix-scrollbar">
     <h1>番组放送</h1>
-    <div class="bangumi-list">
+    <div class="bangumi-list" v-if="!loading">
       <div
         class="bangumi-item"
         v-for="(item, index) in onAirItems"
@@ -46,6 +46,9 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <loading />
+    </div>
     <!-- {{ onAirItems }} -->
     <!-- <button class="get_data" @click="getData()">getData</button> -->
   </div>
@@ -58,11 +61,13 @@ import {
   getBangumiName,
 } from "./utils/bangumiCalendar/data-processor";
 import moment from "moment";
+import Loading from '../utils/Loading.vue';
 export default {
   name: "",
-  components: {},
+  components: {Loading},
   data() {
     return {
+      loading:true,
       dataUrl: "https://unpkg.com/bangumi-data@0.3/dist/data.json",
       bangumiData: "",
       resultFileName: "bangumi.ics",
@@ -87,6 +92,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.bangumiData = response.data;
+          this.loading = false;
         })
         .catch((e) => {
           console.log(e);
@@ -104,6 +110,7 @@ export default {
             response.data.items
           );
           console.log(this.onAirItems);
+          this.loading = false;
         })
         .catch((e) => {
           console.log(e);
