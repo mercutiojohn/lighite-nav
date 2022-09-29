@@ -7,6 +7,7 @@
       //'header-with-bg-blurred': ifScrolled && bgPrepared,
     }"
   >
+  <div class="rounded-pwa-corner"></div>
   <div class="header-content">
     <!-- <div :class="{'left':true,'left-big-padding':!title}">
     </div> -->
@@ -134,6 +135,15 @@ export default {
 .header-pwa-colored{
   /* background-image: linear-gradient(#eee 60%,transparent); */
   /* background: #eee; */
+}
+.rounded-pwa-corner{
+  position: fixed;
+  top: env(titlebar-area-y, 0);
+  right: 0;
+  width: calc(100vw - env(titlebar-area-x, 0) - env(titlebar-area-width, 100%) + 7px);
+  height: env(titlebar-area-height, 0);
+  border-radius:0 0 0 7px;
+  background: var(--bg-color);
 }
 .header-content{
   height: var(--head-height);
