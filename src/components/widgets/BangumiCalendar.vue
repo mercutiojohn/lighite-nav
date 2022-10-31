@@ -14,7 +14,7 @@
         :key="index"
       >
         <div class="header">
-          <div class="is-new" v-if="item.isNew">[新番]</div>
+          <!-- <div class="is-new" v-if="item.isNew">[新番]</div> -->
           <div class="zh-test" v-if="item.titleTranslate['zh-Hans']">
             <span
               class="title-zh"
@@ -29,15 +29,18 @@
           </span>
           <!-- <span class="title-jp">{{ item.title }}</span> -->
         </div>
-        <!-- <div class="hello">
-          <span class="hello">{{ getDate(item.begin) }}开播</span>
-        </div> -->
         <div class="hello">
-          <span class="hello">每周{{ getWeekStr(item.begin) }} {{ getTime(item.begin) }}</span>
+          <span class="hello">{{ getDate(item.begin) }}</span>
         </div>
-        <!-- <div class="hello">
+        <div class="hello">
+          <span class="hello">{{ getWeekNum(item.begin) }}</span>
+        </div>
+        <div class="hello">
+          <span class="hello">每周{{ getWeekStr(item.begin) }}</span>
+        </div>
+        <div class="hello">
           <span class="hello">{{ getDate(item.broadcast) }}</span>
-        </div> -->
+        </div>
         <div class="functions">
           <a
             class="function-link ef-fadein officialSite"
@@ -110,9 +113,6 @@ export default {
   methods: {
     getDate(timeStr) {
       return moment(timeStr).format("llll");
-    },
-    getTime(timeStr) {
-      return moment(timeStr).format("LT");
     },
     getWeekNum(timeStr) {
       return moment(timeStr).format("d");
@@ -222,13 +222,5 @@ export default {
 .function-link {
   padding: 5px;
   border-radius: var(--card-radius);
-}
-.switch{
-  padding:10px;
-  border-radius: var(--card-radius);
-  cursor: pointer;
-}
-.switch:hover{
-  background: var(--sub-card-color);
 }
 </style>
